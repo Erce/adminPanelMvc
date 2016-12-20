@@ -9,7 +9,15 @@
     if (isset($_GET['subpage'])) {
         $subpage = $_GET['subpage'];
         if($subpage == "products") {
-            require_once 'View/pages/products/products.php';
+            if(isset($_GET['part']) && $_GET['part'] == "add") {
+                require_once 'View/pages/products/productAdd.php';
+            }
+            elseif(!isset($_GET['product_id'])) {
+                require_once 'View/pages/products/products.php';
+            }
+            else {
+                require_once 'View/pages/products/productEdit.php';
+            }
         }
         elseif ($subpage == "productcategories") {
             require_once 'View/pages/products/productCategories.php';

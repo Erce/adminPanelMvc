@@ -262,6 +262,36 @@ $(function() {
     });  
     
     
+    $("#template").ready(function(){
+        for (i=0; i< $(jArray).length; i++ ) {
+            if($(jArray)[i]['IsOn'] == 1) {
+                $arr = $(jArray)[i];
+                break;
+            }
+        }
+        $('#templateId').val($arr['Id']);
+        $('#templateName').val($arr['Name']);
+        $('#templateBodyBackground').val($arr['BodyBackground']);
+        $('#templateFontFamily').val($arr['FontFamily']);
+        $('#templateBackgroundColor').val($arr['BackgroundColor']);
+    });
+    
+    $("#template").change(function(event){
+        $id = $(this).children(":selected").attr("id");
+        $id = $id.substring(6, $id.length);
+        for (i=0; i< $(jArray).length; i++ ) {
+            if($(jArray)[i]['Id'] == $id) {
+                $arr = $(jArray)[i];
+                break;
+            }
+        }
+        $('#templateId').val($arr['Id']);
+        $('#templateName').val($arr['Name']);
+        $('#templateBodyBackground').val($arr['BodyBackground']);
+        $('#templateFontFamily').val($arr['FontFamily']);
+        $('#templateBackgroundColor').val($arr['BackgroundColor']);
+    });
+    
     /*
     $(function () {
         $('.sliderphotobox').click(function (event) {

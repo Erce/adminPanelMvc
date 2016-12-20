@@ -10,6 +10,7 @@
     $category = isset($_GET['category']) ? $_GET['category'] : "";
     $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : "";
     $product = new Products($category,$keyword);
+    $product->setPaging();
     $product->setProductList();
     $productList = $product->getProductList();
     $link = (($keyword != "") ? '&keywords='.$keyword : ("".(($category != "") ? '&category='.$category : "")));
@@ -19,7 +20,8 @@
             <div class="product-section">
                 <div class="row button-div">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="col-lg-9 col-md-8 col-sm-9 col-xs-12">                                   
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"></div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">                                   
                             <?php 
                                 try {
                                     // The "back" link
@@ -36,28 +38,34 @@
                                 }
                             ?>                           
                         </div>
-                        <div class="col-lg-3 col-md-4 col-sm-3 col-xs-12">
-                            <button class="all-products-button">Diğer Ürünleri Göster</button>
-                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"></div>
                     </div>
                 </div>
                 <?php for($i = 0; $i <  sizeof($productList); $i++) { ?>
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 references-page-img-container">
-                    <a href="?controller=pages&action=products&product_id=<?php echo $productList[$i][0] ?>">
-                        <div class="item-image">
-                            <img class="img-responsive img-container-inside" id="myImg<?php echo $productList[$i][0] ?>" src="<?php echo $productList[$i][3]; ?>">
-                        </div>
-                        <div class="row item-content">
-                            <div class="item-text">
-                                <h4><?php echo $productList[$i][2]; ?></h4>
-                                <h5>Caption Text2</h5>
+                <a href="?controller=pages&action=products&subpage=products&product_id=<?php echo $productList[$i]["Id"] ?>">
+                    <div class="row products-page-row <?php if($i % 2 == 0) {echo "products-page-row-light";}else{echo "products-page-row-dark";} ?>">
+                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4 product-page-row-img-container">
+                            <div class="item-image">
+                                <img class="img-responsive img-container-inside" id="myImg<?php echo $productList[$i]["Id"] ?>" src="uploads/<?php echo $productList[$i]["ImgUrl"]; ?>">
                             </div>
                         </div>
-                    </a>
-                </div>   
+                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                            <div class="row item-content">
+                                <div class="item-text">
+                                    <h4><?php echo $productList[$i]["Title"]; ?></h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                            <div class="row item-content">
+                                <div class="item-text">
+                                    <h5>Caption Text2</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
                 <?php } ?>
-                
-                
             </div> 
         </div>
     </div>

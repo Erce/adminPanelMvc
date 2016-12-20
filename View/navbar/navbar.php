@@ -4,7 +4,15 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */?>
+ * 
+ */
+    require_once 'Controller/admin/logoffController.php';
+    $logoffcontroller = new LogoffController();
+    if (isset($_GET['action']) && $_GET['action'] == 'logoff') {
+        $logoffcontroller->{$_GET['action']}();
+    }
+
+?>
 
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container-fluid">
@@ -14,7 +22,7 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Erce</a>
+                <a class="navbar-brand" href="?controller=pages&action=home">Erce</a>
               </div>
               <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <!--<ul class="nav navbar-nav navbar-right" id="mobile-ul">
@@ -92,8 +100,8 @@
                         </ul>
                     </li>
                     <li>                
-                        <form class="form-logoff" action="logoff.php" method="GET">
-                            <button type="submit" value="logoff" class="btn btn-default logoff" name="logoff" id="logoff"><img class="img-responsive logoff-image" src="Public/images/logoff.png" height="18px" width="18px"></button>
+                        <form class="form-logoff" action="?" method="GET">
+                            <button type="submit" value="logoff" class="btn btn-default logoff" name="action" id="logoff"><img class="img-responsive logoff-image" src="Public/images/logoff.png" height="18px" width="18px"></button>
                         </form>
                     </li>
                 </ul>

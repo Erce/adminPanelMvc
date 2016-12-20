@@ -37,4 +37,21 @@ class ProductCategories {
         return $this->productCategoryList;
     }
     
+    public function selectAllCategories () {
+        $db = Db::getInstance();
+        $req = $db->prepare("SELECT * FROM product_categories");
+        $req->execute();
+        while($row = $req->fetch()) {
+            if(isset($row['id'])) { $this->productCategoryId = $row['id'];}
+            if(isset($row['category_list_name'])) { $this->productCategoryListName = $row['category_list_name'];}
+            if(isset($row['category_name'])) { $this->productCategoryName = $row['category_name'];}
+            $this->productCategoryRow = array(  "ProductCategoryId" => $this->productCategoryId,
+                                                "ProductCategoryListName" => $this->productCategoryListName, 
+                                                "ProductCategoryName" => $this->productCategoryName);
+            array_push($this->productCategoryList, $this->productCategoryRow);
+        }
+        
+        return $this->productCategoryList;
+    }
+    
 }

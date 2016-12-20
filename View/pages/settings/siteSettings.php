@@ -6,6 +6,23 @@
  * and open the template in the editor.
  */
 
+    require_once 'Model/siteSettingsModel.php';
+    $siteSettingsModel = new SiteSettingsModel();
+    $siteSettingsModel->setSiteSettingsList();
+    $siteSettingsList = $siteSettingsModel->getSiteSettingsList();
+    require_once 'Controller/admin/siteSettingsController.php';
+    $siteSettingsController = new SiteSettingsController($siteSettingsModel);
+
+    if (isset($_GET['part'])) {
+        $siteSettingsController->{$_GET['part']}($_POST);
+        $template = $siteSettingsModel->getSiteSettingsWithId($_POST['templateId']);
+        for ($i = 0; $i < count($siteSettingsList); $i++) {
+            if($siteSettingsList[$i]['Id'] == $_POST['templateId']) {
+                $siteSettingsList[$i] = $template;
+            }
+        }
+    }
+
 ?>
 
         <div class="container-fluid admin-main-container">
@@ -47,7 +64,7 @@
                                     Panel Dili: <input type="radio" name="panelLanguage" value="turkish"> Turkish
                                     <input type="radio" name="panelLanguage" value="english"> English<br/><br/>
                                     </p>
-                                    <input class="btn btn-default save-button" TYPE="submit" name="upload" title="Add data to the Database" value="Kaydet"/>
+                                    <input class="btn btn-default save-button site-settings-submit" TYPE="submit" name="upload" title="Add data to the Database" value="Kaydet"/>
                                 </form>
                             </div>
                         </div>
@@ -69,33 +86,50 @@
                                 <div class="col-md-5 col-xs-5"></div>
                             </div>
                             <div id="records" class="message-div">
-                                <form method="post" action="addProduct.php" enctype="multipart/form-data">
+                                <form method="post" action="?controller=pages&action=settings&subpage=sitesettings&part=update" enctype="multipart/form-data">       
+                                    <div class="form-group">
+                                        <label for="templateName">Tasarım Adı:</label>
+                                        <select class="form-control" type="" id="template" name="template">
+                                            <?php for ($i = 0; $i < sizeof($siteSettingsList); $i++) { ?>
+                                                <option id="option<?php echo $siteSettingsList[$i]['Id']; ?>">
+                                                    <?php echo $siteSettingsList[$i]["Name"];?>
+                                                </option>
+                                            <?php } ?>
+                                        </select>
+                                        <input type='hidden' name="templateId" id='templateId' value='<?php ?>'>
+                                    </div>
                                     <p>
                                     Fotoğraf seç:
                                     </p>
                                     <div class="image-upload">
                                         <label for="file-input">
-                                            <img class="img-responsive logoff-image" src="./images/Add_image_icon.svg" height="30%" width="30%">
+                                            <img class="img-responsive logoff-image" id="image-preview" src="Public/images/Add_image_icon.svg" height="40%" width="40%">
                                         </label>
                                         <input id="file-input" type="file" name="photo">
-                                    </div>                                    
-                                    <p>
-                                    Değiştirmek istediğiniz logoyu seçiniz:
-                                    <input type="radio" name="logo" value="mainLogo"> Ana Logo
-                                    <input type="radio" name="logo" value="subLogo"> Alt Logo
-                                    </p>
-                                    <p>
-                                      Other Member Information:
-                                    </p>
-                                    <textarea rows="10" cols="35" name="aboutMember">
-                                    </textarea>
-                                    <p>
-                                      Please Enter any other Bands the Member has been in.
-                                    </p>
-                                    <p>
-                                      Other Bands:
-                                    </p>
-                                    <input type="text" name="otherBands" size=30 />
+                                    </div>    
+                                    <div class="form-group">
+                                        <p>
+                                        Değiştirmek istediğiniz logoyu seçiniz:
+                                        <input type="radio" name="logo" value="mainLogo"> Ana Logo
+                                        <input type="radio" name="logo" value="subLogo"> Alt Logo
+                                        </p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="templateName">Tasarım Adı</label>
+                                        <input class="input-class form-control" type="text" name="templateName" id="templateName" value="<?php ?>"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="templateBodyBackground">Tasarım Arka Plan:</label>
+                                        <input class="input-class form-control" type="text" name="templateBodyBackground" id="templateBodyBackground" value="<?php ?>"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="templateFontFamily">Tasarım yazı tipi:</label>
+                                        <input class="input-class form-control" type="text" name="templateFontFamily" id="templateFontFamily" value="<?php ?>"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="templateBodyColor">Arka Plan Rengi:</label>
+                                        <input class="input-class form-control" type="text" name="templateBodyColor" id="templateBodyColor" value="<?php ?>"/>
+                                    </div>
                                     <br/>
                                     <br/>
                                     <input class="btn btn-default save-button" TYPE="submit" name="upload" title="Add data to the Database" value="Kaydet"/>
@@ -108,3 +142,4 @@
                 <!--<div class="col-lg-1 col-sm-1 col-md-1"></div>-->
             </div>
         </div>
+        <script type="text/javascript">var jArray =<?php echo json_encode($siteSettingsList); ?>;</script>
