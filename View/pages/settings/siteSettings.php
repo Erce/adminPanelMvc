@@ -10,16 +10,23 @@
     $siteSettingsModel = new SiteSettingsModel();
     $siteSettingsModel->setSiteSettingsList();
     $siteSettingsList = $siteSettingsModel->getSiteSettingsList();
+    $admin = $siteSettingsModel->getAdmin($_SESSION['userId']);
     require_once 'Controller/admin/siteSettingsController.php';
     $siteSettingsController = new SiteSettingsController($siteSettingsModel);
 
     if (isset($_GET['part'])) {
-        $siteSettingsController->{$_GET['part']}($_POST);
-        $template = $siteSettingsModel->getSiteSettingsWithId($_POST['templateId']);
-        for ($i = 0; $i < count($siteSettingsList); $i++) {
-            if($siteSettingsList[$i]['Id'] == $_POST['templateId']) {
-                $siteSettingsList[$i] = $template;
+        if($_GET['part'] == 'update') {
+            $siteSettingsController->{$_GET['part']}($_POST);
+            $template = $siteSettingsModel->getSiteSettingsWithId($_POST['templateId']);
+            for ($i = 0; $i < count($siteSettingsList); $i++) {
+                if($siteSettingsList[$i]['Id'] == $_POST['templateId']) {
+                    $siteSettingsList[$i] = $template;
+                }
             }
+        }
+        else {
+            $siteSettingsController->{$_GET['part']}($_POST);
+            $admin = $siteSettingsModel->getAdmin($_SESSION['userId']);
         }
     }
 
@@ -43,17 +50,17 @@
                                 <div class="col-md-5 col-xs-5"></div>
                             </div>
                             <div id="records" class="message-div">
-                                <form method="post" action="addProduct.php" enctype="multipart/form-data">
+                                <form method="post" action="?controller=pages&action=settings&subpage=sitesettings&part=updateadmin" enctype="multipart/form-data">
                                     <br>
                                     <p>
                                     Panel Kullanıcı Adı:
                                     </p>
-                                    <input class="input-class form-control" type="text" name="panelUsername"/>
+                                    <input class="input-class form-control" type="text" name="userName" value="<?php echo $admin["UserName"]; ?>"/>
                                     <br/>
                                     <p>
                                     Panel Şifresi:
                                     </p>
-                                    <input class="input-class form-control" type="password" name="panelPassword"/>
+                                    <input class="input-class form-control" type="password" name="password" placeholder="Yeni Şifre"/>
                                     <br/>
                                     <p>
                                     Telefon Numaranız:

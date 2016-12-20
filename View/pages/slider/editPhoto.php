@@ -7,12 +7,21 @@
  */
 
 
-                    include 'Model/photoModel.php';
-                    $photo = new photo();
-                    $photo-> editPhoto($_GET['id']);
+                    require_once 'Model/sliderPhotoModel.php';
+                    $photoModel = new SliderPhoto();
+                    $photoModel->editPhoto($_GET['id']);
+                    require_once 'Controller/admin/sliderPhotoController.php';
+                    $sliderPhotoController = new SliderPhotoController($photoModel);
+
+                    if (isset($_GET['part'])) {                     
+                        $sliderPhotoController->{$_GET['part']}($_POST);
+                        $photoModel->editPhoto($_GET['id']);
+                    }
+                    
+                    
                 ?>
 
-                <form id="firstform" method="post" action="Controller/photoController.php" enctype="multipart/form-data">
+                <form id="firstform" method="post" action="?controller=pages&action=slider&page=edit&id=<?php echo $photoModel->getId();?>&part=update" enctype="multipart/form-data">
                     <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6 container-left">
                         <div class="row first-row">
                             <div class="col-md-12 col-xs-18">
@@ -28,23 +37,22 @@
                                     <div class="col-md-5 col-xs-5"></div>
                                 </div>
                                 <div id="records" class="message-div">
+                                    <div class="form-group">
+                                        <label for="photoTitle">Başlık:</label>
+                                        <input class="input-class form-control" type="text" name="photoTitle" id="photoTitle" value="<?php echo $photoModel->getTitle(); ?>"/>
+                                    </div>
                                     <br>
-                                    <p>
-                                    Başlık:
-                                    </p>
-                                    <input class="input-class form-control" type="text" name="photoTitle" value="<?php echo $photo->getTitle(); ?>"/>
-                                    <br/>
-                                    <p>
-                                    Açıklama:
-                                    </p>
-                                    <input class="input-class form-control" type="text" name="photoDescription" value="<?php echo $photo->getDescription(); ?>"/>
-                                    <br/>
-                                    <p>
-                                    Tarih:
-                                    </p>
-                                    <input class="input-class form-control" type="text" name="date" value="<?php echo $photo->getDateFromDb(); ?>">
-                                    <input type="hidden" name="id" value="<?php echo $photo->getId(); ?>">
-                                    <br/>
+                                    <div class="form-group">
+                                        <label for="photoDescription">Açıklama:</label>
+                                        <input class="input-class form-control" type="text" name="photoDescription" id="photoDescription" value="<?php echo $photoModel->getDescription(); ?>"/>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <label for="photoDescription">Tarih:</label>
+                                        <input class="input-class form-control" type="text" name="date" value="<?php echo $photoModel->getDateFromDb(); ?>">
+                                        <input type="hidden" name="id" value="<?php echo $photoModel->getId(); ?>">
+                                    </div>
+                                    <br>
                                     <input class="btn btn-default save-button update-slider-submit" type="submit" name="upload" title="Add data to the Database" value="Kaydet" id="sliderSubmit"/>
                                     <a href="?controller=pages&action=slider" class="btn btn-default save-button">İptal</a>                               
                                 </div>
@@ -72,9 +80,10 @@
                                     </p>
                                     <div class="image-upload">
                                         <label for="file-input">
-                                            <img id="image-preview" class="img-responsive logoff-image" src="./uploads/<?php echo $photo->getName(); ?>">
+                                            <img id="image-preview" class="img-responsive logoff-image" src="uploads/<?php echo $photoModel->getName(); ?>">
                                         </label>
                                         <input id="file-input" type="file" name="photo">
+                                        <input type="hidden" name="oldPhotoName" value='<?php echo $photoModel->getName(); ?>'>
                                     </div>                                    
                                 </div>
                             </div>

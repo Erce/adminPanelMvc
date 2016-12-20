@@ -36,35 +36,27 @@
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <div class="form-group">       
-                                <p>
-                                Ürün Başlığı( title ):
-                                </p>
-                                <input class="input-class form-control" type="text" name="productTitle" value="<?php echo $product[0]["Title"];?>"/>
+                            <div class="form-group">      
+                                <label for="productTitle">Ürün Başlığı( title ):</label>
+                                <input class="input-class form-control" type="text" name="productTitle" id="productTitle" value="<?php echo $product[0]["Title"];?>"/>
                             </div>
                             <div class="form-group"> 
-                                <p>
-                                Ürün Adı:
-                                </p>
-                                <input class="input-class form-control" type="text" name="productName" value="<?php echo $product[0]["Name"];?>"/>
+                                <label for="productName">Ürün Adı:</label>
+                                <input class="input-class form-control" type="text" name="productName" id="productName" value="<?php echo $product[0]["Name"];?>"/>
                             </div>
                             <div class="form-group">  
-                                <p>
-                                Sayfa Açıklaması ( description ):
-                                </p>
-                                <input class="input-class form-control" type="text" name="productDescription" value="<?php echo $product[0]["Description"];?>"/>
+                                <label for="productDescription">Sayfa Açıklaması ( description ):</label>
+                                <input class="input-class form-control" type="text" name="productDescription" id="productDescription" value="<?php echo $product[0]["Description"];?>"/>
                             </div>
-                            <div class="form-group">         
-                                <p>
-                                Anahtar Kelimeler ( keywords ):
-                                </p>
-                                <textarea class="input-class form-control" rows="3" type="text" name="productKeywords" value="<?php echo $product[0]["Keywords"];?>"></textarea>
+                            <div class="form-group">    
+                                <label for="productKeywords">Anahtar Kelimeler ( keywords ):</label>
+                                <textarea class="input-class form-control" rows="3" type="text" name="productKeywords" id="productKeywords" value="<?php echo $product[0]["Keywords"];?>"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="productCategory">Ürün Kategorisi:</label>
                                 <select class="form-control" type="" id="productCategory" name="productCategory">
                                     <?php for ($i = 0; $i < sizeof($productCategoriesList); $i++) { ?>
-                                        <option id="option <?php echo $productCategoriesList[$i]['Id']; ?>">
+                                        <option id="option<?php echo $productCategoriesList[$i]['Id']; ?>">
                                             <?php echo $productCategoriesList[$i]["ProductCategoryListName"];?>
                                         </option>
                                     <?php } ?>

@@ -4,9 +4,21 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */?>
+ * 
+ */
+                require_once 'Model/sliderPhotoModel.php';
+                $photoModel = new SliderPhoto();
+                require_once 'Controller/admin/sliderPhotoController.php';
+                $sliderPhotoController = new SliderPhotoController($photoModel);
 
-                <form id="firstform" method="post" action="controllerAddPhoto.php" enctype="multipart/form-data">
+                if (isset($_GET['part'])) {                     
+                    $sliderPhotoController->{$_GET['part']}($_POST);
+                }
+
+
+?>
+
+                <form id="firstform" method="post" action="?controller=pages&action=slider&page=add&part=add" enctype="multipart/form-data">
                     <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6 container-left">
                         <div class="row first-row">
                             <div class="col-md-12 col-xs-18">

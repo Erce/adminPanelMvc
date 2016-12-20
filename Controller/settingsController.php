@@ -11,8 +11,8 @@
         if($subpage == "sitesettings") {
             require_once 'View/pages/settings/siteSettings.php';
         }
-        elseif ($subpage == "mainpagesettings") {
-            require_once 'View/pages/settings/mainPageSettings.php';
+        elseif ($subpage == "homepagesettings") {
+            require_once 'View/pages/settings/homePageSettings.php';
         }
         elseif ($subpage == "aboutpagesettings") {
             require_once 'View/pages/settings/aboutPageSettings.php';

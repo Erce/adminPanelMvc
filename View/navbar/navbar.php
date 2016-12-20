@@ -42,7 +42,7 @@
                             <li>
                                 <a href="#">Sayfa Ayarları <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="?controller=pages&action=settings&subpage=mainpagesettings">Anasayfa</a></li>
+                                    <li><a href="?controller=pages&action=settings&subpage=homepagesettings">Anasayfa</a></li>
                                     <li><a href="?controller=pages&action=settings&subpage=aboutpagesettings">Hakkımızda</a></li>
                                     <li><a href="?controller=pages&action=settings&subpage=productspagesettings">Ürünler</a></li>
                                     <li><a href="?controller=pages&action=settings&subpage=servicespagesettings">Hizmetler</a></li>

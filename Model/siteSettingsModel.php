@@ -76,6 +76,39 @@ class SiteSettingsModel {
         $req->execute();
     }
     
+    public function getAdmin($id) {
+        try {
+            $db = Db::getInstance();
+            $query = "SELECT * FROM users WHERE id=".$id;
+            $req = $db->prepare($query);
+            $req->execute();
+            $row=$req->fetch();
+            $this->siteSettingsRow = array( "Id" => $row['id'],
+                                            "UserName" => $row['username']); 
+            return $this->siteSettingsRow;
+              
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+    public function updateadmin($adminArray) {
+        $db = Db::getInstance();
+        if ($adminArray['Password'] != sha1("")) {
+            $query = sprintf("UPDATE users SET username='%s', password='%s' WHERE id='%s'",
+                                mysql_real_escape_string($adminArray['UserName']),
+                                mysql_real_escape_string($adminArray['Password']),
+                                mysql_real_escape_string($adminArray['Id']));
+        }else {
+            $query = sprintf("UPDATE users SET username='%s' WHERE id='%s'",
+                                mysql_real_escape_string($adminArray['UserName']),
+                                mysql_real_escape_string($adminArray['Id'])); 
+        }
+        $req = $db->prepare($query);
+        $req->execute();
+    }
+
+
     public function add() {
         
     }

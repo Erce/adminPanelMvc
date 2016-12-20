@@ -14,7 +14,7 @@ class ProductCategories {
     private $productCategoryListName;
     
     public function __construct() {
-        $this->setProductCategoryList(); 
+        //$this->setProductCategoryList(); 
     }
     
     public function setProductCategoryList() {

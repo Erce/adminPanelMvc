@@ -515,9 +515,9 @@ div>.form-container{
     /*********** MAINPAGE-SETTINGS ************/
     
     .main-container {
-        width: 96%;
-        margin-right: 2%;
-        margin-left: 2%;
+        //width: 96%;
+        margin-right: 5%;
+        margin-left: 5%;
         background-color: rgba(240,240,240,1);
         margin-top: 10px;
         border: 1px solid rgb(200,200,200);
@@ -543,6 +543,15 @@ div>.form-container{
     
     
     /*********** SLIDER ***********/
+    
+    .container-fluid>.slider-container {
+        background-color: rgba(240,240,240,1);
+        margin-top: 10px;
+        border: 1px solid rgb(200,200,200);
+        border-radius: 10px;
+        margin-bottom: 50px;
+        color: rgb(80,80,80);
+    }
         
     .add-slider-text {
         margin-top: 0px;
@@ -602,11 +611,15 @@ div>.form-container{
         background-color: rgb(200,200,200);
     }
     
+    .sliderphotopadding {
+        padding: 5px;
+    }
+    
     .sliderphotobox {
-        height: 150px;
-        width: 150px;
+        //height: 150px;
+        /*width: 150px;*/
         border: 2px solid rgba(150,150,150,0.5);
-        margin-left: 2%;
+        //margin-left: 2%;
         margin-bottom: 2%;
         position: relative;
         padding: 0;

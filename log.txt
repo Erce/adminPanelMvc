@@ -1,36 +1,40 @@
-routes.php->function call->#0 C:\xampp\htdocs\adminPanelMvc\Model\productsModel.php(103): PDOStatement->execute()
-#1 C:\xampp\htdocs\adminPanelMvc\View\pages\products\products.php(13): Products->setProductList()
-#2 C:\xampp\htdocs\adminPanelMvc\Controller\productsController.php(13): require_once('C:\\xampp\\htdocs...')
-#3 C:\xampp\htdocs\adminPanelMvc\Controller\pagesController.php(25): require_once('C:\\xampp\\htdocs...')
-#4 C:\xampp\htdocs\adminPanelMvc\routes.php(18): PagesController->products()
-#5 C:\xampp\htdocs\adminPanelMvc\routes.php(38): call('pages', 'products')
-#6 C:\xampp\htdocs\adminPanelMvc\View\layout.php(10): require_once('C:\\xampp\\htdocs...')
-#7 C:\xampp\htdocs\adminPanelMvc\index.php(19): require_once('C:\\xampp\\htdocs...')
-#8 {main}
-routes.php->function call->#0 C:\xampp\htdocs\adminPanelMvc\Model\socialLinksModel.php(25): PDOStatement->execute()
-#1 C:\xampp\htdocs\adminPanelMvc\View\pages\settings\socialLinksSettings.php(10): SocialLinks->setSocialLinksList()
-#2 C:\xampp\htdocs\adminPanelMvc\Controller\settingsController.php(36): require_once('C:\\xampp\\htdocs...')
-#3 C:\xampp\htdocs\adminPanelMvc\Controller\pagesController.php(9): require_once('C:\\xampp\\htdocs...')
-#4 C:\xampp\htdocs\adminPanelMvc\routes.php(18): PagesController->settings()
-#5 C:\xampp\htdocs\adminPanelMvc\routes.php(38): call('pages', 'settings')
-#6 C:\xampp\htdocs\adminPanelMvc\View\layout.php(10): require_once('C:\\xampp\\htdocs...')
-#7 C:\xampp\htdocs\adminPanelMvc\index.php(22): require_once('C:\\xampp\\htdocs...')
-#8 {main}
-routes.php->function call->#0 C:\xampp\htdocs\adminPanelMvc\Model\socialLinksModel.php(25): PDOStatement->execute()
-#1 C:\xampp\htdocs\adminPanelMvc\View\pages\settings\socialLinksSettings.php(10): SocialLinks->setSocialLinksList()
-#2 C:\xampp\htdocs\adminPanelMvc\Controller\settingsController.php(36): require_once('C:\\xampp\\htdocs...')
-#3 C:\xampp\htdocs\adminPanelMvc\Controller\pagesController.php(9): require_once('C:\\xampp\\htdocs...')
-#4 C:\xampp\htdocs\adminPanelMvc\routes.php(18): PagesController->settings()
-#5 C:\xampp\htdocs\adminPanelMvc\routes.php(38): call('pages', 'settings')
-#6 C:\xampp\htdocs\adminPanelMvc\View\layout.php(10): require_once('C:\\xampp\\htdocs...')
-#7 C:\xampp\htdocs\adminPanelMvc\index.php(22): require_once('C:\\xampp\\htdocs...')
-#8 {main}
-routes.php->function call->#0 C:\xampp\htdocs\adminPanelMvc\Model\socialLinksModel.php(25): PDOStatement->execute()
-#1 C:\xampp\htdocs\adminPanelMvc\View\pages\settings\socialLinksSettings.php(10): SocialLinks->setSocialLinksList()
-#2 C:\xampp\htdocs\adminPanelMvc\Controller\settingsController.php(36): require_once('C:\\xampp\\htdocs...')
-#3 C:\xampp\htdocs\adminPanelMvc\Controller\pagesController.php(9): require_once('C:\\xampp\\htdocs...')
-#4 C:\xampp\htdocs\adminPanelMvc\routes.php(18): PagesController->settings()
-#5 C:\xampp\htdocs\adminPanelMvc\routes.php(38): call('pages', 'settings')
-#6 C:\xampp\htdocs\adminPanelMvc\View\layout.php(10): require_once('C:\\xampp\\htdocs...')
-#7 C:\xampp\htdocs\adminPanelMvc\index.php(22): require_once('C:\\xampp\\htdocs...')
-#8 {main}
+photoModel -> before if old photo name
+photoModel -> if old photo name ->erce22222
+photoModel -> if old photo name ->32
+photoModel -> if old photo name ->asda
+photoModel -> if old photo name ->erce 2zxcz<xc
+photoModel -> IMG URL =====>>>>>> ->slide-4.jpg
+photoModel -> in if old photo name
+photoModel -> in if move uploaded file
+photoModel -> before if old photo name
+photoModel -> if old photo name ->erce22222
+photoModel -> if old photo name ->32
+photoModel -> if old photo name ->asda
+photoModel -> if old photo name ->erce 2zxcz<xc
+photoModel -> IMG URL =====>>>>>> ->slide-4.jpg
+photoModel -> in if old photo name
+photoModel -> in if move uploaded file
+photoModel -> before if old photo name
+photoModel -> if old photo name ->erce22222
+photoModel -> if old photo name ->32
+photoModel -> if old photo name ->asda
+photoModel -> if old photo name ->erce 2zxcz<xc
+photoModel -> IMG URL =====>>>>>> ->slide-4.jpg
+photoModel -> in if old photo name
+photoModel -> in if move uploaded file
+photoModel -> before if old photo name
+photoModel -> if old photo name ->erce22222
+photoModel -> if old photo name ->32
+photoModel -> if old photo name ->asda645645
+photoModel -> if old photo name ->erce 2zxcz<xc
+photoModel -> IMG URL =====>>>>>> ->slide-4.jpg
+photoModel -> in if old photo name
+photoModel -> in if move uploaded file
+photoModel -> before if old photo name
+photoModel -> if old photo name ->erce22222
+photoModel -> if old photo name ->32
+photoModel -> if old photo name ->asda645645
+photoModel -> if old photo name ->erce 2zxcz<xc
+photoModel -> IMG URL =====>>>>>> ->slide-4.jpg
+photoModel -> in if old photo name
+photoModel -> in if move uploaded file

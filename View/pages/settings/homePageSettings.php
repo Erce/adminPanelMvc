@@ -40,7 +40,7 @@
                             <div class="col-md-5 col-xs-5"></div>
                         </div>
                         <div id="records" class="message-div">
-                            <form method="post" action="?controller=pages&action=settings&subpage=contactpagesettings&part=update" enctype="multipart/form-data">
+                            <form method="post" action="?controller=pages&action=settings&subpage=homepagesettings&part=update" enctype="multipart/form-data">
                                 <div class="form-group">
                                         <input type="hidden" name="pageId" id="pageId" value="<?php echo $pageSettings["Id"];?>">
                                         <label for="pageName">Sayfa Adı:</label>

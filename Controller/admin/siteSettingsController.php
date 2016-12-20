@@ -42,6 +42,23 @@ class SiteSettingsController {
         }
     }
     
+    public function updateadmin() {
+        try {
+            $id = $_SESSION['userId'];
+            $username = $_POST['userName'];
+            $pass = sha1($_POST["password"]);
+
+            $adminSettingsArray = array( "Id" => $id,
+                                         "UserName" => $username,
+                                         "Password" => $pass);
+
+            $this->model->updateadmin($adminSettingsArray);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+
+
     public function add() {
         
     }
