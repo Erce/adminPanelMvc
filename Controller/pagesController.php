@@ -22,7 +22,7 @@
         }
 
         public function products() {
-            require_once ('Controller/productsController.php');
+            require_once ('Controller/productPagesController.php');
         }
 
         public function references() {

@@ -42,7 +42,6 @@ class SliderPhotoController {
         }
     }
 
-
     public function update() {
         try {
             $this->getInfo();
@@ -63,6 +62,5 @@ class SliderPhotoController {
     
     public function delete() {
         
-    }
-    
+    }  
 }

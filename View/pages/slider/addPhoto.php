@@ -51,7 +51,7 @@
                                     <input class="input-class form-control" type="text" name="date">
                                     <br/>
                                     <input class="btn btn-default save-button" type="submit" name="upload" title="Add data to the Database" value="Kaydet" id="sliderSubmit"/>
-                                    <a href="slider.php" class="btn btn-default save-button">İptal</a>                               
+                                    <a href="?controller=pages&action=slider" class="btn btn-default save-button">İptal</a>                               
                                 </div>
                             </div>
                             <div class="col-md-1"></div>

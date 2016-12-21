@@ -9,14 +9,14 @@
     if (isset($_GET['subpage'])) {
         $subpage = $_GET['subpage'];
         if($subpage == "products") {
-            if(isset($_GET['part']) && $_GET['part'] == "add") {
+            if(isset($_GET['page']) && $_GET['page'] == "add") {
                 require_once 'View/pages/products/productAdd.php';
             }
-            elseif(!isset($_GET['product_id'])) {
-                require_once 'View/pages/products/products.php';
+            elseif(isset($_GET['page']) && $_GET['page'] == "edit") {
+                require_once 'View/pages/products/productEdit.php';
             }
             else {
-                require_once 'View/pages/products/productEdit.php';
+                require_once 'View/pages/products/products.php';
             }
         }
         elseif ($subpage == "productcategories") {

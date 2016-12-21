@@ -225,6 +225,42 @@ $(function() {
     }); 
     
     $(function () {
+        $('#product-delete-icon').click(function (event) {
+            alert($id);
+            $id = $(".sliderphotoboxfocus").attr('id');
+            var formData = "id=" + $id.substring(11,$id.length);
+            alert($id);
+            if($id !== 'undefined') {
+                $row = '#' + $id;              
+                $.ajax({     
+                    type: 'post',
+                    url: '?controller=pages&action=products&subpage=products&part=delete',
+                    data: formData,
+                    success: function(php_script_response){
+                        $($row).remove();
+                    }
+                });
+            }
+        });
+    });
+    
+    function deleteProductRow(elem) {
+        $id = $(elem).attr('id');
+        $id = $id.substring(7,$id.length);
+        $row = '#productRow' + $id; 
+        var formData = "id=" + $id;
+        $.ajax({     
+            type: 'post',
+            url: "?controller=pages&action=products&subpage=products&part=delete",
+            data: formData,
+            success: function(){
+               window.setTimeout('location.reload()', 0); 
+            }
+        });
+    }
+    
+    
+    $(function () {
         /*var form = $('#firstform');
         
         $(form).submit(function(e) {

@@ -1,40 +1,30 @@
-photoModel -> before if old photo name
-photoModel -> if old photo name ->erce22222
-photoModel -> if old photo name ->32
-photoModel -> if old photo name ->asda
-photoModel -> if old photo name ->erce 2zxcz<xc
-photoModel -> IMG URL =====>>>>>> ->slide-4.jpg
-photoModel -> in if old photo name
-photoModel -> in if move uploaded file
-photoModel -> before if old photo name
-photoModel -> if old photo name ->erce22222
-photoModel -> if old photo name ->32
-photoModel -> if old photo name ->asda
-photoModel -> if old photo name ->erce 2zxcz<xc
-photoModel -> IMG URL =====>>>>>> ->slide-4.jpg
-photoModel -> in if old photo name
-photoModel -> in if move uploaded file
-photoModel -> before if old photo name
-photoModel -> if old photo name ->erce22222
-photoModel -> if old photo name ->32
-photoModel -> if old photo name ->asda
-photoModel -> if old photo name ->erce 2zxcz<xc
-photoModel -> IMG URL =====>>>>>> ->slide-4.jpg
-photoModel -> in if old photo name
-photoModel -> in if move uploaded file
-photoModel -> before if old photo name
-photoModel -> if old photo name ->erce22222
-photoModel -> if old photo name ->32
-photoModel -> if old photo name ->asda645645
-photoModel -> if old photo name ->erce 2zxcz<xc
-photoModel -> IMG URL =====>>>>>> ->slide-4.jpg
-photoModel -> in if old photo name
-photoModel -> in if move uploaded file
-photoModel -> before if old photo name
-photoModel -> if old photo name ->erce22222
-photoModel -> if old photo name ->32
-photoModel -> if old photo name ->asda645645
-photoModel -> if old photo name ->erce 2zxcz<xc
-photoModel -> IMG URL =====>>>>>> ->slide-4.jpg
-photoModel -> in if old photo name
-photoModel -> in if move uploaded file
+product page in if
+product page in if post1
+product page in if post7
+product page in if post10
+product page in if post1
+product page in if post1
+routes.php->function call->#0 C:\xampp\htdocs\adminPanelMvc\Model\productsModel.php(204): PDOStatement->execute()
+#1 C:\xampp\htdocs\adminPanelMvc\Controller\admin\productController.php(84): Products->delete('1')
+#2 C:\xampp\htdocs\adminPanelMvc\View\pages\products\products.php(23): ProductController->delete()
+#3 C:\xampp\htdocs\adminPanelMvc\Controller\productPagesController.php(19): require_once('C:\\xampp\\htdocs...')
+#4 C:\xampp\htdocs\adminPanelMvc\Controller\pagesController.php(25): require_once('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\adminPanelMvc\routes.php(18): PagesController->products()
+#6 C:\xampp\htdocs\adminPanelMvc\routes.php(38): call('pages', 'products')
+#7 C:\xampp\htdocs\adminPanelMvc\View\layout.php(10): require_once('C:\\xampp\\htdocs...')
+#8 C:\xampp\htdocs\adminPanelMvc\index.php(20): require_once('C:\\xampp\\htdocs...')
+#9 {main}
+product page in if post1
+product page in if post7
+product page in if post9
+product page in if post8
+product page in if post10
+product page in if post17
+product page in if post19
+product page in if post11
+product page in if post18
+product page in if post20
+elseeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+product page in if post21
+product page in if post22
+product page in if post23
