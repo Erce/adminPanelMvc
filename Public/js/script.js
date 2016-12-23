@@ -317,30 +317,31 @@ $(function() {
         alert($id);
         var formData = "parent_id=" + $id;
 
-        $.ajax({     
+        /*$.ajax({     
             type: 'post',
             url: "?controller=pages&action=products&subpage=productcategories",
             data: formData,
             success: function(){
                //window.setTimeout('location.reload()', 0); 
             }
-        });
+        });*/
         
+        $parent =null;
         $option = "<option id='optionUrunAltKategori'>Ürün Alt Kategorisi</option>";
-        for (i=0; i< $(productCategoryChildList).length; i++) {
-            if($id == $(productCategoryChildList)[i]["ProductCategoryParentId"]) {
-                $option += "<option id='option"+$(productCategoryChildList)[i]["ProductCategoryId"]+"'>";
-                $option += $(productCategoryChildList)[i]["ProductCategoryName"];
+        for (i=0; i< $(productCategoryList).length; i++) {
+            if($id == $(productCategoryList)[i]["ProductCategoryParentId"]) {
+                $parent = $(productCategoryList)[$(productCategoryList)[i]["ProductCategoryParentId"]];
+                $option += "<option value='"+$(productCategoryList)[i]['ProductCategoryName']+"' id='option"+$(productCategoryList)[i]["ProductCategoryId"]+"'>";
+                $option += $(productCategoryList)[i]["ProductCategoryListName"];
                 $option += "</option>";
             }
         }
         
-        $row = "<br><br>"+
+        $row = "<br class='productCategoryChild'><br class='productCategoryChild'>"+
                     "<label class='productCategoryChild' for='productCategoryChild'>Ürün Alt Kategorisi:</label>"+
-                    "<select class='form-control productCategoryChild' id='productCategoryChild"+$id+"' name='productCategory'>"+
+                    "<select class='form-control productCategoryChild' id='productCategoryChild"+$id+"' name='"+$parent["ProductCategoryName"]+"Child'>"+
                     $option+
-                    "</select>"+
-                    "<input type='hidden' name='productId' value=''>";
+                    "</select>";
         $($row).insertAfter(input);
         $("#productCategoryChild" + $id).change(function(event){
             alert();
@@ -359,14 +360,8 @@ $(function() {
     }
     
     $(".productCategory").change(function(event){
-        alert();
         getProductCategoryChilds(this,event,"Parent");
-    });  
-    
-    $(".productCategoryChild").change(function(event){
-        alert();
-        getProductCategoryChilds(this,event,"Child");
-    });  
+    });
     
     
     $("#template").ready(function(){
