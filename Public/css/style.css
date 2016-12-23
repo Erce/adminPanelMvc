@@ -619,7 +619,7 @@ div>.form-container{
     }
     
     .delete-slider-icon {
-        padding-top: 10%;
+        //padding-top: 10%;
         float: right;
         position: relative;
         vertical-align: central;
@@ -678,7 +678,7 @@ div>.form-container{
         box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0px 0px 20px 1px rgba(102,175,233,1);
     }
     
-    .sliderphotobox:focus {
+    .sliderphotoboxfocus {
         box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0px 0px 20px 1px rgba(102,175,233,1);
     }
     

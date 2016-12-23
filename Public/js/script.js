@@ -260,7 +260,7 @@ $(function() {
     }
     
     
-    $(function () {
+    //$(function () {
         /*var form = $('#firstform');
         
         $(form).submit(function(e) {
@@ -279,7 +279,7 @@ $(function() {
                 }
             });
         });*/
-    }); 
+    //}); 
     
     function readURL(input) {
         if (input.files && input.files[0]) {
@@ -295,6 +295,77 @@ $(function() {
 
     $("#file-input").change(function(){
         readURL(this);
+    });  
+    
+    
+    function categoryList() {
+        for (i=0; i<$(productCategoryChildList).length; i++) {
+            
+        }
+    }
+    
+    function getProductCategoryChilds(input,event,type) {
+        if(type === "Parent") {
+            $(".productCategoryChild").remove();
+            $("#productCategoryChild").remove();
+        }
+        alert($(input).attr('id'));
+        alert(event.target.id);
+        $chosenChild= $(input).find(":selected");
+        $id = $chosenChild.attr('id');
+        $id = $id.substring(6, $id.length);
+        alert($id);
+        var formData = "parent_id=" + $id;
+
+        $.ajax({     
+            type: 'post',
+            url: "?controller=pages&action=products&subpage=productcategories",
+            data: formData,
+            success: function(){
+               //window.setTimeout('location.reload()', 0); 
+            }
+        });
+        
+        $option = "<option id='optionUrunAltKategori'>Ürün Alt Kategorisi</option>";
+        for (i=0; i< $(productCategoryChildList).length; i++) {
+            if($id == $(productCategoryChildList)[i]["ProductCategoryParentId"]) {
+                $option += "<option id='option"+$(productCategoryChildList)[i]["ProductCategoryId"]+"'>";
+                $option += $(productCategoryChildList)[i]["ProductCategoryName"];
+                $option += "</option>";
+            }
+        }
+        
+        $row = "<br><br>"+
+                    "<label class='productCategoryChild' for='productCategoryChild'>Ürün Alt Kategorisi:</label>"+
+                    "<select class='form-control productCategoryChild' id='productCategoryChild"+$id+"' name='productCategory'>"+
+                    $option+
+                    "</select>"+
+                    "<input type='hidden' name='productId' value=''>";
+        $($row).insertAfter(input);
+        $("#productCategoryChild" + $id).change(function(event){
+            alert();
+            getProductCategoryChilds(this,event,"Child");
+        }); 
+    }
+    
+    function addRow() {
+        /*alert("addrow");        
+        for (i=0;i<$(jArray1).length;i++) {
+            $row = "<option id='optionUrunler'>"+
+                        $(jArray1)[i]["ProductCategoryName"]+
+                    "</option>";
+            $('#productCategoryChild').append($row);
+        }*/
+    }
+    
+    $(".productCategory").change(function(event){
+        alert();
+        getProductCategoryChilds(this,event,"Parent");
+    });  
+    
+    $(".productCategoryChild").change(function(event){
+        alert();
+        getProductCategoryChilds(this,event,"Child");
     });  
     
     

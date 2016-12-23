@@ -65,7 +65,7 @@
                                 <label for="productCategory">Ürün Kategorisi:</label>
                                 <select class="form-control" type="" id="productCategory" name="productCategory">
                                     <?php for ($i = 0; $i < sizeof($productCategoriesList); $i++) { ?>
-                                        <option id="option<?php echo $productCategoriesList[$i]['Id']; ?>">
+                                        <option id="option<?php echo $productCategoriesList[$i]['Id']; ?>" <?php if($product["Category"] == $productCategoriesList[$i]["ProductCategoryListName"]) { echo "selected='selected'"; }?>>
                                             <?php echo $productCategoriesList[$i]["ProductCategoryListName"];?>
                                         </option>
                                     <?php } ?>
@@ -74,7 +74,9 @@
                             </div>
                             <br/>
                             <br/>
-                            <input TYPE="submit" name="upload" title="Add data to the Database" value="Add Member"/>
+                            <!--<input TYPE="submit" name="upload" title="Add data to the Database" value="Add Member"/>-->
+                            <input class="btn btn-default save-button update-product-submit" type="submit" name="upload" title="Add data to the Database" value="Kaydet" id="sliderSubmit"/>
+                            <a href="?controller=pages&action=products&subpage=products" class="btn btn-default save-button">İptal</a>   
                         </div>
                     </form>
                 </div>
