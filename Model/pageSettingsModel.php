@@ -86,17 +86,17 @@ class PageModel {
                                     . " description='%s',"
                                     . " keywords='%s'" 
                                     . " WHERE id='%s'",
-                         mysql_real_escape_string($pageSettingsArray['Title']),
-                         mysql_real_escape_string($pageSettingsArray['Navbar']),
-                         mysql_real_escape_string($pageSettingsArray['NavbarColor']),
-                         mysql_real_escape_string($pageSettingsArray['NavbarOpacity']),
-                         mysql_real_escape_string($pageSettingsArray['Slider']),
-                         mysql_real_escape_string($pageSettingsArray['Footer']),
-                         mysql_real_escape_string($pageSettingsArray['FooterColor']),
-                         mysql_real_escape_string($pageSettingsArray['FooterOpacity']),
-                         mysql_real_escape_string($pageSettingsArray['Description']),
-                         mysql_real_escape_string($pageSettingsArray['Keywords']),
-                         mysql_real_escape_string($pageSettingsArray['Id']));
+                        mysql_real_escape_string($pageSettingsArray['Title']),
+                        mysql_real_escape_string($pageSettingsArray['Navbar']),
+                        mysql_real_escape_string($pageSettingsArray['NavbarColor']),
+                        mysql_real_escape_string($pageSettingsArray['NavbarOpacity']),
+                        mysql_real_escape_string($pageSettingsArray['Slider']),
+                        mysql_real_escape_string($pageSettingsArray['Footer']),
+                        mysql_real_escape_string($pageSettingsArray['FooterColor']),
+                        mysql_real_escape_string($pageSettingsArray['FooterOpacity']),
+                        mysql_real_escape_string($pageSettingsArray['Description']),
+                        mysql_real_escape_string($pageSettingsArray['Keywords']),
+                        mysql_real_escape_string($pageSettingsArray['Id']));
             $req = $db->prepare($query);
             $req->execute();
         } catch (Exception $exc) {
