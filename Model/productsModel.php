@@ -160,13 +160,13 @@ class Products {
             if(move_uploaded_file($productArray["TmpName"], $productArray["Target"])) { 
                 file_put_contents("log.txt", "photoModel -> in if move uploaded file".PHP_EOL, FILE_APPEND);
                 $query = sprintf("UPDATE products SET title='%s', name='%s', imgurl='%s', keywords='%s', description='%s', category='%s' WHERE id='%s'",
-                                mysql_real_escape_string($productArray['Title']),
-                                mysql_real_escape_string($productArray['Name']),
-                                mysql_real_escape_string($productArray['ImgUrl']),
-                                mysql_real_escape_string($productArray['Keywords']),
-                                mysql_real_escape_string($productArray['Description']),
-                                mysql_real_escape_string($productArray['Category']),
-                                mysql_real_escape_string($productArray['Id']));
+                                $productArray['Title'],
+                                $productArray['Name'],
+                                $productArray['ImgUrl'],
+                                $productArray['Keywords'],
+                                $productArray['Description'],
+                                $productArray['Category'],
+                                $productArray['Id']);
                 $this->req = $db->prepare($query);
                 $this->req->execute();
                 //mysql_query($query) or die(mysql_error());
@@ -180,13 +180,13 @@ class Products {
         else {    
             file_put_contents("log.txt", "elseeeeeeeeeeeeeeeeeeeeeeeeeeeeeee".PHP_EOL, FILE_APPEND);
             $query = sprintf("UPDATE products SET title='%s', name='%s', imgurl='%s', keywords='%s', description='%s', category='%s' WHERE id='%s'",
-                                mysql_real_escape_string($productArray['Title']),
-                                mysql_real_escape_string($productArray['Name']),
-                                mysql_real_escape_string($productArray['ImgUrl']),
-                                mysql_real_escape_string($productArray['Keywords']),
-                                mysql_real_escape_string($productArray['Description']),
-                                mysql_real_escape_string($productArray['Category']),
-                                mysql_real_escape_string($productArray['Id']));
+                                $productArray['Title'],
+                                $productArray['Name'],
+                                $productArray['ImgUrl'],
+                                $productArray['Keywords'],
+                                $productArray['Description'],
+                                $productArray['Category'],
+                                $productArray['Id']);
 
             //Writes the information to the database
             $this->req = $db->prepare($query);

@@ -22,7 +22,7 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="?controller=pages&action=home">Erce</a>
+                <a class="navbar-brand" href="?controller=pages&action=home">Ana Sayfa</a>
               </div>
               <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <!--<ul class="nav navbar-nav navbar-right" id="mobile-ul">
@@ -63,13 +63,13 @@
                             <li><a href="#file-manager">File Manager</a></li>
                         </ul>
                     </li>
-                    <li>
+                    <!--<li>
                         <a href="#">Uygulamalar <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="?controller=pages&action=applications&subpage=note">Notlar</a></li>
                             <li><a href="?controller=pages&action=applications&subpage=calendar">Takvim</a></li>
                         </ul>
-                    </li>
+                    </li>-->
                     <li>
                         <a class="page-scroll" href="#statistics">İstatistik <span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -90,7 +90,7 @@
                         </ul>
                     </li>
                     <li><a class="page-scroll" href="?controller=pages&action=references">Referanslar</a></li>
-                    <li><a class="page-scroll" href="?controller=pages&action=announcements">Duyurular</a></li>
+                    <!--<li><a class="page-scroll" href="?controller=pages&action=announcements">Duyurular</a></li>-->
                     <li>
                         <a class="page-scroll" href="#contact">İletişim<span class="caret"></span></a>
                         <ul class="dropdown-menu">

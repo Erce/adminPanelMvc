@@ -151,6 +151,21 @@ li {
   .collapse.in{
       display:block !important;
   }
+  
+  ul {
+      display: block;
+  }
+  
+  .navbar-nav .open .dropdown-menu {
+        position: static;
+        float: none;
+        width: auto;
+        margin-top: 0;
+        background-color: transparent;
+        border: 0;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
 }
 
 
@@ -581,7 +596,7 @@ div>.form-container{
         margin-top: 15px;
     }
     
-    #file-input {
+    #file-input,#file-input-favicon,#file-input-background {
         display: none;
     }
 

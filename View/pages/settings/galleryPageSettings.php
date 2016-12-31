@@ -44,42 +44,42 @@
                                 <div class="form-group">
                                         <input type="hidden" name="pageId" id="pageId" value="<?php echo $pageSettings["Id"];?>">
                                         <label for="pageName">Sayfa Adı:</label>
-                                        <input class="input-class form-control" type="text" name="pageName" id="pageName" value="<?php echo $pageSettings["Name"]; ?>" disabled/>
+                                        <input class="input-class form-control" type="text" name="pageName" id="pageName" value="<?php echo $pageSettings["Name"]; ?>" readonly="readonly"/>
                                 </div>
                                 <div class="form-group">
                                         <label for="pageTitle">Sayfa Başlığı:</label>
-                                        <input class="input-class form-control" type="text" name="pageTitle" id="pageTitle" value="<?php echo $pageSettings["Title"]; ?>"/>
+                                        <input class="input-class form-control" type="text" name="pageTitle" id="pageTitle" value="<?php echo $pageSettings["Title"]; ?>" readonly="readonly"/>
                                 </div>
                                 <div class="form-group">
                                         <label for="pageNavbar">Menu:</label>
-                                        <input class="input-class form-control" type="text" name="pageNavbar" id="pageNavbar" value="<?php echo $pageSettings["Navbar"]; ?>"/>
+                                        <input class="input-class form-control" type="text" name="pageNavbar" id="pageNavbar" value="<?php echo $pageSettings["Navbar"]; ?>" readonly="readonly"/>
                                 </div>
                                 <div class="form-group">
                                         <label for="pageNavbarColor">Menu Rengi:</label>
-                                        <input class="input-class form-control" type="text" name="pageNavbarColor" id="pageNavbarColor" value="<?php echo $pageSettings["NavbarColor"]; ?>"/>
+                                        <input class="input-class form-control" type="text" name="pageNavbarColor" id="pageNavbarColor" value="<?php echo $pageSettings["NavbarColor"]; ?>" readonly="readonly"/>
                                 </div>
                                 <div class="form-group">
                                         <label for="pageNavbarOpacity">Menu Saydamlığı:</label>
-                                        <input class="input-class form-control" type="text" name="pageNavbarOpacity" id="pageNavbarOpacity" value="<?php echo $pageSettings["NavbarOpacity"]; ?>"/>
+                                        <input class="input-class form-control" type="text" name="pageNavbarOpacity" id="pageNavbarOpacity" value="<?php echo $pageSettings["NavbarOpacity"]; ?>" readonly="readonly"/>
                                 </div>
                                 <div class="form-group">
                                         <label for="pageSlider">Slider:</label>
-                                        <input class="input-class form-control" type="text" name="pageSlider" id="pageSlider" value="<?php echo $pageSettings["Slider"]; ?>"/>
+                                        <input class="input-class form-control" type="text" name="pageSlider" id="pageSlider" value="<?php echo $pageSettings["Slider"]; ?>" readonly="readonly"/>
                                 </div>
                                 <div class="form-group">
                                         <label for="pageFooter">Footer:</label>
-                                        <input class="input-class form-control" type="text" name="pageFooter" id="pageFooter" value="<?php echo $pageSettings["Footer"]; ?>"/>
+                                        <input class="input-class form-control" type="text" name="pageFooter" id="pageFooter" value="<?php echo $pageSettings["Footer"]; ?>" readonly="readonly"/>
                                 </div>
                                 <div class="form-group">
                                         <label for="pageFooterColor">Footer Color:</label>
-                                        <input class="input-class form-control" type="text" name="pageFooterColor" id="pageFooterColor" value="<?php echo $pageSettings["FooterColor"]; ?>"/>
+                                        <input class="input-class form-control" type="text" name="pageFooterColor" id="pageFooterColor" value="<?php echo $pageSettings["FooterColor"]; ?>" readonly="readonly"/>
                                 </div>
                                 <div class="form-group">
                                         <label for="pageFooterOpacity">Footer Opacity:</label>
-                                        <input class="input-class form-control" type="text" name="pageFooterOpacity" id="pageFooterOpacity" value="<?php echo $pageSettings["FooterOpacity"]; ?>"/>
+                                        <input class="input-class form-control" type="text" name="pageFooterOpacity" id="pageFooterOpacity" value="<?php echo $pageSettings["FooterOpacity"]; ?>" readonly="readonly"/>
                                 </div>
                                 <div class="form-group">
-                                    <label for="pageDescription">Footer Opacity:</label>
+                                    <label for="pageDescription">Açıklama ( description ):</label>
                                     <input class="input-class form-control" type="text" name="pageDescription" id="pageDescription" value="<?php echo $pageSettings["Description"]; ?>"/>
                                 </div>
                                 <div class="form-group">    

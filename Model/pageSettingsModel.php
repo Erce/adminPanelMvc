@@ -51,7 +51,7 @@ class PageModel {
         if(isset($row['keywords'])) { $this->keywords = $row['keywords'];}
         $this->pageRow = array( "Id" => $this->pageId,
                                 "Name" => $this->name,
-                                "Logourl" => $this->logourl,
+                                "ImgUrl" => $this->logourl,
                                 "Title" => $this->title,
                                 "Navbar" => $this->navbar,
                                 "NavbarColor" => $this->navbar_color,
@@ -79,24 +79,28 @@ class PageModel {
     public function update($pageSettingsArray) {
         try {
             $db = Db::getInstance();
-            $query = sprintf("UPDATE pages SET title='%s', navbar='%s', navbar_color='%s', navbar_opacity='%s', slider='%s',"
+            
+            move_uploaded_file($pageSettingsArray["TmpName"], $pageSettingsArray["Target"]);
+            
+            $query = sprintf("UPDATE pages SET logourl='%s', title='%s', navbar='%s', navbar_color='%s', navbar_opacity='%s', slider='%s',"
                                     . " footer='%s',"
                                     . " footer_color='%s',"
                                     . " footer_opacity='%s',"
                                     . " description='%s',"
                                     . " keywords='%s'" 
                                     . " WHERE id='%s'",
-                        mysql_real_escape_string($pageSettingsArray['Title']),
-                        mysql_real_escape_string($pageSettingsArray['Navbar']),
-                        mysql_real_escape_string($pageSettingsArray['NavbarColor']),
-                        mysql_real_escape_string($pageSettingsArray['NavbarOpacity']),
-                        mysql_real_escape_string($pageSettingsArray['Slider']),
-                        mysql_real_escape_string($pageSettingsArray['Footer']),
-                        mysql_real_escape_string($pageSettingsArray['FooterColor']),
-                        mysql_real_escape_string($pageSettingsArray['FooterOpacity']),
-                        mysql_real_escape_string($pageSettingsArray['Description']),
-                        mysql_real_escape_string($pageSettingsArray['Keywords']),
-                        mysql_real_escape_string($pageSettingsArray['Id']));
+                        $pageSettingsArray['ImgUrl'],
+                        $pageSettingsArray['Title'],
+                        $pageSettingsArray['Navbar'],
+                        $pageSettingsArray['NavbarColor'],
+                        $pageSettingsArray['NavbarOpacity'],
+                        $pageSettingsArray['Slider'],
+                        $pageSettingsArray['Footer'],
+                        $pageSettingsArray['FooterColor'],
+                        $pageSettingsArray['FooterOpacity'],
+                        $pageSettingsArray['Description'],
+                        $pageSettingsArray['Keywords'],
+                        $pageSettingsArray['Id']);
             $req = $db->prepare($query);
             $req->execute();
         } catch (Exception $exc) {

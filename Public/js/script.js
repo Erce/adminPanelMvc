@@ -281,6 +281,11 @@ $(function() {
         });*/
     //}); 
     
+    
+    
+    ///////////////// IMAGE INPUT //////////////////
+    
+    
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -296,6 +301,13 @@ $(function() {
     $("#file-input").change(function(){
         readURL(this);
     });  
+    
+    
+    ///////////////// IMAGE INPUT //////////////////
+    
+    
+    
+    ///////////////// PRODUCT CATEGORIES //////////////////
     
     
     function categoryList() {
@@ -364,18 +376,46 @@ $(function() {
     });
     
     
+    ///////////////// PRODUCT CATEGORIES //////////////////
+    
+    
+    
+    ///////////////// SITE SETTINGS //////////////////
+    
     $("#template").ready(function(){
         for (i=0; i< $(jArray).length; i++ ) {
-            if($(jArray)[i]['IsOn'] == 1) {
+            if($(jArray)[i]['IsOn'] == "1") {
                 $arr = $(jArray)[i];
                 break;
             }
+            if(i==$(jArray).length-1) {
+                $arr = $(jArray)[0];
+            }
         }
+        
+        $('#isOn').prop('checked', (($arr['IsOn']=="1")? true : false));
         $('#templateId').val($arr['Id']);
         $('#templateName').val($arr['Name']);
+        if($arr["LogoNavbar"]!=""){$imagePreview = "uploads/"+$arr["LogoNavbar"];}else{$imagePreview = "Public/images/Add_image_icon.svg";}
+        if($arr["LogoFavicon"]!=""){$imagePreviewFavicon = "uploads/"+$arr["LogoFavicon"];}else{$imagePreviewFavicon = "Public/images/Add_image_icon.svg";}
+        if($arr["Background"]!=""){$imagePreviewBackground = "uploads/"+$arr["Background"];}else{$imagePreviewBackground = "Public/images/Add_image_icon.svg";}
+        $('#image-preview').attr('src', $imagePreview);
+        $('#image-preview-favicon').attr('src', $imagePreviewFavicon);
+        $('#image-preview-background').attr('src', $imagePreviewBackground);
+        $('#oldPhotoName').attr('value', $arr["LogoNavbar"]);
+        $('#oldPhotoNameFavicon').attr('value', $arr["LogoFavicon"]);
+        $('#oldPhotoNameBackground').attr('value', $arr["Background"]);
+        $('#templateNavbarColor').val($arr['NavbarColor']);
+        $('#templateNavbarOpacity').val($arr['NavbarOpacity']);
+        $('#templateNavbarOpacityRangeText').val($arr['NavbarOpacity']);
         $('#templateBodyBackground').val($arr['BodyBackground']);
+        $('#templateBodyBackgroundColor').val($arr['BackgroundColor']);
+        $('#templateFooterColor').val($arr['FooterColor']);
+        $('#templateFooterOpacity').val($arr['FooterOpacity']);
+        $('#templateFooterOpacityRangeText').val($arr['FooterOpacity']);
         $('#templateFontFamily').val($arr['FontFamily']);
-        $('#templateBackgroundColor').val($arr['BackgroundColor']);
+        $('#templateFontSize').val($arr['FontSize']);
+        $('#templateFontSizeRangeText').val($arr['FontSize']);
     });
     
     $("#template").change(function(event){
@@ -387,12 +427,81 @@ $(function() {
                 break;
             }
         }
+        
+        $('#isOn').prop('checked', (($arr['IsOn']=="1")? true : false));
         $('#templateId').val($arr['Id']);
         $('#templateName').val($arr['Name']);
+        if($arr["LogoNavbar"]!=""){$imagePreview = "uploads/"+$arr["LogoNavbar"];}else{$imagePreview = "Public/images/Add_image_icon.svg";}
+        if($arr["LogoFavicon"]!=""){$imagePreviewFavicon = "uploads/"+$arr["LogoFavicon"];}else{$imagePreviewFavicon = "Public/images/Add_image_icon.svg";}
+        if($arr["Background"]!=""){$imagePreviewBackground = "uploads/"+$arr["Background"];}else{$imagePreviewBackground = "Public/images/Add_image_icon.svg";}
+        $('#image-preview').attr('src', $imagePreview);
+        $('#image-preview-favicon').attr('src', $imagePreviewFavicon);
+        $('#image-preview-background').attr('src', $imagePreviewBackground);
+        $('#oldPhotoName').attr('value', $arr["LogoNavbar"]);
+        $('#oldPhotoNameFavicon').attr('value', $arr["LogoFavicon"]);
+        $('#oldPhotoNameBackground').attr('value', $arr["Background"]);
+        $('#templateNavbarColor').val($arr['NavbarColor']);
+        $('#templateNavbarOpacity').val($arr['NavbarOpacity']);
+        $('#templateNavbarOpacityRangeText').val($arr['NavbarOpacity']);
         $('#templateBodyBackground').val($arr['BodyBackground']);
+        $('#templateBodyBackgroundColor').val($arr['BackgroundColor']);
+        $('#templateFooterColor').val($arr['FooterColor']);
+        $('#templateFooterOpacity').val($arr['FooterOpacity']);
+        $('#templateFooterOpacityRangeText').val($arr['NavbarOpacity']);
         $('#templateFontFamily').val($arr['FontFamily']);
-        $('#templateBackgroundColor').val($arr['BackgroundColor']);
+        $('#templateFontSize').val($arr['FontSize']);
+        $('#templateFontSizeRangeText').val($arr['FontSize']);
     });
+    
+    
+    function setInput(input) {
+        $value = $(input).val();
+        $("#"+ $(input).attr("id") +"RangeText").val($value);
+    }
+
+    $("#templateFooterOpacity").change(function(){
+        setInput(this);
+    }); 
+    
+    $("#templateNavbarOpacity").change(function(){
+        setInput(this);
+    }); 
+    
+    $("#templateFontSize").change(function(){
+        setInput(this);
+    }); 
+    
+    
+    function readURLFavicon(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#image-preview-favicon').attr('src', e.target.result);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#file-input-favicon").change(function(){
+        readURLFavicon(this);
+    });  
+    
+    
+    $("#file-input-background").change(function(){
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#image-preview-background').attr('src', e.target.result);
+            };
+
+            reader.readAsDataURL(this.files[0]);
+        }
+    });  
+    
+    ///////////////// SITE SETTINGS //////////////////
     
     /*
     $(function () {

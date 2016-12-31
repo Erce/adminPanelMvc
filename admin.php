@@ -6,12 +6,27 @@ and open the template in the editor.
 -->
 
 <?php
-    define('INCLUDE_CHECK',true);
+    require_once 'connection.php';
 
+    define('INCLUDE_CHECK',true);
+    session_start();
     if (isset($_SESSION["access"]) && $_SESSION["access"] == "granted"){
        header("Location: index.php");
     }
     
+    require_once 'Model/adminModel.php';
+    
+    $adminModel = new AdminModel();
+    
+    require_once 'Controller/admin/adminController.php';
+    $adminController = new AdminController($adminModel);
+    if (isset($_GET['part'])) {
+        if($_GET['part'] == 'check') {
+            file_put_contents("log.txt", "admin controller part= check".PHP_EOL, FILE_APPEND);
+            $adminController->{$_GET['part']}($_POST);
+            echo "asdfadsf";
+        }
+    }
 ?>
 
 <html>
@@ -48,7 +63,7 @@ and open the template in the editor.
                     </div>
                     <div class="row">
                         <div class="form-container">
-                            <form class="form-horizontal" id="form" action="Controller/admin/validateController.php" method="post" accept-charset='UTF-8'>
+                            <form class="form-horizontal" id="form" action="?part=check" method="post" accept-charset='UTF-8'>
                                 <div class="form-group form">
                                     <div class="col-md-12">
                                         <label class="sr-only" for="username"></label>

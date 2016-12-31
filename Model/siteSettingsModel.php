@@ -19,10 +19,17 @@ class SiteSettingsModel {
             while($row=$req->fetch()) {
                 $this->siteSettingsRow = array( "Id" => $row['id'],
                                               "Name" => $row['name'],
-                                              "BodyBackground" => $row['body_background'],
+                                              "NavbarColor" => $row['navbar_color'],
+                                              "NavbarOpacity" => $row['navbar_opacity'],
+                                              "Background" => $row['background'],
+                                              "BackgroundColor" => $row['background_color'],
+                                              "BackgroundOpacity" => $row['background_opacity'],
+                                              "FontSize" => $row['font_size'],
                                               "FontFamily" => $row['font_family'],
-                                              "BodyColor" => $row['body_color'],
-                                              "LogoUrl" => $row['logo_url'],
+                                              "FooterColor" => $row['footer_color'],
+                                              "FooterOpacity" => $row['footer_opacity'],
+                                              "LogoNavbar" => $row['logo_navbar'],
+                                              "LogoFavicon" => $row['logo_favicon'],
                                               "IsOn" => $row['is_on']); 
                 array_push($this->siteSettingsList, $this->siteSettingsRow);
             }   
@@ -43,12 +50,19 @@ class SiteSettingsModel {
             $req->execute();
             $row=$req->fetch();
             $this->siteSettingsRow = array( "Id" => $row['id'],
-                                          "Name" => $row['name'],
-                                          "BodyBackground" => $row['body_background'],
-                                          "FontFamily" => $row['font_family'],
-                                          "BodyColor" => $row['body_color'],
-                                          "LogoUrl" => $row['logo_url'],
-                                          "IsOn" => $row['is_on']); 
+                                            "Name" => $row['name'],
+                                            "NavbarColor" => $row['navbar_color'],
+                                            "NavbarOpacity" => $row['navbar_opacity'],
+                                            "Background" => $row['background'],
+                                            "BackgroundColor" => $row['background_color'],
+                                            "BackgroundOpacity" => $row['background_opacity'],
+                                            "FontSize" => $row['font_size'],
+                                            "FontFamily" => $row['font_family'],
+                                            "FooterColor" => $row['footer_color'],
+                                            "FooterOpacity" => $row['footer_opacity'],
+                                            "LogoNavbar" => $row['logo_navbar'],
+                                            "LogoFavicon" => $row['logo_favicon'],
+                                            "IsOn" => $row['is_on']); 
             return $this->siteSettingsRow;
               
         } catch (Exception $exc) {
@@ -66,12 +80,37 @@ class SiteSettingsModel {
     
     public function update($siteSettingsArray) {
         $db = Db::getInstance();
-        $query = sprintf("UPDATE template SET name='%s', body_background='%s', font_family='%s', body_color='%s' WHERE id='%s'",
-                                mysql_real_escape_string($siteSettingsArray['Name']),
-                                mysql_real_escape_string($siteSettingsArray['BodyBackground']),
-                                mysql_real_escape_string($siteSettingsArray['FontFamily']),
-                                mysql_real_escape_string($siteSettingsArray['BodyColor']),
-                                mysql_real_escape_string($siteSettingsArray['Id']));
+        if ($siteSettingsArray['IsOn'] == 1) {
+            $query = sprintf("UPDATE template SET is_on= CASE WHEN id ='%s' THEN 1 ELSE 0 END",
+                        $siteSettingsArray['Id']);
+            $req = $db->prepare($query);
+            $req->execute();
+            
+            file_put_contents("log.txt", "site settings model  in first if ".$siteSettingsArray['IsOn'].PHP_EOL, FILE_APPEND);
+        }
+        file_put_contents("log.txt", "site settings model after if ".$siteSettingsArray['IsOn'].PHP_EOL, FILE_APPEND);
+        move_uploaded_file($siteSettingsArray["TmpName"], $siteSettingsArray["Target"]);
+        move_uploaded_file($siteSettingsArray["TmpNameFavicon"], $siteSettingsArray["TargetFavicon"]);
+        move_uploaded_file($siteSettingsArray["TmpNameBackground"], $siteSettingsArray["TargetBackground"]);
+        
+        $query = sprintf("UPDATE template SET name='%s', navbar_color='%s', navbar_opacity='%s', background='%s', background_color='%s', background_opacity='%s',"
+                                ."font_size='%s', font_family='%s', footer_color='%s',"
+                                ."footer_opacity='%s', logo_navbar='%s', logo_favicon='%s', is_on='%s' WHERE id='%s'",
+                                $siteSettingsArray['Name'],
+                                $siteSettingsArray['NavbarColor'],
+                                $siteSettingsArray['NavbarOpacity'],
+                                $siteSettingsArray['ImgUrlBackground'],
+                                $siteSettingsArray['BackgroundColor'],
+                                $siteSettingsArray['BackgroundOpacity'],
+                                $siteSettingsArray['FontSize'],
+                                $siteSettingsArray['FontFamily'],
+                                $siteSettingsArray['FooterColor'],
+                                $siteSettingsArray['FooterOpacity'],
+                                $siteSettingsArray['LogoNavbar'],
+                                $siteSettingsArray['LogoFavicon'],
+                                $siteSettingsArray['IsOn'],
+                                $siteSettingsArray['Id']);
+        file_put_contents("log.txt", "site settings model  query= ".$query.PHP_EOL, FILE_APPEND);
         $req = $db->prepare($query);
         $req->execute();
     }
@@ -96,13 +135,13 @@ class SiteSettingsModel {
         $db = Db::getInstance();
         if ($adminArray['Password'] != sha1("")) {
             $query = sprintf("UPDATE users SET username='%s', password='%s' WHERE id='%s'",
-                                mysql_real_escape_string($adminArray['UserName']),
-                                mysql_real_escape_string($adminArray['Password']),
-                                mysql_real_escape_string($adminArray['Id']));
+                                $adminArray['UserName'],
+                                $adminArray['Password'],
+                                $adminArray['Id']);
         }else {
             $query = sprintf("UPDATE users SET username='%s' WHERE id='%s'",
-                                mysql_real_escape_string($adminArray['UserName']),
-                                mysql_real_escape_string($adminArray['Id'])); 
+                                $adminArray['UserName'],
+                                $adminArray['Id']); 
         }
         $req = $db->prepare($query);
         $req->execute();
@@ -116,6 +155,4 @@ class SiteSettingsModel {
     public function delete() {
         
     }
-    
-    
 }

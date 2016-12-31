@@ -17,19 +17,39 @@ class PageSettingsController {
         try {
             $id = $_POST['pageId'];
             $name = isset($_POST['pageName']) ? $_POST['pageName'] : "";
-            $title = $_POST['pageTitle'];
-            $navbar = $_POST['pageNavbar'];
-            $navbarColor = $_POST['pageNavbarColor'];
-            $navbarOpacity = $_POST['pageNavbarOpacity'];
-            $slider = $_POST['pageSlider'];
-            $footer = $_POST['pageFooter'];
-            $footerColor = $_POST['pageFooterColor'];
-            $footerOpacity = $_POST['pageFooterOpacity'];
-            $description = $_POST['pageDescription'];
-            $keywords = $_POST['pageKeywords'];
+            $title = isset($_POST['pageTitle']) ? $_POST['pageTitle'] : "";
+            $navbar = isset($_POST['pageNavbar']) ? $_POST['pageNavbar'] : "";
+            $navbarColor = isset($_POST['pageNavbarColor']) ? $_POST['pageNavbarColor'] : "";
+            $navbarOpacity = isset($_POST['pageNavbarOpacity']) ? $_POST['pageNavbarOpacity'] : "";
+            $slider = isset($_POST['pageSlider']) ? $_POST['pageSlider'] : "";
+            $footer = isset($_POST['pageFooter']) ? $_POST['pageFooter'] : "";
+            $footerColor = isset($_POST['pageFooterColor']) ? $_POST['pageFooterColor'] : "";
+            $footerOpacity = isset($_POST['pageFooterOpacity']) ? $_POST['pageFooterOpacity'] : "";
+            $description = isset($_POST['pageDescription']) ? $_POST['pageDescription'] : "";
+            $keywords = isset($_POST['pageKeywords']) ? $_POST['pageKeywords'] : "";
+            
+            if(isset($_POST['oldPhotoName']) && isset($_FILES['photo']['name'])) {
+                $target = "uploads/" . basename( $_FILES['photo']['name']);
+                $pic=($_FILES['photo']['name']);
+                $imgurl = $_FILES['photo']['name'];
+                if($imgurl == "") {
+                    $imgurl = $_POST['oldPhotoName'];
+                }
+                $tmpName = $_FILES['photo']['tmp_name'];
+            }
+            else {
+                $target = "";
+                $imgurl = "";
+                $tmpName = "";
+            }
+            
+            
             
             $pageSettingsArray = array( "Id" => $id,
                                         "Name" => $name,
+                                        "Target" => $target,
+                                        "ImgUrl" => $imgurl,
+                                        "TmpName" => $tmpName,
                                         "Title" => $title,
                                         "Navbar" => $navbar,
                                         "NavbarColor" => $navbarColor,

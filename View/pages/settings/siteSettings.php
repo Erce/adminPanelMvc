@@ -13,7 +13,7 @@
     $admin = $siteSettingsModel->getAdmin($_SESSION['userId']);
     require_once 'Controller/admin/siteSettingsController.php';
     $siteSettingsController = new SiteSettingsController($siteSettingsModel);
-
+    //print_r($siteSettingsList);
     if (isset($_GET['part'])) {
         if($_GET['part'] == 'update') {
             $siteSettingsController->{$_GET['part']}($_POST);
@@ -98,44 +98,114 @@
                                         <label for="templateName">Tasarım Adı:</label>
                                         <select class="form-control" type="" id="template" name="template">
                                             <?php for ($i = 0; $i < sizeof($siteSettingsList); $i++) { ?>
-                                                <option id="option<?php echo $siteSettingsList[$i]['Id']; ?>">
+                                            <option id="option<?php echo $siteSettingsList[$i]['Id']; ?>" <?php if ($siteSettingsList[$i]['IsOn'] == "1") {echo "selected";}?>>
                                                     <?php echo $siteSettingsList[$i]["Name"];?>
                                                 </option>
                                             <?php } ?>
                                         </select>
                                         <input type='hidden' name="templateId" id='templateId' value='<?php ?>'>
                                     </div>
-                                    <p>
-                                    Fotoğraf seç:
-                                    </p>
-                                    <div class="image-upload">
-                                        <label for="file-input">
-                                            <img class="img-responsive logoff-image" id="image-preview" src="Public/images/Add_image_icon.svg" height="40%" width="40%">
-                                        </label>
-                                        <input id="file-input" type="file" name="photo">
-                                    </div>    
                                     <div class="form-group">
+                                        <label for="isOn">Aktif tasarım:</label>
+                                        <input type='checkbox' name="isOn" id='isOn' value="1">
+                                    </div>
+                                    <div class="image-upload">
+                                        <div class='row'>
+                                            <div class='col-lg-6 col-md-6 col-sm-6 col-xs-6'>
+                                                <label for="file-input">
+                                                    <p>
+                                                        Ana Logo seç:
+                                                    </p>
+                                                    <img class="img-responsive logoff-image" id="image-preview" src="Public/images/Add_image_icon.svg" height="40%" width="40%">
+                                                </label>
+                                                <input id="file-input" type="file" name="photo">
+                                                <input type="hidden" name="oldPhotoName" id="oldPhotoName" value=''>
+                                            </div>
+                                            <div class='col-lg-6 col-md-6 col-sm-6 col-xs-6'>
+                                                <label for="file-input-favicon">
+                                                    <p>
+                                                        Alt Logo seç:
+                                                    </p>
+                                                    <img class="img-responsive logoff-image" id="image-preview-favicon" src="Public/images/Add_image_icon.svg" height="40%" width="40%">
+                                                </label>
+                                                <input id="file-input-favicon" type="file" name="photoFavicon">
+                                                <input type="hidden" name="oldPhotoNameFavicon" id="oldPhotoNameFavicon" value=''>
+                                            </div>
+                                        </div>
+                                    </div><br><br>
+                                    <!--<div class="form-group">
                                         <p>
                                         Değiştirmek istediğiniz logoyu seçiniz:
                                         <input type="radio" name="logo" value="mainLogo"> Ana Logo
                                         <input type="radio" name="logo" value="subLogo"> Alt Logo
                                         </p>
-                                    </div>
+                                    </div>-->
                                     <div class="form-group">
                                         <label for="templateName">Tasarım Adı</label>
                                         <input class="input-class form-control" type="text" name="templateName" id="templateName" value="<?php ?>"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="templateBodyBackground">Tasarım Arka Plan:</label>
-                                        <input class="input-class form-control" type="text" name="templateBodyBackground" id="templateBodyBackground" value="<?php ?>"/>
+                                        <label for="templateNavbarColor">Menu Rengi</label>
+                                        <input class="input-class form-control" type="text" name="templateNavbarColor" id="templateNavbarColor" value="<?php ?>"/>
                                     </div>
                                     <div class="form-group">
-                                        <label for="templateFontFamily">Tasarım yazı tipi:</label>
+                                        <div class='row'>
+                                            <div class='col-lg-6 col-md-6 col-sm-6 col-xs-6'>
+                                                <label for="templateNavbarOpacity">Menu Saydamlığı</label>
+                                                <input class="input-class" type="range" name="templateNavbarOpacity" id="templateNavbarOpacity" min="0" max="1" step="0.1" value="1"/>
+                                            </div>
+                                            <div class='col-lg-6 col-md-6 col-sm-6 col-xs-6'>
+                                                <label for="rangeText"></label>
+                                                <input class="input-class form-control" type="text" name="templateNavbarOpacityRangeText" id="templateNavbarOpacityRangeText" value="<?php ?>" disabled/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="image-upload">
+                                            <label for="file-input-background">
+                                                <p>
+                                                    Arka plan resmi seç:
+                                                </p>
+                                                <img class="img-responsive logoff-image" id="image-preview-background" src="Public/images/Add_image_icon.svg" height="40%" width="40%">
+                                            </label>
+                                            <input id="file-input-background" type="file" name="photoBackground">
+                                            <input type="hidden" name="oldPhotoNameBackground" id="oldPhotoNameBackground" value=''>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="templateBodyBackgroundColor">Tasarım Arka Plan Rengi</label>
+                                        <input class="input-class form-control" type="text" name="templateBodyBackgroundColor" id="templateBodyBackgroundColor" value="<?php ?>"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="templateFooterColor">Footer Rengi</label>
+                                        <input class="input-class form-control" type="text" name="templateFooterColor" id="templateFooterColor" value="<?php ?>"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class='row'>
+                                            <div class='col-lg-6 col-md-6 col-sm-6 col-xs-6'>
+                                                <label for="templateFooterOpacity">Footer Saydamlığı</label>
+                                                <input class="input-class" type="range" name="templateFooterOpacity" id="templateFooterOpacity" min="0" max="1" step="0.1" value="1"/>
+                                            </div>
+                                            <div class='col-lg-6 col-md-6 col-sm-6 col-xs-6'>
+                                                <label for="templateFooterOpacityRangeText"></label>
+                                                <input class="input-class form-control" type="text" name="templateFooterOpacityRangeText" id="templateFooterOpacityRangeText" value="<?php ?>" disabled/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="templateFontFamily">Tasarım yazı tipi</label>
                                         <input class="input-class form-control" type="text" name="templateFontFamily" id="templateFontFamily" value="<?php ?>"/>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="templateBodyColor">Arka Plan Rengi:</label>
-                                        <input class="input-class form-control" type="text" name="templateBodyColor" id="templateBodyColor" value="<?php ?>"/>
+                                    <div class="form-group"><div class='row'>
+                                            <div class='col-lg-6 col-md-6 col-sm-6 col-xs-6'>
+                                                <label for="templateFontSize">Tasarım yazı boyu</label>
+                                                <input class="input-class" type="range" name="templateFontSize" id="templateFontSize" min="5" max="50" step="1" value="10"/>
+                                            </div>
+                                            <div class='col-lg-6 col-md-6 col-sm-6 col-xs-6'>
+                                                <label for="templateFontSizeRangeText"></label>
+                                                <input class="input-class form-control" type="text" name="templateFontSizeRangeText" id="templateFontSizeRangeText" value="<?php ?>" disabled/>
+                                            </div>
+                                        </div>
                                     </div>
                                     <br/>
                                     <br/>

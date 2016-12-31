@@ -95,11 +95,11 @@
                 if(move_uploaded_file($photoArray["TmpName"], $photoArray["Target"])) { 
                     file_put_contents("log.txt", "photoModel -> in if move uploaded file".PHP_EOL, FILE_APPEND);
                     $query = sprintf("UPDATE sliderphotos SET name='%s', title='%s', description='%s', date='%s' WHERE id='%s'",
-                        mysql_real_escape_string($photoArray['Name']),
-                        mysql_real_escape_string($photoArray['Title']),
-                        mysql_real_escape_string($photoArray['Description']),
-                        mysql_real_escape_string($photoArray['Date']),
-                        mysql_real_escape_string($photoArray['Id']));
+                        $photoArray['Name'],
+                        $photoArray['Title'],
+                        $photoArray['Description'],
+                        $photoArray['Date'],
+                        $photoArray['Id']);
                     mysql_query($query) or die(mysql_error());
                     header("Location: ../index.php?controller=pages&action=slider");
                     echo "The file ". basename( $photoArray['Name']). " has been uploaded, and your information has been added to the directory";
@@ -111,10 +111,10 @@
             }
             else {      
                 $query = sprintf("UPDATE sliderphotos SET title='%s', description='%s', date='%s' WHERE id='%s'",
-                                    mysql_real_escape_string($photoArray['Title']),
-                                    mysql_real_escape_string($photoArray['Description']),
-                                    mysql_real_escape_string($photoArray['Date']),
-                                    mysql_real_escape_string($photoArray['Id']));
+                                    $photoArray['Title'],
+                                    $photoArray['Description'],
+                                    $photoArray['Date'],
+                                    $photoArray['Id']);
 
                 //Writes the information to the database
                 mysql_query($query) or die(mysql_error());

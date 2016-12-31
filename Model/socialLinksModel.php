@@ -53,8 +53,8 @@ class SocialLinks {
         $db = Db::getInstance();
         for($i=0; $i<sizeof($socialLinksArray); $i++) {
             $query = sprintf("UPDATE sociallinks SET url='%s' WHERE name='%s'",
-                            mysql_real_escape_string($socialLinksArray[$i]['Url']),
-                            mysql_real_escape_string($socialLinksArray[$i]['Name']));
+                            $socialLinksArray[$i]['Url'],
+                            $socialLinksArray[$i]['Name']);
             $req = $db->prepare($query);
             $req->execute();
         }

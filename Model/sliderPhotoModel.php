@@ -42,11 +42,11 @@ class SliderPhoto extends PhotoModel {
         move_uploaded_file($photoArray["TmpName"], $photoArray["Target"]);
         $db = Db::getInstance();
         $query = sprintf("UPDATE sliderphotos SET name='%s', title='%s', description='%s', date='%s' WHERE id='%s'",
-                    mysql_real_escape_string($photoArray['ImgUrl']),
-                    mysql_real_escape_string($photoArray['Title']),
-                    mysql_real_escape_string($photoArray['Description']),
-                    mysql_real_escape_string($photoArray['Date']),
-                    mysql_real_escape_string($photoArray['Id']));
+                    $photoArray['ImgUrl'],
+                    $photoArray['Title'],
+                    $photoArray['Description'],
+                    $photoArray['Date'],
+                    $photoArray['Id']);
         $req = $db->prepare($query);
         $req->execute();
         //mysql_query($query) or die(mysql_error());
@@ -65,10 +65,10 @@ class SliderPhoto extends PhotoModel {
         $db = Db::getInstance();
         $query = sprintf("INSERT INTO sliderphotos (name, title, description, date)"
                         . "VALUES ('%s', '%s', '%s', '%s')",
-                        mysql_real_escape_string($photoArray['ImgUrl']),
-                        mysql_real_escape_string($photoArray['Title']),
-                        mysql_real_escape_string($photoArray['Description']),
-                        mysql_real_escape_string($photoArray['Date']));
+                        $photoArray['ImgUrl'],
+                        $photoArray['Title'],
+                        $photoArray['Description'],
+                        $photoArray['Date']);
         $req = $db->prepare($query);
         $req->execute();
         //mysql_query($query) or die(mysql_error());
