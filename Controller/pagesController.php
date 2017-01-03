@@ -26,7 +26,7 @@
         }
 
         public function references() {
-            require_once ('View/pages/references.php');
+            require_once ('Controller/referencePagesController.php');
         }
 
         public function announcements() {

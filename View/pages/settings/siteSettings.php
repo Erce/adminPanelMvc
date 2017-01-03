@@ -19,6 +19,9 @@
             $siteSettingsController->{$_GET['part']}($_POST);
             $template = $siteSettingsModel->getSiteSettingsWithId($_POST['templateId']);
             for ($i = 0; $i < count($siteSettingsList); $i++) {
+                if($siteSettingsList[$i]['IsOn'] == 1) {
+                    $siteSettingsList[$i]['IsOn'] = 0;
+                }
                 if($siteSettingsList[$i]['Id'] == $_POST['templateId']) {
                     $siteSettingsList[$i] = $template;
                 }

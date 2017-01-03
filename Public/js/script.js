@@ -259,6 +259,21 @@ $(function() {
         });
     }
     
+    function deleteReferenceRow(elem) {
+        $id = $(elem).attr('id');
+        $id = $id.substring(7,$id.length);
+        $row = '#referenceRow' + $id; 
+        var formData = "id=" + $id;
+        $.ajax({     
+            type: 'post',
+            url: "?controller=pages&action=references&part=delete",
+            data: formData,
+            success: function(){
+               window.setTimeout('location.reload()', 0); 
+            }
+        });
+    }
+    
     
     //$(function () {
         /*var form = $('#firstform');
