@@ -28,6 +28,7 @@ class ProductController {
             $title = $_POST['productTitle'];
             $name = $_POST['productName'];
             $keywords = $_POST['productKeywords'];
+            file_put_contents("log.txt", "product controller keywords= ".$keywords.PHP_EOL, FILE_APPEND);
             $description = $_POST['productDescription'];
             $category = $_POST['productCategory'];
 

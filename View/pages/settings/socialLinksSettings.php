@@ -18,7 +18,7 @@
 
 ?>
 
-        <div class="container-fluid admin-main-container">
+        <div class="container admin-main-container">
             <div class="row">
                 <div class="col-md-1 col-sm-1 col-lg-1"></div>
                 <div class="col-xs-18 col-md-10 col-sm-10 col-lg-10 container-title">

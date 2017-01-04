@@ -23,7 +23,7 @@
     }
 ?>
 
-        <div class="container-fluid admin-main-container">
+        <div class="container admin-main-container">
             <div class="col-lg-2 col-md-2 col-sm-1"></div>
             <div class="col-lg-8 col-md-8 col-sm-10 col-xs-12 main-container">
                 <div class="row first-row">

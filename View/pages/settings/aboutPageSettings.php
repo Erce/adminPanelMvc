@@ -23,7 +23,7 @@
     }
 ?>
 
-        <div class="container-fluid admin-main-container">
+        <div class="container admin-main-container">
             <div class="col-lg-2 col-md-2 col-sm-1"></div>
             <div class="col-lg-8 col-md-8 col-sm-10 col-xs-12 main-container">
                 <div class="row first-row">
@@ -58,7 +58,7 @@
                                         <img class="img-responsive logoff-image" id="image-preview" src="<?php if($pageSettings["ImgUrl"]!=""){echo "uploads/".$pageSettings["ImgUrl"];}else{echo "Public/images/Add_image_icon.svg";}?>" height="40%" width="40%">
                                     </label>
                                     <input id="file-input" type="file" name="photo">
-                                    <input type="hidden" name="oldPhotoName" id="oldPhotoName" value='<?php if($pageSettings["ImgUrl"]!=""){echo "uploads/".$pageSettings["ImgUrl"];}else{echo "Public/images/Add_image_icon.svg";}?>'>
+                                    <input type="hidden" name="oldPhotoName" id="oldPhotoName" value='<?php if($pageSettings["ImgUrl"]!=""){echo $pageSettings["ImgUrl"];}else{echo "Public/images/Add_image_icon.svg";}?>'>
                                 </div>
                                 <div class="form-group">
                                         <label for="pageNavbar">Menu:</label>

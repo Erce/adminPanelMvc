@@ -35,7 +35,7 @@
 
 ?>
 
-        <div class="container-fluid admin-main-container">
+        <div class="container admin-main-container">
             <div class="row">
                 <!--<div class="col-lg-1 col-sm-1 col-md-1"></div>-->
                 <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6 container-left">

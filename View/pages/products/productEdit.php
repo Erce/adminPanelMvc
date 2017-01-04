@@ -59,7 +59,7 @@
                             </div>
                             <div class="form-group">    
                                 <label for="productKeywords">Anahtar Kelimeler ( keywords ):</label>
-                                <textarea class="input-class form-control" rows="3" type="text" name="productKeywords" id="productKeywords" value="<?php echo $product["Keywords"];?>"></textarea>
+                                <textarea class="input-class form-control" rows="3" type="text" name="productKeywords" id="productKeywords" value=""><?php echo $product["Keywords"];?></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="productCategory">Ürün Kategorisi:</label>
