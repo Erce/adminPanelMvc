@@ -23,8 +23,15 @@
     if (isset($_GET['part'])) {
         $referencesController->{$_GET['part']}($_POST);
         $reference = $referencesModel->getReference($_GET['reference_id']);
+        file_put_contents("log.txt", "reference edit imgurl=".$reference["ImgUrl"].PHP_EOL, FILE_APPEND);
+        file_put_contents("log.txt", "reference edit id=".$reference["Id"].PHP_EOL, FILE_APPEND);
+        file_put_contents("log.txt", "reference edit name=".$reference["Name"].PHP_EOL, FILE_APPEND);
+        file_put_contents("log.txt", "reference edit title=".$reference["Title"].PHP_EOL, FILE_APPEND);
+        file_put_contents("log.txt", "reference edit asda=".$reference["ImgUrl"].PHP_EOL, FILE_APPEND);
+        file_put_contents("log.txt", "reference edit asasd=".$reference["ImgUrl"].PHP_EOL, FILE_APPEND);
+        
     }
-   ?> 
+    ?> 
     <div class="bg-content">
         <div class="container products-container">   
             <div class="product-edit-section">
@@ -60,6 +67,7 @@
                             <div class="form-group">    
                                 <label for="productKeywords">Anahtar Kelimeler ( keywords ):</label>
                                 <textarea class="input-class form-control" rows="3" type="text" name="productKeywords" id="productKeywords" value="<?php echo $reference["Keywords"];?>"></textarea>
+                                <input type="hidden" name="productId" value="<?php echo $reference["Id"];?>">
                             </div>
                             <br/>
                             <br/>

@@ -162,7 +162,7 @@ class ReferencesModel {
         if(!file_exists($referencesArray["Target"]))
         {  
             if(move_uploaded_file($referencesArray["TmpName"], $referencesArray["Target"])) { 
-                file_put_contents("log.txt", "photoModel -> in if move uploaded file".PHP_EOL, FILE_APPEND);
+                file_put_contents("log.txt", "reference model if=".$referencesArray['ImgUrl'].PHP_EOL, FILE_APPEND);
                 $query = sprintf("UPDATE reference SET title='%s', name='%s', imgurl='%s', keywords='%s', description='%s' WHERE id='%s'",
                                 $referencesArray['Title'],
                                 $referencesArray['Name'],
@@ -171,10 +171,11 @@ class ReferencesModel {
                                 $referencesArray['Description'],
                                 //$referencesArray['Category'],
                                 $referencesArray['Id']);
+                file_put_contents("log.txt", "in reference model else query=".$query.PHP_EOL, FILE_APPEND);
                 $this->req = $db->prepare($query);
                 $this->req->execute();
                 //mysql_query($query) or die(mysql_error());
-                echo "The file ". basename( $referencesArray['Name']). " has been uploaded, and your information has been added to the directory";
+                echo "The file ". basename( $referencesArray['ImgUrl']). " has been uploaded, and your information has been added to the directory";
             }
             else {
             //Gives and error if its not
@@ -182,7 +183,7 @@ class ReferencesModel {
             }
         }
         else {    
-            file_put_contents("log.txt", "elseeeeeeeeeeeeeeeeeeeeeeeeeeeeeee".PHP_EOL, FILE_APPEND);
+            file_put_contents("log.txt", "in reference model else ".$referencesArray['ImgUrl'].PHP_EOL, FILE_APPEND);
             $query = sprintf("UPDATE reference SET title='%s', name='%s', imgurl='%s', keywords='%s', description='%s' WHERE id='%s'",
                                 $referencesArray['Title'],
                                 $referencesArray['Name'],
@@ -190,7 +191,7 @@ class ReferencesModel {
                                 $referencesArray['Keywords'],
                                 $referencesArray['Description'],
                                 $referencesArray['Id']);
-
+            file_put_contents("log.txt", "in reference model else query=".$query.PHP_EOL, FILE_APPEND);
             //Writes the information to the database
             $this->req = $db->prepare($query);
             $this->req->execute();

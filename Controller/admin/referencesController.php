@@ -20,8 +20,10 @@ class ReferencesController {
             $target = $target . basename( $_FILES['photo']['name']);
             $pic=($_FILES['photo']['name']);
             $imgurl = $_FILES['photo']['name'];
+            file_put_contents("log.txt", "reference controller imgurl=".$imgurl.PHP_EOL, FILE_APPEND);
             if($imgurl == "") {
                 $imgurl = $_POST['oldPhotoName'];
+                file_put_contents("log.txt", "reference controller in if imgurl=".$imgurl.PHP_EOL, FILE_APPEND);
             }
             $tmpName = $_FILES['photo']['tmp_name'];
             $id = $_POST['productId'];
@@ -40,7 +42,7 @@ class ReferencesController {
                                    "Keywords" => $keywords,
                                    "Description" => $description);
                                    //"Category" => $category);
-
+            file_put_contents("log.txt", "reference controller imgurl=".$referencesArray["ImgUrl"].PHP_EOL, FILE_APPEND);
             $this->model->update($referencesArray);
         }
          catch (Exception $e) {
