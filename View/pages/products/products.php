@@ -68,7 +68,7 @@
                                 </div>
                             </div>
                         </div><!--
-                        --><div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                    --><div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
                             <div class="row item-content">
                                 <div class="item-text">
                                     <h5>Caption Text2</h5>

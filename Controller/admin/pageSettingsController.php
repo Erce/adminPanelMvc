@@ -29,7 +29,7 @@ class PageSettingsController {
             $keywords = isset($_POST['pageKeywords']) ? $_POST['pageKeywords'] : "";
             
             if(isset($_POST['oldPhotoName']) && isset($_FILES['photo']['name'])) {
-                $target = "uploads/" . basename( $_FILES['photo']['name']);
+                $target = "../uploads/" . basename( $_FILES['photo']['name']);
                 $pic=($_FILES['photo']['name']);
                 $imgurl = $_FILES['photo']['name'];
                 if($imgurl == "") {

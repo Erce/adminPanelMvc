@@ -154,7 +154,7 @@ class ReferencesModel {
     public function update($referencesArray) {
         $db = Db::getInstance();
         //For setting uploads directory
-        $path = 'uploads';
+        $path = '../uploads';
         if ( !is_dir($path)) {
             mkdir($path);
         }
@@ -208,7 +208,7 @@ class ReferencesModel {
         $req = $db->prepare($query);
         $req->execute();
         
-        $path = "uploads/";
+        $path = "../uploads/";
         $file = $path.$product['ImgUrl'];
         if (file_exists($file)) {
             unlink($file);

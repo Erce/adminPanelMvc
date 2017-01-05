@@ -16,7 +16,7 @@ class ProductController {
     public function update() {
         try {
             //This is the directory where images will be saved
-            $target = "uploads/";
+            $target = "../uploads/";
             $target = $target . basename( $_FILES['photo']['name']);
             $pic=($_FILES['photo']['name']);
             $imgurl = $_FILES['photo']['name'];
@@ -52,7 +52,7 @@ class ProductController {
     public function add() {
         try {
             //This is the directory where images will be saved
-            $target = "uploads/";
+            $target = "../uploads/";
             $target = $target . basename( $_FILES['photo']['name']);
             echo $target;
             //This gets all the other information from the form

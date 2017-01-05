@@ -16,7 +16,7 @@ class SiteSettingsController {
     public function update() {
         try {
             //This is the directory where images will be saved
-            $target = "uploads/";
+            $target = "../uploads/";
             $target = $target . basename( $_FILES['photo']['name']);
             $pic=($_FILES['photo']['name']);
             $imgurl = $_FILES['photo']['name'];

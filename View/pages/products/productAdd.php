@@ -26,7 +26,8 @@
             <div class="product-edit-section">
                 <div class="row">
                     <form method="post" action="?controller=pages&action=products&subpage=products&page=add&part=add" enctype="multipart/form-data">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="col-lg-1 col-md-1"></div>
+                        <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                             <div class="">
                                 <label>
                                 Fotoğraf seç:

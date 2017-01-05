@@ -150,7 +150,7 @@ class Products {
     public function update($productArray) {
         $db = Db::getInstance();
         //For setting uploads directory
-        $path = 'uploads';
+        $path = '../uploads';
         if ( !is_dir($path)) {
             mkdir($path);
         }
@@ -204,7 +204,7 @@ class Products {
         $req = $db->prepare($query);
         $req->execute();
         
-        $path = "uploads/";
+        $path = "../uploads/";
         $file = $path.$product['ImgUrl'];
         if (file_exists($file)) {
             unlink($file);

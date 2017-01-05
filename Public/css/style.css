@@ -287,6 +287,19 @@ div>.form-container{
     border-radius: 10px;
 }
 
+.product-category-add-icon {
+    display:inline;
+    margin-top: 0px;
+    float: right; 
+    border-radius: 5px;
+}
+
+.product-category-delete-icon {
+    display:inline;
+    z-index: 9999;
+    border-radius: 10px;
+}
+
 .product-add-icon:hover,
 .product-delete-icon:hover {
     z-index: 9999;

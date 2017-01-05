@@ -34,7 +34,7 @@ class SliderPhoto extends PhotoModel {
     
     public function update($photoArray) {
         //For setting uploads directory
-        $path = 'uploads/';
+        $path = '../uploads/';
         if ( !is_dir($path)) {
             mkdir($path);
         }
@@ -56,7 +56,7 @@ class SliderPhoto extends PhotoModel {
     
     public function add($photoArray) {
         //For setting uploads directory
-        $path = 'uploads/';
+        $path = '../uploads/';
         if ( !is_dir($path)) {
             mkdir($path);
         }

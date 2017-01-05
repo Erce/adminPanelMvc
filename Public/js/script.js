@@ -259,6 +259,30 @@ $(function() {
         });
     }
     
+    function deleteProductCategoryRow(elem) {
+        $id = $(elem).attr('id');
+        $id = $id.substring(15,$id.length);
+        $row = '#productCategoryRow' + $id; 
+        var formData = "id=" + $id;
+        $.ajax({     
+            type: 'post',
+            url: "?controller=pages&action=products&subpage=productcategories&part=delete",
+            data: formData,
+            success: function(){
+               window.setTimeout('location.reload()', 0); 
+            }
+        });
+    }
+    
+    function addProductCategoryRow(elem) {
+        alert();
+        $id = $(elem).attr('id');
+        $id = $id.substring(15,$id.length);
+        $row = '#productCategoryRow' + $id; 
+        var formData = "id=" + $id;
+        
+    }
+    
     function deleteReferenceRow(elem) {
         $id = $(elem).attr('id');
         $id = $id.substring(7,$id.length);
