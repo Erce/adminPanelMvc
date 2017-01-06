@@ -79,7 +79,7 @@
                         </div><!--
                         --><div class="col-lg-5 col-md-4"><!--
                         --></div><!--
-                        --><div class="col-lg-1 col-md-2 col-sm-3 col-xs-2" id="product-delete-icon">
+                        --><div class="col-lg-1 col-md-2 col-sm-3 col-xs-2" id="reference-delete-icon">
                             <img class="img-responsive product-delete-icon" id="references<?php echo $referencesList[$i]['Id'];?>" src="Public/images/delete.ico" height="45px" width="45px" onclick="deleteReferenceRow(this); return false">
                         </div>
                     </div>

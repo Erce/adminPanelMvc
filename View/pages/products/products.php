@@ -54,7 +54,7 @@
                     </div>
                 </div>
                 <?php for($i = 0; $i <  sizeof($productList); $i++) { ?>
-                <a href="?controller=pages&action=products&subpage=products&page=edit&product_id=<?php echo $productList[$i]["Id"] ?>" id="productRow<?php echo $productList[$i]["Id"] ?>">
+                <a href="?controller=pages&action=products&subpage=products&page=edit&productlistpage=<?php if(isset($_GET['page'])){echo $_GET['page'];}else{echo "1";} ?>&product_id=<?php echo $productList[$i]["Id"] ?>" id="productRow<?php echo $productList[$i]["Id"] ?>">
                     <div class="row vertical-align products-page-row <?php if($i % 2 == 0) {echo "products-page-row-light";}else{echo "products-page-row-dark";} ?>">
                         <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4 product-page-row-img-container">
                             <div class="item-image">

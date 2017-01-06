@@ -76,7 +76,7 @@
                             <br/>
                             <!--<input TYPE="submit" name="upload" title="Add data to the Database" value="Add Member"/>-->
                             <input class="btn btn-default save-button update-product-submit" type="submit" name="upload" title="Add data to the Database" value="Kaydet" id="sliderSubmit"/>
-                            <a href="?controller=pages&action=products&subpage=products" class="btn btn-default save-button">İptal</a>   
+                            <a href="?controller=pages&action=products&subpage=products<?php if(isset($_GET['productlistpage'])){echo "&page=".$_GET['productlistpage'];}else{echo "";} ?>" class="btn btn-default save-button">İptal</a>   
                         </div>
                     </form>
                 </div>

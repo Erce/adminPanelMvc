@@ -285,7 +285,8 @@ $(function() {
     
     function deleteReferenceRow(elem) {
         $id = $(elem).attr('id');
-        $id = $id.substring(7,$id.length);
+        $id = $id.substring(10,$id.length);
+        alert($id);
         $row = '#referenceRow' + $id; 
         var formData = "id=" + $id;
         $.ajax({     
