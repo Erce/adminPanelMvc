@@ -58,7 +58,7 @@
                     <div class="row vertical-align products-page-row <?php if($i % 2 == 0) {echo "products-page-row-light";}else{echo "products-page-row-dark";} ?>">
                         <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4 product-page-row-img-container">
                             <div class="item-image">
-                                <img class="img-responsive img-container-inside" id="myImg<?php echo $productList[$i]["Id"] ?>" src="uploads/<?php echo $productList[$i]["ImgUrl"]; ?>">
+                                <img class="img-responsive img-container-inside" id="myImg<?php echo $productList[$i]["Id"] ?>" src="../uploads/<?php echo $productList[$i]["ImgUrl"]; ?>">
                             </div>
                         </div><!--
                         --><div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">

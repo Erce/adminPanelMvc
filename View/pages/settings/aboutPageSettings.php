@@ -55,7 +55,7 @@
                                         <p>
                                             Resim seç:
                                         </p>
-                                        <img class="img-responsive logoff-image" id="image-preview" src="<?php if($pageSettings["ImgUrl"]!=""){echo "uploads/".$pageSettings["ImgUrl"];}else{echo "Public/images/Add_image_icon.svg";}?>" height="40%" width="40%">
+                                        <img class="img-responsive logoff-image" id="image-preview" src="<?php if($pageSettings["ImgUrl"]!=""){echo "../uploads/".$pageSettings["ImgUrl"];}else{echo "Public/images/Add_image_icon.svg";}?>" height="40%" width="40%">
                                     </label>
                                     <input id="file-input" type="file" name="photo">
                                     <input type="hidden" name="oldPhotoName" id="oldPhotoName" value='<?php if($pageSettings["ImgUrl"]!=""){echo $pageSettings["ImgUrl"];}else{echo "Public/images/Add_image_icon.svg";}?>'>

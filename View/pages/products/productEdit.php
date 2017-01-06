@@ -37,7 +37,7 @@
                                 </p>
                                 <div class="image-upload">
                                     <label for="file-input">
-                                        <img class="img-responsive img-container-inside" id="image-preview" src="uploads/<?php echo $product["ImgUrl"]; ?>">
+                                        <img class="img-responsive img-container-inside" id="image-preview" src="../uploads/<?php echo $product["ImgUrl"]; ?>">
                                     </label>
                                     <input id="file-input" type="file" name="photo">
                                 </div>

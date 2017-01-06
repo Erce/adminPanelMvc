@@ -15,7 +15,7 @@
             echo "<div class='col-lg-2 col-md-3 col-sm-4 col-xs-6 sliderphotopadding'>".
                     "<div class='sliderphotobox' id='sliderphoto".$sliderPhotoList[$i]['Id']."'>".
                         "<div class='item-image'>".
-                            "<img class='img-responsive img-container-inside' src='uploads/".$sliderPhotoList[$i]['Name']."'>".
+                            "<img class='img-responsive img-container-inside' src='../uploads/".$sliderPhotoList[$i]['Name']."'>".
                         "</div>".
                     "</div>".
                  "</div>";    

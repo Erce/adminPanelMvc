@@ -36,7 +36,7 @@
         <div class="container products-container">   
             <div class="product-edit-section">
                 <div class="row">
-                    <form method="post" action="?controller=pages&action=references&page=edit&reference_id=<?php echo $reference["Id"];?>&part=update" enctype="multipart/form-data">
+                    <form method="post" action="?controller=pages&action=references&page=edit<?php if(isset($_GET['referencelistpage'])){echo "&referencelistpage=".$_GET['referencelistpage'];}else{echo "";} ?>&reference_id=<?php echo $reference["Id"];?>&part=update" enctype="multipart/form-data">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="">
                                 <p>
@@ -44,7 +44,7 @@
                                 </p>
                                 <div class="image-upload">
                                     <label for="file-input">
-                                        <img class="img-responsive img-container-inside" id="image-preview" src="uploads/<?php echo $reference["ImgUrl"]; ?>">
+                                        <img class="img-responsive img-container-inside" id="image-preview" src="../uploads/<?php echo $reference["ImgUrl"]; ?>">
                                     </label>
                                     <input id="file-input" type="file" name="photo">
                                 </div>
@@ -73,7 +73,7 @@
                             <br/>
                             <!--<input TYPE="submit" name="upload" title="Add data to the Database" value="Add Member"/>-->
                             <input class="btn btn-default save-button update-product-submit" type="submit" name="upload" title="Add data to the Database" value="Kaydet" id="sliderSubmit"/>
-                            <a href="?controller=pages&action=references" class="btn btn-default save-button">İptal</a>   
+                            <a href="?controller=pages&action=references<?php if(isset($_GET['referencelistpage'])){echo "&page=".$_GET['referencelistpage'];}else{echo "";} ?>" class="btn btn-default save-button">İptal</a>   
                         </div>
                     </form>
                 </div>

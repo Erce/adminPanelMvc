@@ -435,9 +435,9 @@ $(function() {
         $('#isOn').prop('checked', (($arr['IsOn']=="1")? true : false));
         $('#templateId').val($arr['Id']);
         $('#templateName').val($arr['Name']);
-        if($arr["LogoNavbar"]!=""){$imagePreview = "uploads/"+$arr["LogoNavbar"];}else{$imagePreview = "Public/images/Add_image_icon.svg";}
-        if($arr["LogoFavicon"]!=""){$imagePreviewFavicon = "uploads/"+$arr["LogoFavicon"];}else{$imagePreviewFavicon = "Public/images/Add_image_icon.svg";}
-        if($arr["Background"]!=""){$imagePreviewBackground = "uploads/"+$arr["Background"];}else{$imagePreviewBackground = "Public/images/Add_image_icon.svg";}
+        if($arr["LogoNavbar"]!=""){$imagePreview = "../uploads/"+$arr["LogoNavbar"];}else{$imagePreview = "Public/images/Add_image_icon.svg";}
+        if($arr["LogoFavicon"]!=""){$imagePreviewFavicon = "../uploads/"+$arr["LogoFavicon"];}else{$imagePreviewFavicon = "Public/images/Add_image_icon.svg";}
+        if($arr["Background"]!=""){$imagePreviewBackground = "../uploads/"+$arr["Background"];}else{$imagePreviewBackground = "Public/images/Add_image_icon.svg";}
         $('#image-preview').attr('src', $imagePreview);
         $('#image-preview-favicon').attr('src', $imagePreviewFavicon);
         $('#image-preview-background').attr('src', $imagePreviewBackground);
@@ -470,9 +470,9 @@ $(function() {
         $('#isOn').prop('checked', (($arr['IsOn']=="1")? true : false));
         $('#templateId').val($arr['Id']);
         $('#templateName').val($arr['Name']);
-        if($arr["LogoNavbar"]!=""){$imagePreview = "uploads/"+$arr["LogoNavbar"];}else{$imagePreview = "Public/images/Add_image_icon.svg";}
-        if($arr["LogoFavicon"]!=""){$imagePreviewFavicon = "uploads/"+$arr["LogoFavicon"];}else{$imagePreviewFavicon = "Public/images/Add_image_icon.svg";}
-        if($arr["Background"]!=""){$imagePreviewBackground = "uploads/"+$arr["Background"];}else{$imagePreviewBackground = "Public/images/Add_image_icon.svg";}
+        if($arr["LogoNavbar"]!=""){$imagePreview = "../uploads/"+$arr["LogoNavbar"];}else{$imagePreview = "Public/images/Add_image_icon.svg";}
+        if($arr["LogoFavicon"]!=""){$imagePreviewFavicon = "../uploads/"+$arr["LogoFavicon"];}else{$imagePreviewFavicon = "Public/images/Add_image_icon.svg";}
+        if($arr["Background"]!=""){$imagePreviewBackground = "../uploads/"+$arr["Background"];}else{$imagePreviewBackground = "Public/images/Add_image_icon.svg";}
         $('#image-preview').attr('src', $imagePreview);
         $('#image-preview-favicon').attr('src', $imagePreviewFavicon);
         $('#image-preview-background').attr('src', $imagePreviewBackground);
@@ -541,6 +541,7 @@ $(function() {
     });  
     
     ///////////////// SITE SETTINGS //////////////////
+
     
     /*
     $(function () {

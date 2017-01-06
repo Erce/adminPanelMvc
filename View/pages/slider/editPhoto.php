@@ -80,7 +80,7 @@
                             </p>
                             <div class="image-upload">
                                 <label for="file-input">
-                                    <img id="image-preview" class="img-responsive logoff-image" src="uploads/<?php echo $photoModel->getName(); ?>">
+                                    <img id="image-preview" class="img-responsive logoff-image" src="../uploads/<?php echo $photoModel->getName(); ?>">
                                 </label>
                                 <input id="file-input" type="file" name="photo">
                                 <input type="hidden" name="oldPhotoName" value='<?php echo $photoModel->getName(); ?>'>

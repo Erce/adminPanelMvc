@@ -56,11 +56,11 @@
                     </div>
                 </div>
                 <?php for($i = 0; $i <  sizeof($referencesList); $i++) { ?>
-                <a href="?controller=pages&action=references&page=edit&reference_id=<?php echo $referencesList[$i]["Id"] ?>" id="referencesRow<?php echo $referencesList[$i]["Id"] ?>">
+                <a href="?controller=pages&action=references&page=edit&referencelistpage=<?php if(isset($_GET['page'])){echo $_GET['page'];}else{echo "1";} ?>&reference_id=<?php echo $referencesList[$i]["Id"]; ?>" id="referencesRow<?php echo $referencesList[$i]["Id"] ?>">
                     <div class="row vertical-align products-page-row <?php if($i % 2 == 0) {echo "products-page-row-light";}else{echo "products-page-row-dark";} ?>">
                         <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4 product-page-row-img-container">
                             <div class="item-image">
-                                <img class="img-responsive img-container-inside" id="myImg<?php echo $referencesList[$i]["Id"] ?>" src="uploads/<?php echo $referencesList[$i]["ImgUrl"]; ?>">
+                                <img class="img-responsive img-container-inside" id="myImg<?php echo $referencesList[$i]["Id"]; ?>" src="../uploads/<?php echo $referencesList[$i]["ImgUrl"]; ?>">
                             </div>
                         </div><!--
                         --><div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
