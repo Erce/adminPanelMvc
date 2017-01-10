@@ -24,7 +24,7 @@
                 <div class="col-xs-18 col-md-10 col-sm-10 col-lg-10 container-title">
                     <div class="row first-row">
                         <div class="col-md-12 col-xs-18">
-                            <h3>Sosyal Linkler</h3>
+                            <h3>SOSYAL LİNK AYARLARI</h3>
                         </div>
                     </div>
                     <div class="row second-row">
@@ -39,19 +39,19 @@
                                 <form method="post" action="?controller=pages&action=settings&subpage=sociallinkssettings&part=update" enctype="multipart/form-data">
                                     <div class="form-group">
                                         <label for="twitter">Twitter:</label>
-                                        <input class="input-class form-control" type="text" name="twitter" id="twitter" value="<?php ?>"/>
+                                        <input class="input-class form-control" type="text" name="twitter" id="twitter" value="<?php echo $socialLinksList["Twitter"];?>"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="facebook">Facebook:</label>
-                                        <input class="input-class form-control" type="text" name="facebook" id="facebook" value="<?php ?>"/>
+                                        <input class="input-class form-control" type="text" name="facebook" id="facebook" value="<?php echo $socialLinksList["Facebook"];?>"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="skype">Skype:</label>
-                                        <input class="input-class form-control" type="text" name="skype" id="skype" value="<?php ?>"/>
+                                        <input class="input-class form-control" type="text" name="skype" id="skype" value="<?php echo $socialLinksList["Skype"];?>"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="youtube">Youtube:</label>
-                                        <input class="input-class form-control" type="text" name="youtube" id="youtube" value="<?php ?>"/>
+                                        <input class="input-class form-control" type="text" name="youtube" id="youtube" value="<?php echo $socialLinksList["Youtube"];?>"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="rss">RSS:</label>

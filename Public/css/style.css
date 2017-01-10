@@ -623,7 +623,7 @@ div>.form-container{
         background-color: rgba(240,240,240,1);
         margin-top: 10px;
         border: 1px solid rgb(200,200,200);
-        border-radius: 10px;
+        border-radius: 0px;
         margin-bottom: 50px;
         color: rgb(80,80,80);
     }

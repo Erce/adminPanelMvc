@@ -189,19 +189,21 @@ $(function() {
     
     $(function () {
         $('.delete-slider-icon').click(function (event) {
-            $id = $(".sliderphotoboxfocus").attr('id');
-            var formData = "id=" + $id.substring(11,$id.length);
+            $idRow = $(".sliderphotoboxfocus").attr('id');
+            $id = $idRow.substring(11,$id.length);
+            var formData = "id=" + $id;
             alert($id);
             if($id !== 'undefined') {
-                $row = '#' + $id;              
+                $row = '#sliderphotodiv' + $id;              
                 $.ajax({     
                     type: 'post',
-                    url: 'delete-photo.php',
+                    url: '?controller=pages&action=slider&part=delete',
                     data: formData,
                     success: function(php_script_response){
-                        $($row).remove();
+                        
                     }
                 });
+                $($row).remove();
             }
         });
     });  

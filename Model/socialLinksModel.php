@@ -29,6 +29,7 @@ class SocialLinks {
                                               "Name" => $row['name'],
                                               "Url" => $row['url']); 
                 array_push($this->socialLinksList, $this->socialLinksRow);
+                $this->socialLinksList[$this->socialLinksRow["Name"]] = $this->socialLinksRow['Url'];
             }   
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();

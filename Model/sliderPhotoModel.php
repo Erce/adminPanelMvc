@@ -12,10 +12,13 @@ class SliderPhoto extends PhotoModel {
     private $sliderPhotoList = array();
     private $sliderPhotoId;
     private $sliderPhotoName;
+    private $sliderPhotoTitle;
+    private $sliderPhotoDescription;
+    private $sliderPhotoDate;
     
     public function setSliderPhotoList() {
         $db = Db::getInstance();
-        $query = sprintf("SELECT * FROM sliderphotos");
+        $query = sprintf("SELECT * FROM sliderphotos ORDER BY date");
         $req = $db->prepare($query);
         $req->execute();
 
@@ -32,6 +35,27 @@ class SliderPhoto extends PhotoModel {
         return $this->sliderPhotoList;
     }
     
+    public function getSlider($id) {
+        $db = Db::getInstance();
+        $this->query = "SELECT * FROM sliderphotos WHERE id='".$id."'";
+        $this->req = $db->prepare($this->query);
+        $this->req->execute();
+        $row = $this->req->fetch();
+        if(isset($row['id'])) { $this->sliderPhotoId = $row['id'];}
+        if(isset($row['title'])) { $this->sliderPhotoTitle = $row['title'];}
+        if(isset($row['name'])) { $this->sliderPhotoName = $row['name'];}
+        if(isset($row['description'])) { $this->sliderPhotoDescription = $row['description'];}
+        if(isset($row['date'])) { $this->sliderPhotoDate = $row['date'];}
+        $this->sliderPhotoRow = array( "Id" => $this->sliderPhotoId,
+                                   "Title" => $this->sliderPhotoTitle,
+                                   "Name" => $this->sliderPhotoName, 
+                                   "ImgUrl" => $this->sliderPhotoName,
+                                   "Description" => $this->sliderPhotoDescription, 
+                                   "Date" => $this->sliderPhotoDate);
+        return $this->sliderPhotoRow;
+    }
+
+
     public function update($photoArray) {
         //For setting uploads directory
         $path = '../uploads/';
@@ -74,5 +98,21 @@ class SliderPhoto extends PhotoModel {
         //mysql_query($query) or die(mysql_error());
         echo "The file ". basename( $photoArray['ImgUrl']). " has been uploaded, and your information has been added to the directory";
                 
+    }
+    
+    public function delete($id) {
+        // Connects to your Database
+        $db = Db::getInstance();
+        $slider = $this->getSlider($id);
+        //Writes the information to the database
+        $query = sprintf("DELETE FROM sliderphotos WHERE id='%s'", $id);
+        $req = $db->prepare($query);
+        $req->execute();
+        
+        $path = "../uploads/";
+        $file = $path.$slider['ImgUrl'];
+        if (file_exists($file)) {
+            unlink($file);
+        } 
     }
 }

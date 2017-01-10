@@ -60,7 +60,11 @@ class SliderPhotoController {
         }
     }
     
-    public function delete() {
-        
-    }  
+    public function delete($id) {
+        try {
+            $this->model->delete($id);
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+        }  
 }

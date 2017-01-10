@@ -46,7 +46,7 @@
                                     <input class="input-class form-control" type="text" name="photoDescription"/>
                                     <br/>
                                     <p>
-                                    Tarih:
+                                    Sıra:
                                     </p>
                                     <input class="input-class form-control" type="text" name="date">
                                     <br/>

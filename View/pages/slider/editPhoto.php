@@ -48,7 +48,7 @@
                             </div>
                             <br>
                             <div class="form-group">
-                                <label for="photoDescription">Tarih:</label>
+                                <label for="photoDescription">Sıra:</label>
                                 <input class="input-class form-control" type="text" name="date" value="<?php echo $photoModel->getDateFromDb(); ?>">
                                 <input type="hidden" name="id" value="<?php echo $photoModel->getId(); ?>">
                             </div>

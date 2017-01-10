@@ -47,7 +47,7 @@
                                     <li><a href="?controller=pages&action=settings&subpage=productspagesettings">Ürünler</a></li>
                                     <li><a href="?controller=pages&action=settings&subpage=servicespagesettings">Hizmetler</a></li>
                                     <li><a href="?controller=pages&action=settings&subpage=referencespagesettings">Referanslar</a></li>
-                                    <li><a href="?controller=pages&action=settings&subpage=gallerypagesettings">Galeri</a></li>
+                                    <!--<li><a href="?controller=pages&action=settings&subpage=gallerypagesettings">Galeri</a></li>-->
                                     <li><a href="?controller=pages&action=settings&subpage=contactpagesettings">İletişim</a></li>
                                 </ul>
                             </li>

@@ -28,7 +28,7 @@
             <div class="col-lg-8 col-md-8 col-sm-10 col-xs-12 main-container">
                 <div class="row first-row">
                     <div class="col-md-12 col-xs-18">
-                        <h4>ANA SAYFA AYARLARI</h4>
+                        <h4>HAKKIMIZDA SAYFA AYARLARI</h4>
                     </div>
                 </div>
                 <div class="row second-row">
