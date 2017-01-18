@@ -24,11 +24,30 @@ class ProductController {
                 $imgurl = $_POST['oldPhotoName'];
             }
             $tmpName = $_FILES['photo']['tmp_name'];
+            
+            $photoList = array();
+            file_put_contents("log.txt", "product controller= before for".PHP_EOL, FILE_APPEND);
+            for ($i = 0; $i < 10; $i++) {
+                if($i!=0) {
+                    $target1 = "../uploads/";
+                    $target1 = $target1 . basename( $_FILES['photo'.$i]['name']);
+                    $imgurl1 = $_FILES['photo'.$i]['name'];
+                    if($imgurl1 == "") {
+                        $imgurl1 = $_POST['oldPhotoName'.$i];
+                    }
+                    $tmpName = $_FILES['photo'.$i]['tmp_name'];
+                    
+                    $photoRow = array( "Target" => $target1, "ImgUrl" => $imgurl1, "TmpName" => $tmpName, "ProductId" => $_POST['productId'], "ProductName" => $_POST['productName']);
+                    file_put_contents("log.txt", "product controller= ".  print_r($photoRow).PHP_EOL, FILE_APPEND);
+                    array_push($photoList, $photoRow);
+                }
+            }
+            
             $id = $_POST['productId'];
             $title = $_POST['productTitle'];
             $name = $_POST['productName'];
-            $keywords = $_POST['productKeywords'];
-            file_put_contents("log.txt", "product controller keywords= ".$keywords.PHP_EOL, FILE_APPEND);
+            $keywords = isset($_POST['productKeywords']) ? $_POST['productKeywords'] : "";
+            $keywords = $this->model->preg_trim($keywords);
             $description = $_POST['productDescription'];
             $category = $_POST['productCategory'];
 
@@ -38,6 +57,7 @@ class ProductController {
                                    "TmpName" => $tmpName,
                                    "Target" => $target,
                                    "ImgUrl" => $imgurl,
+                                   "PhotoList" => $photoList,
                                    "Keywords" => $keywords,
                                    "Description" => $description,
                                    "Category" => $category);
@@ -61,7 +81,24 @@ class ProductController {
             $pic=($_FILES['photo']['name']);
             $imgurl = $_FILES['photo']['name'];
             $tmpName = $_FILES['photo']['tmp_name'];
+            
+            $photoList = array();
+            file_put_contents("log.txt", "product controller= before for".PHP_EOL, FILE_APPEND);
+            for ($i = 0; $i < count($_FILES); $i++) {
+                if($i!=0) {
+                    $target1 = "../uploads/";
+                    $target1 = $target1 . basename( $_FILES['photo'.$i]['name']);
+                    $imgurl1 = $_FILES['photo'.$i]['name'];
+                    $tmpName = $_FILES['photo'.$i]['tmp_name'];
+                    
+                    $photoRow = array( "Target" => $target1, "ImgUrl" => $imgurl1, "TmpName" => $tmpName, "ProductName" => $name);
+                    file_put_contents("log.txt", "product controller= ".PHP_EOL, FILE_APPEND);
+                    array_push($photoList, $photoRow);
+                }
+            }            
+            
             $keywords = isset($_POST['productKeywords']) ? $_POST['productKeywords'] : "";
+            $keywords = $this->model->preg_trim($keywords);
             $description = isset($_POST['productDescription']) ? $_POST['productDescription'] : "";
             $category = isset($_POST['productCategory']) ? $_POST['productCategory'] : "";
 
@@ -70,15 +107,16 @@ class ProductController {
                                    "TmpName" => $tmpName,
                                    "Target" => $target,
                                    "ImgUrl" => $imgurl,
+                                   "PhotoList" => $photoList,
                                    "Keywords" => $keywords,
                                    "Description" => $description,
                                    "Category" => $category);
 
             $this->model->add($productArray);
         }
-         catch (Exception $e) {
-             file_put_contents("log.txt", "photoController.php->catch->".$e.PHP_EOL, FILE_APPEND);
-         }
+        catch (Exception $e) {
+            file_put_contents("log.txt", "productController.php-> add()".$e.PHP_EOL, FILE_APPEND);
+        }
     }
     
     public function delete() {

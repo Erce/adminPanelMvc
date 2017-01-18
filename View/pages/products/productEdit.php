@@ -20,6 +20,10 @@
     require_once 'Controller/admin/productController.php';
     $productController = new ProductController($productModel);
 
+    require_once 'Model/photoModel.php';
+    $photos = new PhotoModel();
+    $photoList = $photos->getPhotoList($_GET['product_id']);
+    
     if (isset($_GET['part'])) {
         $productController->{$_GET['part']}($_POST);
         $product = $productModel->getProduct($_GET['product_id']);
@@ -40,8 +44,21 @@
                                         <img class="img-responsive img-container-inside" id="image-preview" src="../uploads/<?php echo $product["ImgUrl"]; ?>">
                                     </label>
                                     <input id="file-input" type="file" name="photo">
+                                    <input type="hidden" name="oldPhotoName" value='<?php echo $product["ImgUrl"]; ?>'>
                                 </div>
-                                <input type="hidden" name="oldPhotoName" value='<?php echo $product["ImgUrl"]; ?>'>
+                                <div class='row'>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <?php for ($i = 1; $i < 10; $i++) { ?>
+                                            <div class="image-upload-several">
+                                                <label for="file-input<?php echo $i;?>">
+                                                    <img class="img-container-inside-other" id="image-preview<?php echo $i;?>" src="<?php if(isset($photoList[$i-1]["ImgUrl"])) { echo "../uploads/".$photoList[$i-1]["ImgUrl"];} else { echo "Public/images/image_add.png";} ?>">
+                                                </label>
+                                                <input class="file-input" id="file-input<?php echo $i;?>" type="file" name="photo<?php echo $i;?>">
+                                                <input type="hidden" name="oldPhotoName<?php echo $i;?>" value='<?php if(isset($photoList[$i-1]["ImgUrl"])) { echo $photoList[$i-1]["ImgUrl"];} else { echo "Public/images/image_add.png";} ?>'>
+                                            </div>
+                                        <?php }?>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -59,7 +76,7 @@
                             </div>
                             <div class="form-group">    
                                 <label for="productKeywords">Anahtar Kelimeler ( keywords ):</label>
-                                <textarea class="input-class form-control" rows="3" type="text" name="productKeywords" id="productKeywords" value=""><?php echo $product["Keywords"];?></textarea>
+                                <textarea class="input-class form-control" rows="3" type="text" name="productKeywords" id="productKeywords" value="" placeholder="Anahtar kelimeleri ; ile ayırın"><?php echo $product["Keywords"];?></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="productCategory">Ürün Kategorisi:</label>

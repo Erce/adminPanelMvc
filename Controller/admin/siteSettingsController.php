@@ -47,10 +47,11 @@ class SiteSettingsController {
             $bodyBackgroundColor = $_POST['templateBodyBackgroundColor'];
             $footerColor = $_POST['templateFooterColor'];
             $footerOpacity = $_POST['templateFooterOpacity'];
+            $footerDescription = $_POST['templateFooterDescription'];
             $fontFamily = $_POST['templateFontFamily'];
             $fontSize = $_POST['templateFontSize'];
             $isOn = isset($_POST['isOn']) ? $_POST['isOn'] : "0";
-            file_put_contents("log.txt", "site settings controller  ".$isOn.PHP_EOL, FILE_APPEND);
+            file_put_contents("log.txt", "site settings controller  ".$footerDescription.PHP_EOL, FILE_APPEND);
             $siteSettingsArray = array( "Id" => $id,
                                         "Name" => $name,
                                         "TmpName" => $tmpName,
@@ -71,6 +72,7 @@ class SiteSettingsController {
                                         "FontFamily" => $fontFamily,
                                         "FooterColor" => $footerColor,
                                         "FooterOpacity" => $footerOpacity,
+                                        "FooterDescription" => $footerDescription,
                                         "LogoNavbar" => $imgurl,
                                         "LogoFavicon" => $imgurlFavicon,
                                         "IsOn" => $isOn);

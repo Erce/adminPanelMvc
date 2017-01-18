@@ -58,7 +58,6 @@ class ProductCategories {
                                                 "ProductCategoryParentId" => $this->productCategoryParentId);
             array_push($this->productCategoryList, $this->productCategoryRow);
         }
-        
         return $this->productCategoryList;
     }    
     
@@ -118,8 +117,6 @@ class ProductCategories {
                             "VALUES ('".$productCategoryArray['ProductCategoryListName']."', '".$productCategoryArray['ProductCategoryName']."', '".$productCategoryArray['ProductCategoryParentId']."')" or die(file_put_contents("log.txt", "in mysql query".mysql_error().PHP_EOL, FILE_APPEND));
             $this->req = $db->prepare($this->query);
             $this->req->execute();
-            file_put_contents("log.txt", "productCategoriesChild after model  ".$this->productCategoryChildList[0]["ProductCategoryListName"]."    ".$this->productCategoryChildList[1]["ProductCategoryListName"].PHP_EOL, FILE_APPEND);
-            
         } catch (Exception $exc) {
             file_put_contents("log.txt", "productCategoryAdd=> ".$exc.PHP_EOL, FILE_APPEND);
         }

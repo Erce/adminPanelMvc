@@ -262,6 +262,7 @@ $(function() {
     }
     
     function deleteProductCategoryRow(elem) {
+        alert("delete product category row");
         $id = $(elem).attr('id');
         $id = $id.substring(15,$id.length);
         $row = '#productCategoryRow' + $id; 
@@ -277,18 +278,22 @@ $(function() {
     }
     
     function addProductCategoryRow(elem) {
-        alert();
         $id = $(elem).attr('id');
         $id = $id.substring(15,$id.length);
         $row = '#productCategoryRow' + $id; 
-        var formData = "id=" + $id;
-        
+        alert($id);
+        for (i=0; i< $(productCategoryList).length; i++) {
+            if($id == $(productCategoryList)[i]["ProductCategoryId"]) {
+                $('#productCategoryParent').val($(productCategoryList)[i]["ProductCategoryListName"]);
+                $('#productCategoryParentId').val($id);
+                $('html, body').animate({ scrollTop: 0 }, 'fast');
+            }
+        }        
     }
     
     function deleteReferenceRow(elem) {
         $id = $(elem).attr('id');
         $id = $id.substring(10,$id.length);
-        alert($id);
         $row = '#referenceRow' + $id; 
         var formData = "id=" + $id;
         $.ajax({     
@@ -296,32 +301,50 @@ $(function() {
             url: "?controller=pages&action=references&part=delete",
             data: formData,
             success: function(){
-               window.setTimeout('location.reload()', 0); 
+               window.setTimeout('location.reload()', 1000); 
             }
         });
     }
     
+    /*function refresh() {
+        alert("refreshing...");
+        // Stop the browser from submitting the form.
+        alert("script.js");
+        // Serialize the form data.
+        var form = $('#firstform');
+        var formData = $(form).serialize();         
+        $.ajax({     
+            type: 'POST',
+            url: '?controller=pages&action=products&subpage=productcategories&part=add',
+            data: formData,
+            success: function(){
+                window.setTimeout('location.reload()', 0); 
+                //window.location.href = "?controller=pages&action=slider";
+            }
+        });
+    }*/
     
-    //$(function () {
-        /*var form = $('#firstform');
+    $(function () {
+        var form = $('#firstform');
         
         $(form).submit(function(e) {
             // Stop the browser from submitting the form.
-            alert("script.js");
             e.preventDefault();
             e.stopPropagation();
             // Serialize the form data.
+            var form = $('#firstform');
             var formData = $(form).serialize();         
             $.ajax({     
                 type: 'POST',
-                url: 'Controller/photoController.php',
+                url: '?controller=pages&action=products&subpage=productcategories&part=add',
                 data: formData,
-                success: function(php_script_response){
+                success: function(){
+                    window.setTimeout('location.reload()', 0); 
                     //window.location.href = "?controller=pages&action=slider";
                 }
             });
-        });*/
-    //}); 
+        });
+    }); 
     
     
     
@@ -342,6 +365,25 @@ $(function() {
 
     $("#file-input").change(function(){
         readURL(this);
+    });  
+    
+    function readURLSeveral(input) {
+        $id = $(input).attr('id');
+        $id = $id.substring(10,11);
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#image-preview' + $id).attr('src', e.target.result);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    
+    $("input[id*='file-input']").change(function(){
+        readURLSeveral(this);
     });  
     
     
@@ -455,6 +497,7 @@ $(function() {
         $('#templateFooterColor').val($arr['FooterColor']);
         $('#templateFooterOpacity').val($arr['FooterOpacity']);
         $('#templateFooterOpacityRangeText').val($arr['FooterOpacity']);
+        $('#templateFooterDescription').val($arr['FooterDescription']);
         $('#templateFontFamily').val($arr['FontFamily']);
         $('#templateFontSize').val($arr['FontSize']);
         $('#templateFontSizeRangeText').val($arr['FontSize']);
@@ -490,6 +533,7 @@ $(function() {
         $('#templateFooterColor').val($arr['FooterColor']);
         $('#templateFooterOpacity').val($arr['FooterOpacity']);
         $('#templateFooterOpacityRangeText').val($arr['NavbarOpacity']);
+        $('#templateFooterDescription').val($arr['FooterDescription']);
         $('#templateFontFamily').val($arr['FontFamily']);
         $('#templateFontSize').val($arr['FontSize']);
         $('#templateFontSizeRangeText').val($arr['FontSize']);

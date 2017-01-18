@@ -34,15 +34,14 @@ class ProductCategoriesController {
     
     public function add() {
         try {
-            $id = $_POST['productCategoryId'];
+            //$id = $_POST['productCategoryId'];
             $listName = $_POST['productCategoryListName'];
             $name = $_POST['productCategoryName'];
             $parentId = $_POST['productCategoryParentId'];
-
-            $productCategoryArray = array( "Id" => $id,
-                                   "ListName" => $listName,
-                                   "Name" => $name,
-                                   "ParentId" => $parentId);
+            file_put_contents("log.txt", "productCategoriesController.php->add()->parentId->>>".$parentId.PHP_EOL, FILE_APPEND);
+            $productCategoryArray = array("ProductCategoryListName" => $listName,
+                                            "ProductCategoryName" => $name,
+                                            "ProductCategoryParentId" => $parentId);
 
 
             $this->model->add($productCategoryArray);

@@ -148,6 +148,10 @@ class Products {
     }
     
     public function update($productArray) {
+        require_once 'Model/photoModel.php';
+        $photoModel = new PhotoModel();
+        $photoModel->update($productArray["PhotoList"], $productArray["Id"]);
+        
         $db = Db::getInstance();
         //For setting uploads directory
         $path = '../uploads';
@@ -196,6 +200,9 @@ class Products {
     }
     
     public function delete($id) {
+        require_once 'Model/photoModel.php';
+        $photoModel = new PhotoModel();
+        $photoModel->delete($id);
         // Connects to your Database
         $db = Db::getInstance();
         $product = $this->getProduct($id);
@@ -219,6 +226,12 @@ class Products {
                         "VALUES ('".$productArray['Title']."', '".$productArray['Name']."', '".$productArray['ImgUrl']."', '".$productArray['Keywords']."', '".$productArray['Description']."', '".$productArray['Category']."')" or die(file_put_contents("log.txt", "in mysql query".mysql_error().PHP_EOL, FILE_APPEND));
         $this->req = $db->prepare($this->query);
         $this->req->execute();
+        
+        $last_id = $db->lastInsertId();
+        require_once 'Model/photoModel.php';
+        $photoModel = new PhotoModel();
+        $photoModel->add($productArray["PhotoList"], $last_id);
+        
         //Writes the photo to the server
         if(move_uploaded_file($productArray['TmpName'], $productArray['Target']))
         {
@@ -230,4 +243,43 @@ class Products {
         }
     }
     
+    public function randomProductList($number) {
+        try {
+            $db = Db::getInstance();
+            $query = "SELECT * FROM products
+                        ORDER BY RAND()
+                        LIMIT $number";
+            $req = $db->prepare($query);
+            $req->execute();  
+            $productList = array();
+            while($row = $req->fetch()) {
+                file_put_contents("log.txt", "productsModel => randomProductList() ID====>".$row['id'].PHP_EOL, FILE_APPEND);
+                if(isset($row['id'])) { $this->productId = $row['id'];}
+                if(isset($row['title'])) { $this->productTitle = $row['title'];}
+                if(isset($row['name'])) { $this->productName = $row['name'];}
+                if(isset($row['imgurl'])) { $this->productImgUrl = $row['imgurl'];}
+                if(isset($row['keywords'])) { $this->productKeywords = $row['keywords'];}
+                if(isset($row['description'])) { $this->productDescription = $row['description'];}
+                if(isset($row['category'])) { $this->productCategory = $row['category'];}
+                $productRow = array("Id" => $this->productId,
+                                    "Title" => $this->productTitle,
+                                    "Name" => $this->productName, 
+                                    "ImgUrl" => $this->productImgUrl,
+                                    "Keywords" => $this->productKeywords,
+                                    "Description" => $this->productDescription, 
+                                    "Category" => $this->productCategory);
+                array_push($productList, $productRow);
+            }   
+            return $productList;
+        } catch (Exception $exc) {
+            file_put_contents("log.txt", "productsModel => randomProductList()".PHP_EOL, FILE_APPEND);
+        }
+    }
+    
+    public function preg_trim($string) {
+        $string = str_replace(' ; ', ';', $string);
+        $string = str_replace(' ;', ';', $string);
+        $string = str_replace('; ', ';', $string);
+        return $string;
+    }
 }

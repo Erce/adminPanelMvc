@@ -27,7 +27,7 @@
                 <div class="row">
                     <form method="post" action="?controller=pages&action=products&subpage=products&page=add&part=add" enctype="multipart/form-data">
                         <div class="col-lg-1 col-md-1"></div>
-                        <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
+                        <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12 upload-container">
                             <div class="">
                                 <label>
                                 Fotoğraf seç:
@@ -37,6 +37,64 @@
                                         <img class="img-responsive img-container-inside" id="image-preview" src="Public/images/image_add.png">
                                     </label>
                                     <input id="file-input" type="file" name="photo">
+                                </div>
+                                <div class='row'>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="image-upload-several">
+                                            <label for="file-input1">
+                                                <img class="img-responsive img-container-inside-other" id="image-preview1" src="Public/images/image_add.png">
+                                            </label>
+                                            <input class="file-input" id="file-input1" type="file" name="photo1">
+                                        </div>
+                                        <div class="image-upload-several">
+                                            <label for="file-input2">
+                                                <img class="img-responsive img-container-inside-other" id="image-preview2" src="Public/images/image_add.png">
+                                            </label>
+                                            <input class="file-input" id="file-input2" type="file" name="photo2">
+                                        </div>
+                                        <div class="image-upload-several">
+                                            <label for="file-input3">
+                                                <img class="img-responsive img-container-inside-other" id="image-preview3" src="Public/images/image_add.png">
+                                            </label>
+                                            <input class="file-input" id="file-input3" type="file" name="photo3">
+                                        </div>
+                                        <div class="image-upload-several">
+                                            <label for="file-input4">
+                                                <img class="img-responsive img-container-inside-other" id="image-preview4" src="Public/images/image_add.png">
+                                            </label>
+                                            <input class="file-input" id="file-input4" type="file" name="photo4">
+                                        </div>
+                                        <div class="image-upload-several">
+                                            <label for="file-input5">
+                                                <img class="img-responsive img-container-inside-other" id="image-preview5" src="Public/images/image_add.png">
+                                            </label>
+                                            <input class="file-input" id="file-input5" type="file" name="photo5">
+                                        </div>
+                                        <div class="image-upload-several">
+                                            <label for="file-input6">
+                                                <img class="img-responsive img-container-inside-other" id="image-preview6" src="Public/images/image_add.png">
+                                            </label>
+                                            <input class="file-input" id="file-input6" type="file" name="photo6">
+                                        </div>
+                                        <div class="image-upload-several">
+                                            <label for="file-input7">
+                                                <img class="img-responsive img-container-inside-other" id="image-preview7" src="Public/images/image_add.png">
+                                            </label>
+                                            <input class="file-input" id="file-input7" type="file" name="photo7">
+                                        </div>
+                                        <div class="image-upload-several">
+                                            <label for="file-input8">
+                                                <img class="img-responsive img-container-inside-other" id="image-preview8" src="Public/images/image_add.png">
+                                            </label>
+                                            <input class="file-input" id="file-input8" type="file" name="photo8">
+                                        </div>
+                                        <div class="image-upload-several">
+                                            <label for="file-input9">
+                                                <img class="img-responsive img-container-inside-other" id="image-preview9" src="Public/images/image_add.png">
+                                            </label>
+                                            <input class="file-input" id="file-input9" type="file" name="photo9">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -55,7 +113,7 @@
                             </div>
                             <div class="form-group">    
                                 <label for="productKeywords">Anahtar Kelimeler ( keywords ):</label>
-                                <textarea class="input-class form-control" rows="3" type="text" name="productKeywords" id="productKeywords" value=""></textarea>
+                                <textarea class="input-class form-control" rows="3" type="text" name="productKeywords" id="productKeywords" value="" placeholder="Anahtar kelimeleri ; ile ayırın"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="productCategory">Ürün Kategorisi:</label>

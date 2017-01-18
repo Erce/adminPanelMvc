@@ -12,6 +12,10 @@
         private $date;
         private $name;
         private $id;
+        private $imgurl;
+        private $productId;
+        public $photoRow = array();
+        public $photoList = array();
         
         private function setId($id) { 
             $this->id = $id;
@@ -95,11 +99,11 @@
                 if(move_uploaded_file($photoArray["TmpName"], $photoArray["Target"])) { 
                     file_put_contents("log.txt", "photoModel -> in if move uploaded file".PHP_EOL, FILE_APPEND);
                     $query = sprintf("UPDATE sliderphotos SET name='%s', title='%s', description='%s', date='%s' WHERE id='%s'",
-                        $photoArray['Name'],
-                        $photoArray['Title'],
-                        $photoArray['Description'],
-                        $photoArray['Date'],
-                        $photoArray['Id']);
+                        mysql_real_escape_string($photoArray['Name']),
+                        mysql_real_escape_string($photoArray['Title']),
+                        mysql_real_escape_string($photoArray['Description']),
+                        mysql_real_escape_string($photoArray['Date']),
+                        mysql_real_escape_string($photoArray['Id']));
                     mysql_query($query) or die(mysql_error());
                     header("Location: ../index.php?controller=pages&action=slider");
                     echo "The file ". basename( $photoArray['Name']). " has been uploaded, and your information has been added to the directory";
@@ -111,15 +115,83 @@
             }
             else {      
                 $query = sprintf("UPDATE sliderphotos SET title='%s', description='%s', date='%s' WHERE id='%s'",
-                                    $photoArray['Title'],
-                                    $photoArray['Description'],
-                                    $photoArray['Date'],
-                                    $photoArray['Id']);
+                                    mysql_real_escape_string($photoArray['Title']),
+                                    mysql_real_escape_string($photoArray['Description']),
+                                    mysql_real_escape_string($photoArray['Date']),
+                                    mysql_real_escape_string($photoArray['Id']));
 
                 //Writes the information to the database
                 mysql_query($query) or die(mysql_error());
                 //Tells you if its all ok
                 header("Location: ../index.php?controller=pages&action=slider");        
+            }
+        }
+        
+        public function getPhotoList($productId) {
+            try {
+                $db = Db::getInstance();
+                $query = sprintf("SELECT * FROM photos WHERE product_id='%s'", $productId);
+                $req = $db->prepare($query);
+                $req->execute();
+
+                while($row = $req->fetch()) {
+                    if(isset($row['id'])) { $this->id = $row['id'];}
+                    if(isset($row['name'])) { $this->name = $row['name'];}
+                    if(isset($row['imgurl'])) { $this->imgurl = $row['imgurl'];}
+                    if(isset($row['product_id'])) { $this->productId = $row['product_id'];}
+                    $this->photoRow = array( "Id" => $this->id,
+                                             "Name" => $this->name,
+                                             "ImgUrl" => $this->imgurl,
+                                             "ProductId" => $this->productId);
+                    array_push($this->photoList, $this->photoRow);
+                }
+
+                return $this->photoList;
+            } catch (Exception $exc) {
+                file_put_contents("log.txt", "photoModel -> get photo list".PHP_EOL, FILE_APPEND);
+            }
+        }
+        
+        public function update($photoList, $productId) {
+            //For setting uploads directory
+            $path = '../uploads';
+            if ( !is_dir($path)) {
+                mkdir($path);
+            }
+            
+            $this->delete($productId);
+            $this->add($photoList, $productId);
+        }
+
+        public function add($photoList, $productId) {
+            try {
+                $db = Db::getInstance();
+                for ($i = 0; $i < count($photoList); $i++) {
+                    if(move_uploaded_file($photoList[$i]["TmpName"], $photoList[$i]["Target"])) { 
+                        file_put_contents("log.txt", "photoModel -> in if move uploaded file".PHP_EOL, FILE_APPEND);
+                        $query = "INSERT INTO photos (name,imgurl,product_id) VALUES"
+                                        . " ('".$photoList[$i]["ProductName"]."','".$photoList[$i]["ImgUrl"]."','".$productId."')" or die(file_put_contents("log.txt", "in mysql query".mysql_error().PHP_EOL, FILE_APPEND));
+                        file_put_contents("log.txt", "photoModel.php-> add() ==>>>> query ===".$query.PHP_EOL, FILE_APPEND);
+                        $req = $db->prepare($query);
+                        $req->execute();
+                        echo "The file ". basename( $photoList[$i]['ImgUrl']). " has been uploaded, and your information has been added to the directory";
+                    }
+                    else {
+                    }
+                }   
+            } catch (Exception $exc) {
+                file_put_contents("log.txt", "photoModel.php-> add()".$exc.PHP_EOL, FILE_APPEND);
+            }
+        }
+
+        public function delete($productId) {
+            try {
+                $db = Db::getInstance();
+                $query = sprintf("DELETE FROM photos WHERE product_id='%s'", $productId);
+                $req = $db->prepare($query);
+                $req->execute();
+            } catch (Exception $exc) {
+                file_put_contents("log.txt", "photoModel -> delete photo".PHP_EOL, FILE_APPEND);
             }
         }
     }

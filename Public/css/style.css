@@ -26,7 +26,7 @@ body {
     padding: 0px;
     min-height: 100%;
     font-size: 13px;
-    font-family: aller;
+    font-family: sans-serif;
 }
 
 li {
@@ -268,8 +268,9 @@ div>.form-container{
     padding: 2vh;
 }
 
-.img-container-inside {
-
+.img-container-inside-other {
+    height: 18vh;
+    width: 100%;
 }
 
 .button-div {
@@ -378,9 +379,24 @@ div>.form-container{
 }
 
 .product-edit-section {
-    margin-top: 50px;
+    margin-top: 1%;
 }
 
+.upload-container {
+    margin-bottom: 5%;
+}
+
+.image-upload-several {
+    margin: 0;
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 25%;
+    float: left;
+}
+
+input[type=file].file-input {
+    display: none;
+}
 /*********** PRODUCT EDIT PAGE ***********/
 
 
@@ -567,7 +583,6 @@ div>.form-container{
     background: -webkit-linear-gradient(top,  rgba(240,240,240,1) 0%,rgba(221,221,221,1) 50%,rgba(240,240,240,1) 100%); /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to bottom,  rgba(240,240,240,1) 0%,rgba(221,221,221,1) 50%,rgba(240,240,240,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', endColorstr='#f0f0f0',GradientType=0 ); /* IE6-9 */
-
 }
 
 .first-row h3 {
@@ -588,7 +603,7 @@ div>.form-container{
         background-color: rgba(240,240,240,1);
         margin-top: 10px;
         border: 1px solid rgb(200,200,200);
-        border-radius: 10px;
+        border-radius: 0px;
         margin-bottom: 50px;
         color: rgb(80,80,80);
     }
@@ -600,7 +615,7 @@ div>.form-container{
         background-color: rgba(240,240,240,1);
         margin-top: 10px;
         border: 1px solid rgb(200,200,200);
-        border-radius: 10px;
+        border-radius: 0px;
         margin-bottom: 50px;
         color: rgb(80,80,80);
     }
@@ -610,6 +625,10 @@ div>.form-container{
     }
     
     #file-input,#file-input-favicon,#file-input-background {
+        display: none;
+    }
+    
+    .file-input {
         display: none;
     }
 

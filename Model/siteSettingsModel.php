@@ -28,6 +28,7 @@ class SiteSettingsModel {
                                               "FontFamily" => $row['font_family'],
                                               "FooterColor" => $row['footer_color'],
                                               "FooterOpacity" => $row['footer_opacity'],
+                                              "FooterDescription" => $row['footer_description'],
                                               "LogoNavbar" => $row['logo_navbar'],
                                               "LogoFavicon" => $row['logo_favicon'],
                                               "IsOn" => $row['is_on']); 
@@ -60,6 +61,7 @@ class SiteSettingsModel {
                                             "FontFamily" => $row['font_family'],
                                             "FooterColor" => $row['footer_color'],
                                             "FooterOpacity" => $row['footer_opacity'],
+                                            "FooterDescription" => $row['footer_description'],
                                             "LogoNavbar" => $row['logo_navbar'],
                                             "LogoFavicon" => $row['logo_favicon'],
                                             "IsOn" => $row['is_on']); 
@@ -92,9 +94,9 @@ class SiteSettingsModel {
         move_uploaded_file($siteSettingsArray["TmpName"], $siteSettingsArray["Target"]);
         move_uploaded_file($siteSettingsArray["TmpNameFavicon"], $siteSettingsArray["TargetFavicon"]);
         move_uploaded_file($siteSettingsArray["TmpNameBackground"], $siteSettingsArray["TargetBackground"]);
-        
+        file_put_contents("log.txt", "site settings model after if footer description ".$siteSettingsArray['FooterDescription'].PHP_EOL, FILE_APPEND);
         $query = sprintf("UPDATE template SET name='%s', navbar_color='%s', navbar_opacity='%s', background='%s', background_color='%s', background_opacity='%s',"
-                                ."font_size='%s', font_family='%s', footer_color='%s',"
+                                ."font_size='%s', font_family='%s', footer_color='%s', footer_description='%s',"
                                 ."footer_opacity='%s', logo_navbar='%s', logo_favicon='%s', is_on='%s' WHERE id='%s'",
                                 $siteSettingsArray['Name'],
                                 $siteSettingsArray['NavbarColor'],
@@ -105,6 +107,7 @@ class SiteSettingsModel {
                                 $siteSettingsArray['FontSize'],
                                 $siteSettingsArray['FontFamily'],
                                 $siteSettingsArray['FooterColor'],
+                                $siteSettingsArray['FooterDescription'],
                                 $siteSettingsArray['FooterOpacity'],
                                 $siteSettingsArray['LogoNavbar'],
                                 $siteSettingsArray['LogoFavicon'],

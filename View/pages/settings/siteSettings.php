@@ -196,6 +196,10 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <label for="templateFooterDescription">Footer Yazısı</label>
+                                        <textarea class="input-class form-control" rows="3" type="text"  resize="none" name="templateFooterDescription" id="templateFooterDescription"></textarea>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="templateFontFamily">Tasarım yazı tipi</label>
                                         <input class="input-class form-control" type="text" name="templateFontFamily" id="templateFontFamily" value="<?php ?>"/>
                                     </div>

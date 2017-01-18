@@ -15,7 +15,6 @@ and open the template in the editor.
     }
     
     require_once 'Model/adminModel.php';
-    
     $adminModel = new AdminModel();
     
     require_once 'Controller/admin/adminController.php';
