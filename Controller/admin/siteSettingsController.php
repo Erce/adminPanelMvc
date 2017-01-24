@@ -5,12 +5,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+require_once 'Model/loggerModel.php';
 class SiteSettingsController {
     private $model;
+    private $logger;
     
     public function __construct($model) {
         $this->model = $model;
+        $this->logger = new Logger();
     }
     
     public function update() {
@@ -51,7 +53,6 @@ class SiteSettingsController {
             $fontFamily = $_POST['templateFontFamily'];
             $fontSize = $_POST['templateFontSize'];
             $isOn = isset($_POST['isOn']) ? $_POST['isOn'] : "0";
-            file_put_contents("log.txt", "site settings controller  ".$footerDescription.PHP_EOL, FILE_APPEND);
             $siteSettingsArray = array( "Id" => $id,
                                         "Name" => $name,
                                         "TmpName" => $tmpName,
@@ -79,7 +80,7 @@ class SiteSettingsController {
 
             $this->model->update($siteSettingsArray);
         } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
+            $this->logger->setMessage("siteSettingsController->update()");
         }
     }
     
@@ -95,7 +96,7 @@ class SiteSettingsController {
 
             $this->model->updateadmin($adminSettingsArray);
         } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
+            $this->logger->setMessage("siteSettingsController->updateAdmin()");
         }
     }
 

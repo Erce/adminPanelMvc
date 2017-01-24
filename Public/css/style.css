@@ -269,7 +269,7 @@ div>.form-container{
 }
 
 .img-container-inside-other {
-    height: 18vh;
+    height: 12vh;
     width: 100%;
 }
 
@@ -648,7 +648,7 @@ input[type=file].file-input {
     }
     
     textarea {
-        resize: none;
+        resize: vertical;
     }
     
     .save-button {

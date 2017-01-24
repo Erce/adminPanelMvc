@@ -1,5 +1,8 @@
 
     <?php
+        require_once 'Model/loggerModel.php';
+        $logger = new Logger();
+        
         function call($controller, $action) {
             try {           
                 require_once('Controller/' . $controller . 'Controller.php');
@@ -17,7 +20,7 @@
 
                 $controller->{ $action }();   
             } catch (Exception $exc) {
-                file_put_contents("log.txt", "routes.php->function call->".$exc->getTraceAsString().PHP_EOL, FILE_APPEND);
+                $this->logger->setMessage("routes->call()");
             }
         }
 
@@ -43,7 +46,7 @@
                 call('pages', 'error');
             }
         } catch (Exception $exc) {
-            file_put_contents("log.txt", "routes.php->".$exc->getTraceAsString().PHP_EOL, FILE_APPEND);
+            $this->logger->setMessage("routes->()");
         }
 
     ?>

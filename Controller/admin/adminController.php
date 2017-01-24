@@ -6,11 +6,14 @@
  * and open the template in the editor.
  */
 
+require_once 'Model/loggerModel.php';
 class AdminController {
     private $model;
+    private $logger;
     
     public function __construct($model) {
         $this->model = $model;
+        $this->logger = new Logger();
     }
     
     public function check() {
@@ -23,10 +26,9 @@ class AdminController {
             $adminArray = array( "Id" => $id,
                                  "UserName" => $username,
                                  "Password" => $pass);
-            file_put_contents("log.txt", "admin controller before model check".PHP_EOL, FILE_APPEND);
             $this->model->check($adminArray);
         } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
+            $this->logger->setMessage("adminController->check()");
         }
     }
 }

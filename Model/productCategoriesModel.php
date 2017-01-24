@@ -6,7 +6,9 @@
  * and open the template in the editor.
  */
 
+require_once 'Model/loggerModel.php'; 
 class ProductCategories {
+    private $logger;
     private $productCategoryList = array();
     private $productCategoryRow = array();
     private $productCategoryId;
@@ -19,23 +21,27 @@ class ProductCategories {
 
     public function __construct() {
         //$this->setProductCategoryList(); 
+        $this->logger = new Logger();
     }
     
     public function setProductCategoryList() {
-        //require_once 'connection.php';
-        $db = Db::getInstance();
-        $req = $db->prepare("SELECT * FROM product_categories");
-        $req->execute();
-        while($row = $req->fetch()) {
-            if(isset($row['id'])) { $this->productCategoryId = $row['id'];}
-            if(isset($row['category_list_name'])) { $this->productCategoryListName = $row['category_list_name'];}
-            if(isset($row['category_name'])) { $this->productCategoryName = $row['category_name'];}
-            if(isset($row['parent_id'])) { $this->productCategoryParentId = $row['parent_id'];}
-            $this->productCategoryRow = array(  "ProductCategoryId" => $this->productCategoryId,
-                                                "ProductCategoryListName" => $this->productCategoryListName, 
-                                                "ProductCategoryName" => $this->productCategoryName,
-                                                "ProductCategoryParentId" => $this->productCategoryParentId);
-            array_push($this->productCategoryList, $this->productCategoryRow);
+        try {
+            $db = Db::getInstance();
+            $req = $db->prepare("SELECT * FROM product_categories");
+            $req->execute();
+            while($row = $req->fetch()) {
+                if(isset($row['id'])) { $this->productCategoryId = $row['id'];}
+                if(isset($row['category_list_name'])) { $this->productCategoryListName = $row['category_list_name'];}
+                if(isset($row['category_name'])) { $this->productCategoryName = $row['category_name'];}
+                if(isset($row['parent_id'])) { $this->productCategoryParentId = $row['parent_id'];}
+                $this->productCategoryRow = array(  "ProductCategoryId" => $this->productCategoryId,
+                                                    "ProductCategoryListName" => $this->productCategoryListName, 
+                                                    "ProductCategoryName" => $this->productCategoryName,
+                                                    "ProductCategoryParentId" => $this->productCategoryParentId);
+                array_push($this->productCategoryList, $this->productCategoryRow);
+            }
+        } catch (Exception $exc) {
+            $this->logger->setMessage("productCategoriesModel->setProductCategoryList()");
         }
     }
 
@@ -44,43 +50,48 @@ class ProductCategories {
     }
     
     public function selectAllCategories () {
-        $db = Db::getInstance();
-        $req = $db->prepare("SELECT * FROM product_categories");
-        $req->execute();
-        while($row = $req->fetch()) {
-            if(isset($row['id'])) { $this->productCategoryId = $row['id'];}
-            if(isset($row['category_list_name'])) { $this->productCategoryListName = $row['category_list_name'];}
-            if(isset($row['category_name'])) { $this->productCategoryName = $row['category_name'];}
-            if(isset($row['parent_id'])) { $this->productCategoryParentId = $row['parent_id'];}
-            $this->productCategoryRow = array(  "ProductCategoryId" => $this->productCategoryId,
-                                                "ProductCategoryListName" => $this->productCategoryListName, 
-                                                "ProductCategoryName" => $this->productCategoryName,
-                                                "ProductCategoryParentId" => $this->productCategoryParentId);
-            array_push($this->productCategoryList, $this->productCategoryRow);
+        try {
+            $db = Db::getInstance();
+            $req = $db->prepare("SELECT * FROM product_categories");
+            $req->execute();
+            while($row = $req->fetch()) {
+                if(isset($row['id'])) { $this->productCategoryId = $row['id'];}
+                if(isset($row['category_list_name'])) { $this->productCategoryListName = $row['category_list_name'];}
+                if(isset($row['category_name'])) { $this->productCategoryName = $row['category_name'];}
+                if(isset($row['parent_id'])) { $this->productCategoryParentId = $row['parent_id'];}
+                $this->productCategoryRow = array(  "ProductCategoryId" => $this->productCategoryId,
+                                                    "ProductCategoryListName" => $this->productCategoryListName, 
+                                                    "ProductCategoryName" => $this->productCategoryName,
+                                                    "ProductCategoryParentId" => $this->productCategoryParentId);
+                array_push($this->productCategoryList, $this->productCategoryRow);
+            }
+            return $this->productCategoryList;
+        } catch (Exception $exc) {
+            $this->logger->setMessage("productCategoriesModel->selectAllCategories()");
         }
-        return $this->productCategoryList;
     }    
     
     public function selectAllChilds() {
-        $this->productCategoryChildList = array();
-        $db = Db::getInstance();
-        $req = $db->prepare("SELECT * FROM product_categories WHERE parent_id IS NOT NULL");
-        $req->execute();
-        while($row = $req->fetch()) {
-            if(isset($row['id'])) { $this->productCategoryId = $row['id'];}
-            if(isset($row['category_list_name'])) { $this->productCategoryListName = $row['category_list_name'];}
-            if(isset($row['category_name'])) { $this->productCategoryName = $row['category_name'];}
-            if(isset($row['parent_id'])) { $this->productCategoryParentId = $row['parent_id'];}
-            $this->productCategoryChildRow = array(  "ProductCategoryId" => $this->productCategoryId,
-                                                "ProductCategoryListName" => $this->productCategoryListName, 
-                                                "ProductCategoryName" => $this->productCategoryName,
-                                                "ProductCategoryParentId" => $this->productCategoryParentId);
-            array_push($this->productCategoryChildList, $this->productCategoryChildRow);
+        try {
+            $this->productCategoryChildList = array();
+            $db = Db::getInstance();
+            $req = $db->prepare("SELECT * FROM product_categories WHERE parent_id IS NOT NULL");
+            $req->execute();
+            while($row = $req->fetch()) {
+                if(isset($row['id'])) { $this->productCategoryId = $row['id'];}
+                if(isset($row['category_list_name'])) { $this->productCategoryListName = $row['category_list_name'];}
+                if(isset($row['category_name'])) { $this->productCategoryName = $row['category_name'];}
+                if(isset($row['parent_id'])) { $this->productCategoryParentId = $row['parent_id'];}
+                $this->productCategoryChildRow = array(  "ProductCategoryId" => $this->productCategoryId,
+                                                    "ProductCategoryListName" => $this->productCategoryListName, 
+                                                    "ProductCategoryName" => $this->productCategoryName,
+                                                    "ProductCategoryParentId" => $this->productCategoryParentId);
+                array_push($this->productCategoryChildList, $this->productCategoryChildRow);
+            }
+            return $this->productCategoryChildList;
+        } catch (Exception $exc) {
+            $this->logger->setMessage("productCategoriesModel->selectAllChilds()");
         }
-        
-        file_put_contents("log.txt", "productCategoriesChild after model  ".$this->productCategoryChildList[0]["ProductCategoryListName"]."    ".$this->productCategoryChildList[1]["ProductCategoryListName"].PHP_EOL, FILE_APPEND);
-        file_put_contents("log.txt", "productCategoriesChild after model  ".$this->productCategoryChildList[0]["ProductCategoryListName"]."    ".$this->productCategoryChildList[1]["ProductCategoryListName"].PHP_EOL, FILE_APPEND);
-        return $this->productCategoryChildList;
     }
 
     public function selectChilds($parentId) {
@@ -100,13 +111,9 @@ class ProductCategories {
                                                         "ProductCategoryParentId" => $this->productCategoryParentId);
                 array_push($this->productCategoryChildList, $this->productCategoryChildRow);
             }
-
-            file_put_contents("log.txt", "productCategoriesChild after model  ".$this->productCategoryChildList[0]["ProductCategoryListName"]."    ".$this->productCategoryChildList[1]["ProductCategoryListName"].PHP_EOL, FILE_APPEND);
-            file_put_contents("log.txt", "productCategoriesChild after model  ".$this->productCategoryChildList[0]["ProductCategoryListName"]."    ".$this->productCategoryChildList[1]["ProductCategoryListName"].PHP_EOL, FILE_APPEND);
             return $this->productCategoryChildList;
         } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
-            file_put_contents("log.txt", "productCategoriesSelectChilds=> ".$exc.PHP_EOL, FILE_APPEND);
+            $this->logger->setMessage("productCategoriesModel->selectChilds()");
         }
     }
     
@@ -118,7 +125,7 @@ class ProductCategories {
             $this->req = $db->prepare($this->query);
             $this->req->execute();
         } catch (Exception $exc) {
-            file_put_contents("log.txt", "productCategoryAdd=> ".$exc.PHP_EOL, FILE_APPEND);
+            $this->logger->setMessage("productCategoriesModel->add()");
         }
     }
     
@@ -132,10 +139,8 @@ class ProductCategories {
                                 mysql_real_escape_string($productCategoriesArray['Id']));
             $this->req = $db->prepare($this->query);
             $this->req->execute();
-            file_put_contents("log.txt", "productCategoriesUpdate=> ".$this->productCategoryChildList[0]["ProductCategoryListName"]."    ".$this->productCategoryChildList[1]["ProductCategoryListName"].PHP_EOL, FILE_APPEND);
-            
         } catch (Exception $exc) {
-            file_put_contents("log.txt", "productCategoriesUpdate=>=> ".$exc.PHP_EOL, FILE_APPEND);
+            $this->logger->setMessage("productCategoriesModel->update()");
         }
     }
     
@@ -144,14 +149,9 @@ class ProductCategories {
             $db = Db::getInstance();
             $query = sprintf("DELETE FROM product_categories WHERE id='%s' OR parent_id='%s'", $id,$id);
             $req = $db->prepare($query);
-            $req->execute();
-            /*$query = sprintf("DELETE FROM product_categories WHERE parent_id='%s'", $id);
-            $req = $db->prepare($query);
-            $req->execute();*/
-            file_put_contents("log.txt", "productCategoriesDelete=> ".PHP_EOL, FILE_APPEND);
-            
+            $req->execute();            
         } catch (Exception $exc) {
-            file_put_contents("log.txt", "productCategoryDelete=> ".$exc.PHP_EOL, FILE_APPEND);
+            $this->logger->setMessage("productCategoriesModel->delete()");
         }
     }
 }

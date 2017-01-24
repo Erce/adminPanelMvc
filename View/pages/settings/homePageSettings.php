@@ -86,14 +86,9 @@
                                     <label for="pageKeywords">Anahtar Kelimeler ( keywords ):</label>
                                     <textarea class="input-class form-control" rows="3" type="text"  resize="none" name="pageKeywords" id="pageKeywords"><?php echo $pageSettings["Keywords"]; ?></textarea>
                                 </div>
-                                <div class="row">
-                                    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">  
-                                        <br>
-                                        <p>
-                                        Anasayfa Duyuru Metni:
-                                        </p>
-                                        <input class="input-class form-control" type="text" name="pageAnnounceText"/>
-                                    </div>
+                                <div class="form-group">    
+                                    <label for="sliderText">Slider Yazısı: </label>
+                                    <textarea class="input-class form-control" type="text" resize="both" name="sliderText" id="sliderText"><?php echo $pageSettings["SliderText"]; ?></textarea>
                                 </div>
                                 <br/>
                                 <br/>

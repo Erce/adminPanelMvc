@@ -5,12 +5,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+require_once 'Model/loggerModel.php';
 class ReferencesController {
     private $model;
+    private $logger;
     
     public function __construct($model) {
         $this->model = $model;
+        $this->logger = new Logger();
     }
     
     public function update() {
@@ -20,10 +22,8 @@ class ReferencesController {
             $target = $target . basename( $_FILES['photo']['name']);
             $pic=($_FILES['photo']['name']);
             $imgurl = $_FILES['photo']['name'];
-            file_put_contents("log.txt", "reference controller imgurl=".$imgurl.PHP_EOL, FILE_APPEND);
             if($imgurl == "") {
                 $imgurl = $_POST['oldPhotoName'];
-                file_put_contents("log.txt", "reference controller in if imgurl=".$imgurl.PHP_EOL, FILE_APPEND);
             }
             $tmpName = $_FILES['photo']['tmp_name'];
             $id = $_POST['productId'];
@@ -42,12 +42,11 @@ class ReferencesController {
                                    "Keywords" => $keywords,
                                    "Description" => $description);
                                    //"Category" => $category);
-            file_put_contents("log.txt", "reference controller imgurl=".$referencesArray["ImgUrl"].PHP_EOL, FILE_APPEND);
             $this->model->update($referencesArray);
         }
-         catch (Exception $e) {
-             file_put_contents("log.txt", "photoController.php->catch->".$e.PHP_EOL, FILE_APPEND);
-         }
+        catch (Exception $e) {
+            $this->logger->setMessage("referencesController->update()");
+        }
     }
     
     public function add() {
@@ -66,20 +65,19 @@ class ReferencesController {
             $description = isset($_POST['productDescription']) ? $_POST['productDescription'] : "";
             ///$category = isset($_POST['productCategory']) ? $_POST['productCategory'] : "";
 
-            $referencesArray = array( "Title" => $title,
-                                   "Name" => $name,
-                                   "TmpName" => $tmpName,
-                                   "Target" => $target,
-                                   "ImgUrl" => $imgurl,
-                                   "Keywords" => $keywords,
-                                   "Description" => $description);
-                                   //"Category" => $category);
+            $referencesArray = array(   "Title" => $title,
+                                        "Name" => $name,
+                                        "TmpName" => $tmpName,
+                                        "Target" => $target,
+                                        "ImgUrl" => $imgurl,
+                                        "Keywords" => $keywords,
+                                        "Description" => $description);
 
             $this->model->add($referencesArray);
         }
-         catch (Exception $e) {
-             file_put_contents("log.txt", "photoController.php->catch->".$e.PHP_EOL, FILE_APPEND);
-         }
+        catch (Exception $e) {
+           $this->logger->setMessage("referencesController->add()");
+        }
     }
     
     public function delete() {

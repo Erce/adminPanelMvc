@@ -1,6 +1,8 @@
 <?php
+    require_once 'Model/loggerModel.php';
     try {
         define('INCLUDE_CHECK',true);
+        $this->logger = new Logger();
 
         require '../../connection.php';
         /* get the incoming ID and password hash */
@@ -40,7 +42,7 @@
             header("Location: ../../admin.php");
         }
     } catch (Exception $exc) {
-        echo $exc->getTraceAsString();
+        $this->logger->setMessage("validateController->()");
     }
 
     

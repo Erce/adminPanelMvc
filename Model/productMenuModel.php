@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-    require_once ('model/product_categories.php');
+    require_once ('Model/product_categories.php');
     $productCategories = new ProductCategories();
     $productCategoriesList = $productCategories->getProductCategoryList();
 

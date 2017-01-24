@@ -211,17 +211,19 @@ $(function() {
     $(function () {
         $('.edit-slider-icon').click(function (event) {
             $id = $(".sliderphotoboxfocus").attr('id');
-            var formData = "id=" + $id.substring(11,$id.length);
+            $id = $id.substring(11,$id.length);
+            var formData = "id=" + $id;
             alert($id);
-            if($id !== 'undefined') {          
-                $.ajax({     
+            if($id !== 'undefined') {  
+                window.location.href = "?controller=pages&action=slider&page=edit&" + formData;
+                /*$.ajax({     
                     type: 'post',
-                    url: 'View/pages/slider/editPhoto.php',
+                    url: "?controller=pages&action=slider&page=edit&" + formData,
                     data: formData,
                     success: function(php_script_response){
                         window.location.href = "?controller=pages&action=slider&page=edit&" + formData;
                     }
-                });
+                });*/
             }
         });
     }); 
@@ -262,7 +264,6 @@ $(function() {
     }
     
     function deleteProductCategoryRow(elem) {
-        alert("delete product category row");
         $id = $(elem).attr('id');
         $id = $id.substring(15,$id.length);
         $row = '#productCategoryRow' + $id; 
@@ -281,7 +282,6 @@ $(function() {
         $id = $(elem).attr('id');
         $id = $id.substring(15,$id.length);
         $row = '#productCategoryRow' + $id; 
-        alert($id);
         for (i=0; i< $(productCategoryList).length; i++) {
             if($id == $(productCategoryList)[i]["ProductCategoryId"]) {
                 $('#productCategoryParent').val($(productCategoryList)[i]["ProductCategoryListName"]);

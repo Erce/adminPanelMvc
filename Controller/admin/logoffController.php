@@ -5,7 +5,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+require_once 'Model/loggerModel.php';
 class LogoffController {
     
     public function logoff() {
@@ -15,7 +15,8 @@ class LogoffController {
             header("Location: admin.php");
             exit;   
         } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
+            $logger = new Logger();
+            $logger->setMessage("logoffController->logoff()");
         }
     }
 }

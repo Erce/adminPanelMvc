@@ -21,7 +21,6 @@ and open the template in the editor.
     $adminController = new AdminController($adminModel);
     if (isset($_GET['part'])) {
         if($_GET['part'] == 'check') {
-            file_put_contents("log.txt", "admin controller part= check".PHP_EOL, FILE_APPEND);
             $adminController->{$_GET['part']}($_POST);
             echo "asdfadsf";
         }

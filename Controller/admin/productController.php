@@ -5,12 +5,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+require_once 'Model/loggerModel.php';
 class ProductController {
     private $model;
+    private $logger;
     
     public function __construct($model) {
         $this->model = $model;
+        $this->logger = new Logger();
     }
     
     public function update() {
@@ -26,7 +28,6 @@ class ProductController {
             $tmpName = $_FILES['photo']['tmp_name'];
             
             $photoList = array();
-            file_put_contents("log.txt", "product controller= before for".PHP_EOL, FILE_APPEND);
             for ($i = 0; $i < 10; $i++) {
                 if($i!=0) {
                     $target1 = "../uploads/";
@@ -38,7 +39,6 @@ class ProductController {
                     $tmpName = $_FILES['photo'.$i]['tmp_name'];
                     
                     $photoRow = array( "Target" => $target1, "ImgUrl" => $imgurl1, "TmpName" => $tmpName, "ProductId" => $_POST['productId'], "ProductName" => $_POST['productName']);
-                    file_put_contents("log.txt", "product controller= ".  print_r($photoRow).PHP_EOL, FILE_APPEND);
                     array_push($photoList, $photoRow);
                 }
             }
@@ -64,9 +64,9 @@ class ProductController {
 
             $this->model->update($productArray);
         }
-         catch (Exception $e) {
-             file_put_contents("log.txt", "photoController.php->catch->".$e.PHP_EOL, FILE_APPEND);
-         }
+        catch (Exception $e) {
+            $this->logger->setMessage("productController->update()");
+        }
     }
     
     public function add() {
@@ -83,7 +83,6 @@ class ProductController {
             $tmpName = $_FILES['photo']['tmp_name'];
             
             $photoList = array();
-            file_put_contents("log.txt", "product controller= before for".PHP_EOL, FILE_APPEND);
             for ($i = 0; $i < count($_FILES); $i++) {
                 if($i!=0) {
                     $target1 = "../uploads/";
@@ -92,7 +91,6 @@ class ProductController {
                     $tmpName = $_FILES['photo'.$i]['tmp_name'];
                     
                     $photoRow = array( "Target" => $target1, "ImgUrl" => $imgurl1, "TmpName" => $tmpName, "ProductName" => $name);
-                    file_put_contents("log.txt", "product controller= ".PHP_EOL, FILE_APPEND);
                     array_push($photoList, $photoRow);
                 }
             }            
@@ -115,7 +113,7 @@ class ProductController {
             $this->model->add($productArray);
         }
         catch (Exception $e) {
-            file_put_contents("log.txt", "productController.php-> add()".$e.PHP_EOL, FILE_APPEND);
+            $this->logger->setMessage("productController->add()");
         }
     }
     

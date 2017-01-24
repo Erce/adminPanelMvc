@@ -5,12 +5,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+    require_once 'Model/loggerModel.php';
     class SocialLinksController {
         private $socialLinks;
+        private $logger;
                
         public function __construct($model) {
             $this->socialLinks = $model;
+            $this->logger = new Logger();
         }
 
 
@@ -46,7 +48,7 @@
                 );
                 $this->socialLinks->updateSocialLinks($socialLinksRow);   
             } catch (Exception $exc) {
-                echo $exc->getTraceAsString();
+                $this->logger->setMessage("socialLinksController->update()");
             }
         }
     }

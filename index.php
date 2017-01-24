@@ -6,6 +6,7 @@ and open the template in the editor.
 -->
 <?php     
     require_once('connection.php');
+    
     define('INCLUDE_CHECK',true);
     session_start();
     if ($_SESSION["access"] == "granted"){

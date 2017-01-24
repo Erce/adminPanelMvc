@@ -6,10 +6,17 @@
  * and open the template in the editor.
  */
 require_once 'connection.php';
+require_once 'Model/loggerModel.php'; 
+
 class AdminModel {
     private $adminFlag = false;
     private $adminRow;
+    private $logger;
 
+    public function __construct() {
+        $this->logger = new Logger();
+    }
+    
     public function getAdminFlag() {
         return $this->adminFlag;
     }
@@ -20,17 +27,12 @@ class AdminModel {
             $query = sprintf("SELECT id FROM users WHERE username = '%s' AND password = '%s'",
                     $adminArray["UserName"],
                     $adminArray["Password"]);
-            file_put_contents("log.txt", "query=".$query.PHP_EOL, FILE_APPEND);
             //Query the database
             $req = $db->prepare($query);
             //file_put_contents("log.txt", "req=".$req.PHP_EOL, FILE_APPEND);
             $req->execute();
-            file_put_contents("log.txt", "adminArray username=".$adminArray["UserName"].PHP_EOL, FILE_APPEND);
-            file_put_contents("log.txt", "adminArray password=".$adminArray["Password"].PHP_EOL, FILE_APPEND);
-            file_put_contents("log.txt", "admin model after db stuff".PHP_EOL, FILE_APPEND);
             /* Allow access if a matching record was found, else deny access. */
             $row = $req->fetch();
-            file_put_contents("log.txt", "rowww====".$row["id"].PHP_EOL, FILE_APPEND);
             if (isset($row["id"])) {
                 /* access granted */
                 session_start();
@@ -47,17 +49,15 @@ class AdminModel {
 
                 $_SESSION["access"] = "granted";
                 $_SESSION["userId"] = $row['id'];
-                file_put_contents("log.txt", "admin model after db stuff if".PHP_EOL, FILE_APPEND);
                 header('Location: index.php');
             } 
             else {
-                file_put_contents("log.txt", "admin model after db stuff else".PHP_EOL, FILE_APPEND);
                 /* access denied &#8211; redirect back to login */
                 header("Location: admin.php");
             }
 
         } catch (Exception $exc) {
-            file_put_contents("log.txt", "admin check db catch".PHP_EOL, FILE_APPEND);
+            $this->logger->setMessage("adminModel->check()");
         }
     }
     
@@ -73,7 +73,7 @@ class AdminModel {
             return $this->adminRow;
               
         } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
+            $this->logger->setMessage("adminModel->getAdmin()");
         }
     }
 }

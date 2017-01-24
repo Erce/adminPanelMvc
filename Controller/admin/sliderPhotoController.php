@@ -5,13 +5,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+require_once 'Model/loggerModel.php';
 class SliderPhotoController {
     private $model;
+    private $logger;
     private $sliderPhotoArray = array();
     
     public function __construct($model) {
         $this->model = $model;
+        $this->logger = new Logger();
     }
     
     public function getInfo() {
@@ -38,7 +40,7 @@ class SliderPhotoController {
                                    "Description" => $description,
                                    "Date" => $date);
         } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
+            $this->logger->setMessage("sliderPhotoController->getInfo()");
         }
     }
 
@@ -47,7 +49,7 @@ class SliderPhotoController {
             $this->getInfo();
             $this->model->update($this->sliderPhotoArray);
         } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
+            $this->logger->setMessage("sliderPhotoController->update()");
         }
     }
 
@@ -56,7 +58,7 @@ class SliderPhotoController {
             $this->getInfo();
             $this->model->add($this->sliderPhotoArray);
         } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
+            $this->logger->setMessage("sliderPhotoController->add()");
         }
     }
     
@@ -64,7 +66,7 @@ class SliderPhotoController {
         try {
             $this->model->delete($id);
         } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
+            $this->logger->setMessage("sliderPhotoController->delete()");
         }
-        }  
+    }  
 }

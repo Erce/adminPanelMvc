@@ -5,12 +5,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+require_once 'Model/loggerModel.php';
 class ProductCategoriesController {
     private $model;
+    private $logger;
     
     public function __construct($model) {
         $this->model = $model;
+        $this->logger = new Logger();
     }
     
     public function update() {
@@ -20,16 +22,16 @@ class ProductCategoriesController {
             $name = $_POST['productCategoryName'];
             $parentId = $_POST['productCategoryParentId'];
 
-            $productCategoryArray = array( "Id" => $id,
-                                   "ListName" => $listName,
-                                   "Name" => $name,
-                                   "ParentId" => $parentId);
+            $productCategoryArray = array(  "Id" => $id,
+                                            "ListName" => $listName,
+                                            "Name" => $name,
+                                            "ParentId" => $parentId);
 
             $this->model->update($productCategoryArray);
         }
-         catch (Exception $e) {
-            file_put_contents("log.txt", "productCategoriesController.php->catch->".$e.PHP_EOL, FILE_APPEND);
-         }
+        catch (Exception $e) {
+           $this->logger->setMessage("productCategoriesController->update()");
+        }
     }
     
     public function add() {
@@ -38,7 +40,6 @@ class ProductCategoriesController {
             $listName = $_POST['productCategoryListName'];
             $name = $_POST['productCategoryName'];
             $parentId = $_POST['productCategoryParentId'];
-            file_put_contents("log.txt", "productCategoriesController.php->add()->parentId->>>".$parentId.PHP_EOL, FILE_APPEND);
             $productCategoryArray = array("ProductCategoryListName" => $listName,
                                             "ProductCategoryName" => $name,
                                             "ProductCategoryParentId" => $parentId);
@@ -47,7 +48,7 @@ class ProductCategoriesController {
             $this->model->add($productCategoryArray);
         }
          catch (Exception $e) {
-            file_put_contents("log.txt", "productCategoriesController.php->catch->".$e.PHP_EOL, FILE_APPEND);
+            $this->logger->setMessage("productCategoriesController->add()");
          }
     }
     
@@ -56,12 +57,10 @@ class ProductCategoriesController {
     }
     
     public function selectAllChilds() {
-        //file_put_contents("log.txt", "productCategoriesController  ".$_POST['parent_id'].PHP_EOL, FILE_APPEND);
         $this->model->selectAllChilds();
     }
     
     public function selectChilds() {
-        file_put_contents("log.txt", "productCategoriesController  ".$_POST['parent_id'].PHP_EOL, FILE_APPEND);
         $this->model->selectChilds($_POST['parent_id']);
     }
 }

@@ -6,10 +6,17 @@
  * and open the template in the editor.
  */
 
+require_once 'Model/loggerModel.php'; 
+
 class SiteSettingsModel {
+    private $logger;
     private $siteSettingsRow = array();
     private $siteSettingsList = array();
 
+    public function __construct() {
+        $this->logger = new Logger();
+    }
+    
     public function setSiteSettingsList() {
         try {
             $db = Db::getInstance();
@@ -35,7 +42,7 @@ class SiteSettingsModel {
                 array_push($this->siteSettingsList, $this->siteSettingsRow);
             }   
         } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
+            $this->logger->setMessage("siteSettingsModel->setSiteSettingsList()");
         }
     }
     
@@ -68,54 +75,57 @@ class SiteSettingsModel {
             return $this->siteSettingsRow;
               
         } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
+            $this->logger->setMessage("siteSettingsModel->getSiteSettingsWithId()");
         }
     }
     
     public function getSiteSettingsOn() {
-        for ($i = 0; $i < count($this->siteSettingsList); $i++) {
-            if ($this->siteSettingsList[$i]["IsOn"]) {
-                return $this->siteSettingsList[$i];
+        try {
+            for ($i = 0; $i < count($this->siteSettingsList); $i++) {
+                if ($this->siteSettingsList[$i]["IsOn"]) {
+                    return $this->siteSettingsList[$i];
+                }
             }
+        } catch (Exception $exc) {
+            $this->logger->setMessage("siteSettingsModel->getSiteSettingsOn()");
         }
     }
     
     public function update($siteSettingsArray) {
-        $db = Db::getInstance();
-        if ($siteSettingsArray['IsOn'] == 1) {
-            $query = sprintf("UPDATE template SET is_on= CASE WHEN id ='%s' THEN 1 ELSE 0 END",
-                        $siteSettingsArray['Id']);
+        try {
+            $db = Db::getInstance();
+            if ($siteSettingsArray['IsOn'] == 1) {
+                $query = sprintf("UPDATE template SET is_on= CASE WHEN id ='%s' THEN 1 ELSE 0 END",
+                            $siteSettingsArray['Id']);
+                $req = $db->prepare($query);
+                $req->execute();
+            }
+            move_uploaded_file($siteSettingsArray["TmpName"], $siteSettingsArray["Target"]);
+            move_uploaded_file($siteSettingsArray["TmpNameFavicon"], $siteSettingsArray["TargetFavicon"]);
+            move_uploaded_file($siteSettingsArray["TmpNameBackground"], $siteSettingsArray["TargetBackground"]);
+            $query = sprintf("UPDATE template SET name='%s', navbar_color='%s', navbar_opacity='%s', background='%s', background_color='%s', background_opacity='%s',"
+                                    ."font_size='%s', font_family='%s', footer_color='%s', footer_description='%s',"
+                                    ."footer_opacity='%s', logo_navbar='%s', logo_favicon='%s', is_on='%s' WHERE id='%s'",
+                                    $siteSettingsArray['Name'],
+                                    $siteSettingsArray['NavbarColor'],
+                                    $siteSettingsArray['NavbarOpacity'],
+                                    $siteSettingsArray['ImgUrlBackground'],
+                                    $siteSettingsArray['BackgroundColor'],
+                                    $siteSettingsArray['BackgroundOpacity'],
+                                    $siteSettingsArray['FontSize'],
+                                    $siteSettingsArray['FontFamily'],
+                                    $siteSettingsArray['FooterColor'],
+                                    $siteSettingsArray['FooterDescription'],
+                                    $siteSettingsArray['FooterOpacity'],
+                                    $siteSettingsArray['LogoNavbar'],
+                                    $siteSettingsArray['LogoFavicon'],
+                                    $siteSettingsArray['IsOn'],
+                                    $siteSettingsArray['Id']);
             $req = $db->prepare($query);
             $req->execute();
-            
-            file_put_contents("log.txt", "site settings model  in first if ".$siteSettingsArray['IsOn'].PHP_EOL, FILE_APPEND);
+        } catch (Exception $exc) {
+            $this->logger->setMessage("siteSettingsModel->update()");
         }
-        file_put_contents("log.txt", "site settings model after if ".$siteSettingsArray['IsOn'].PHP_EOL, FILE_APPEND);
-        move_uploaded_file($siteSettingsArray["TmpName"], $siteSettingsArray["Target"]);
-        move_uploaded_file($siteSettingsArray["TmpNameFavicon"], $siteSettingsArray["TargetFavicon"]);
-        move_uploaded_file($siteSettingsArray["TmpNameBackground"], $siteSettingsArray["TargetBackground"]);
-        file_put_contents("log.txt", "site settings model after if footer description ".$siteSettingsArray['FooterDescription'].PHP_EOL, FILE_APPEND);
-        $query = sprintf("UPDATE template SET name='%s', navbar_color='%s', navbar_opacity='%s', background='%s', background_color='%s', background_opacity='%s',"
-                                ."font_size='%s', font_family='%s', footer_color='%s', footer_description='%s',"
-                                ."footer_opacity='%s', logo_navbar='%s', logo_favicon='%s', is_on='%s' WHERE id='%s'",
-                                $siteSettingsArray['Name'],
-                                $siteSettingsArray['NavbarColor'],
-                                $siteSettingsArray['NavbarOpacity'],
-                                $siteSettingsArray['ImgUrlBackground'],
-                                $siteSettingsArray['BackgroundColor'],
-                                $siteSettingsArray['BackgroundOpacity'],
-                                $siteSettingsArray['FontSize'],
-                                $siteSettingsArray['FontFamily'],
-                                $siteSettingsArray['FooterColor'],
-                                $siteSettingsArray['FooterDescription'],
-                                $siteSettingsArray['FooterOpacity'],
-                                $siteSettingsArray['LogoNavbar'],
-                                $siteSettingsArray['LogoFavicon'],
-                                $siteSettingsArray['IsOn'],
-                                $siteSettingsArray['Id']);
-        file_put_contents("log.txt", "site settings model  query= ".$query.PHP_EOL, FILE_APPEND);
-        $req = $db->prepare($query);
-        $req->execute();
     }
     
     public function getAdmin($id) {
@@ -130,24 +140,28 @@ class SiteSettingsModel {
             return $this->siteSettingsRow;
               
         } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
+            $this->logger->setMessage("siteSettingsModel->getAdmin()");
         }
     }
 
     public function updateadmin($adminArray) {
-        $db = Db::getInstance();
-        if ($adminArray['Password'] != sha1("")) {
-            $query = sprintf("UPDATE users SET username='%s', password='%s' WHERE id='%s'",
-                                $adminArray['UserName'],
-                                $adminArray['Password'],
-                                $adminArray['Id']);
-        }else {
-            $query = sprintf("UPDATE users SET username='%s' WHERE id='%s'",
-                                $adminArray['UserName'],
-                                $adminArray['Id']); 
+        try {
+            $db = Db::getInstance();
+            if ($adminArray['Password'] != sha1("")) {
+                $query = sprintf("UPDATE users SET username='%s', password='%s' WHERE id='%s'",
+                                    $adminArray['UserName'],
+                                    $adminArray['Password'],
+                                    $adminArray['Id']);
+            }else {
+                $query = sprintf("UPDATE users SET username='%s' WHERE id='%s'",
+                                    $adminArray['UserName'],
+                                    $adminArray['Id']); 
+            }
+            $req = $db->prepare($query);
+            $req->execute();
+        } catch (Exception $exc) {
+            $this->logger->setMessage("siteSettingsModel->updateAdmin()");
         }
-        $req = $db->prepare($query);
-        $req->execute();
     }
 
 

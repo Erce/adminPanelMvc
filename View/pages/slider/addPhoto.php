@@ -18,7 +18,7 @@
 
 ?>
 
-                <form id="firstform" method="post" action="?controller=pages&action=slider&page=add&part=add" enctype="multipart/form-data">
+                <form id="secondform" method="post" action="?controller=pages&action=slider&page=add&part=add" enctype="multipart/form-data">
                     <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6 container-left">
                         <div class="row first-row">
                             <div class="col-md-12 col-xs-18">

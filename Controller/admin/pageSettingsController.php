@@ -5,7 +5,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+require_once 'Model/loggerModel.php';
 class PageSettingsController {
     private $model;
     
@@ -27,6 +27,8 @@ class PageSettingsController {
             $footerOpacity = isset($_POST['pageFooterOpacity']) ? $_POST['pageFooterOpacity'] : "";
             $description = isset($_POST['pageDescription']) ? $_POST['pageDescription'] : "";
             $keywords = isset($_POST['pageKeywords']) ? $_POST['pageKeywords'] : "";
+            $pageText = isset($_POST['pageText']) ? $_POST['pageText'] : "";
+            $sliderText = isset($_POST['sliderText']) ? $_POST['sliderText'] : "";
             
             if(isset($_POST['oldPhotoName']) && isset($_FILES['photo']['name'])) {
                 $target = "../uploads/" . basename( $_FILES['photo']['name']);
@@ -59,11 +61,14 @@ class PageSettingsController {
                                         "FooterColor" => $footerColor,
                                         "FooterOpacity" => $footerOpacity,
                                         "Description" => $description,
-                                        "Keywords" => $keywords);
+                                        "Keywords" => $keywords,
+                                        "PageText" => $pageText,
+                                        "SliderText" => $sliderText);
 
             $this->model->update($pageSettingsArray);
         } catch (Exception $exc) {
-            echo $exc->getTraceAsString();
+            $logger = new Logger();
+            $logger->setMessage("pageSettingsController->update()");
         }
     }
 

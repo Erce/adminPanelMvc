@@ -6,10 +6,13 @@
  * and open the template in the editor.
  */
 
-
+            file_put_contents("log.txt", "editphoto before require".PHP_EOL, FILE_APPEND);
             require_once 'Model/sliderPhotoModel.php';
+            file_put_contents("log.txt", "editphoto after require".PHP_EOL, FILE_APPEND);
             $photoModel = new SliderPhoto();
+            file_put_contents("log.txt", "editphoto after new obj".PHP_EOL, FILE_APPEND);
             $photoModel->editPhoto($_GET['id']);
+            file_put_contents("log.txt", "editphoto after edit photo".PHP_EOL, FILE_APPEND);
             require_once 'Controller/admin/sliderPhotoController.php';
             $sliderPhotoController = new SliderPhotoController($photoModel);
 
@@ -21,7 +24,7 @@
 
         ?>
 
-        <form id="firstform" method="post" action="?controller=pages&action=slider&page=edit&id=<?php echo $photoModel->getId();?>&part=update" enctype="multipart/form-data">
+        <form id="secondform" method="post" action="?controller=pages&action=slider&page=edit&id=<?php echo $photoModel->getId();?>&part=update" enctype="multipart/form-data">
             <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6 container-left">
                 <div class="row first-row">
                     <div class="col-md-12 col-xs-18">
