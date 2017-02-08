@@ -1,6 +1,7 @@
 <?php
 
-    require_once 'Model/loggerModel.php'; class PagesController {
+    require_once 'Model/loggerModel.php'; 
+    class PagesController {
         public function home() {
             require_once('View/pages/home.php');
         }

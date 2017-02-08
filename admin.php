@@ -11,7 +11,8 @@ and open the template in the editor.
     define('INCLUDE_CHECK',true);
     session_start();
     if (isset($_SESSION["access"]) && $_SESSION["access"] == "granted"){
-       header("Location: index.php");
+        echo "<script type='text/javascript'> document.location = 'index.php'; </script>";
+        //header("Location: index.php");
     }
     
     require_once 'Model/adminModel.php';

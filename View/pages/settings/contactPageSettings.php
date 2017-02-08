@@ -51,6 +51,10 @@
                                         <input class="input-class form-control" type="text" name="pageTitle" id="pageTitle" value="<?php echo $pageSettings["Title"]; ?>"/>
                                 </div>
                                 <div class="form-group">
+                                        <label for="pageContactEmail">İletişim E-mail:</label>
+                                        <input class="input-class form-control" type="text" name="pageContactEmail" id="pageContactEmail" value="<?php echo $pageSettings["ContactEmail"]; ?>"/>
+                                </div>
+                                <div class="form-group">
                                         <label for="pageNavbar">Menu:</label>
                                         <input class="input-class form-control" type="text" name="pageNavbar" id="pageNavbar" value="<?php echo $pageSettings["Navbar"]; ?>" readonly="readonly"/>
                                 </div>

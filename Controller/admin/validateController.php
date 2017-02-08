@@ -34,12 +34,13 @@
 
         $_SESSION["access"] = "granted";
         $_SESSION["userId"] = $row['id'];
-
-            header('Location: ../../index.php');
+            echo "<script type='text/javascript'> document.location = '../../admin.php'; </script>";
+            //header('Location: ../../index.php');
         } 
         else {
             /* access denied &#8211; redirect back to login */
-            header("Location: ../../admin.php");
+            echo "<script type='text/javascript'> document.location = '../../admin.php'; </script>";
+            //header("Location: ../../admin.php");
         }
     } catch (Exception $exc) {
         $this->logger->setMessage("validateController->()");

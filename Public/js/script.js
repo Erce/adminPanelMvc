@@ -192,7 +192,7 @@ $(function() {
             $idRow = $(".sliderphotoboxfocus").attr('id');
             $id = $idRow.substring(11,$id.length);
             var formData = "id=" + $id;
-            alert($id);
+            //alert($id);
             if($id !== 'undefined') {
                 $row = '#sliderphotodiv' + $id;              
                 $.ajax({     
@@ -213,7 +213,7 @@ $(function() {
             $id = $(".sliderphotoboxfocus").attr('id');
             $id = $id.substring(11,$id.length);
             var formData = "id=" + $id;
-            alert($id);
+            //alert($id);
             if($id !== 'undefined') {  
                 window.location.href = "?controller=pages&action=slider&page=edit&" + formData;
                 /*$.ajax({     
@@ -230,7 +230,7 @@ $(function() {
     
     $(function () {
         $('#product-delete-icon').click(function (event) {
-            alert($id);
+            //alert($id);
             $id = $(".sliderphotoboxfocus").attr('id');
             var formData = "id=" + $id.substring(11,$id.length);
             alert($id);

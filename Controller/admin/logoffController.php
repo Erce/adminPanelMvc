@@ -12,7 +12,7 @@ class LogoffController {
         try {
             $_SESSION = array();
             session_destroy();
-            header("Location: admin.php");
+            echo "<script type='text/javascript'> document.location = 'admin.php'; </script>";
             exit;   
         } catch (Exception $exc) {
             $logger = new Logger();

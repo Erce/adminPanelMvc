@@ -29,7 +29,8 @@ class PageSettingsController {
             $keywords = isset($_POST['pageKeywords']) ? $_POST['pageKeywords'] : "";
             $pageText = isset($_POST['pageText']) ? $_POST['pageText'] : "";
             $sliderText = isset($_POST['sliderText']) ? $_POST['sliderText'] : "";
-            
+            $contactEmail = isset($_POST['pageContactEmail']) ? $_POST['pageContactEmail'] : "";
+             
             if(isset($_POST['oldPhotoName']) && isset($_FILES['photo']['name'])) {
                 $target = "../uploads/" . basename( $_FILES['photo']['name']);
                 $pic=($_FILES['photo']['name']);
@@ -63,7 +64,8 @@ class PageSettingsController {
                                         "Description" => $description,
                                         "Keywords" => $keywords,
                                         "PageText" => $pageText,
-                                        "SliderText" => $sliderText);
+                                        "SliderText" => $sliderText,
+                                        "ContactEmail" => $contactEmail);
 
             $this->model->update($pageSettingsArray);
         } catch (Exception $exc) {

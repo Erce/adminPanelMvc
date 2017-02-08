@@ -51,7 +51,8 @@ class SocialLinks {
                 $req = $db->prepare($query);
                 $req->execute();
             }
-            header("Location: ".$root."index.php?controller=pages&action=settings&subpage=sociallinksettings");
+            echo "<script type='text/javascript'> document.location = ".$root."index.php?controller=pages&action=settings&subpage=sociallinksettings'; </script>";
+            //header("Location: ".$root."index.php?controller=pages&action=settings&subpage=sociallinksettings");
         } catch (Exception $exc) {
             $this->logger->setMessage("socialLinksModel->addSocialLinks()");
         }

@@ -21,6 +21,7 @@ and open the template in the editor.
         require_once('View/layout.php');
     }
     else {
-        header("Location: admin.php");
+        echo "<script type='text/javascript'> document.location = 'admin.php'; </script>";
+        //header("Location: admin.php");
     }
 
