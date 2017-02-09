@@ -21,3 +21,5 @@
         <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
         <script type="text/javascript" src="../bootstrap.min.js"></script>
         <script type="text/javascript" src="Public/js/script.js"></script>
+        <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
+        <script src="Public/widgEditor/scripts/widgEditor.js"></script>

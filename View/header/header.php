@@ -1,8 +1,10 @@
     
+        <?php 
+            header('Content-Type: text/html; charset=utf-8');
+        ?>
 
 
-
-        <meta charset="UTF-8">
+        <meta http-equiv="Content-Type" content="text/HTML; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title></title>
@@ -14,4 +16,4 @@
         <link href="Public/css/jquery.smartmenus.bootstrap.css" rel="stylesheet">
         <link href="Public/css/navbar.css" rel="stylesheet"> 
         <link href="Public/css/style.css" rel="stylesheet">
-
+        <link rel="stylesheet" href="Public/widgEditor/css/widgEditor.css"/>

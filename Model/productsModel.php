@@ -8,6 +8,8 @@ class Products {
     private $productId;
     private $productTitle;
     private $productName;
+    private $productStock;
+    private $productPrice;
     private $productImgUrl;
     private $productKeywords;
     private $productDescription;
@@ -117,6 +119,8 @@ class Products {
                 if(isset($row['id'])) { $this->productId = $row['id'];}
                 if(isset($row['title'])) { $this->productTitle = $row['title'];}
                 if(isset($row['name'])) { $this->productName = $row['name'];}
+                if(isset($row['stock'])) { $this->productStock = $row['stock'];}
+                if(isset($row['price'])) { $this->productPrice = $row['price'];}
                 if(isset($row['imgurl'])) { $this->productImgUrl = $row['imgurl'];}
                 if(isset($row['keywords'])) { $this->productKeywords = $row['keywords'];}
                 if(isset($row['description'])) { $this->productDescription = $row['description'];}
@@ -124,6 +128,8 @@ class Products {
                 $this->productRow = array(  "Id" => $this->productId,
                                             "Title" => $this->productTitle,
                                             "Name" => $this->productName, 
+                                            "Stock" => $this->productStock,
+                                            "Price" => $this->productPrice,
                                             "ImgUrl" => $this->productImgUrl,
                                             "Keywords" => $this->productKeywords,
                                             "Description" => $this->productDescription, 
@@ -149,13 +155,17 @@ class Products {
             if(isset($row['id'])) { $this->productId = $row['id'];}
             if(isset($row['title'])) { $this->productTitle = $row['title'];}
             if(isset($row['name'])) { $this->productName = $row['name'];}
+            if(isset($row['stock'])) { $this->productStock = $row['stock'];}
+            if(isset($row['price'])) { $this->productPrice = $row['price'];}
             if(isset($row['imgurl'])) { $this->productImgUrl = $row['imgurl'];}
             if(isset($row['keywords'])) { $this->productKeywords = $row['keywords'];}
             if(isset($row['description'])) { $this->productDescription = $row['description'];}
             if(isset($row['category'])) { $this->productCategory = $row['category'];}
             $this->productRow = array( "Id" => $this->productId,
                                        "Title" => $this->productTitle,
-                                       "Name" => $this->productName, 
+                                       "Name" => $this->productName,
+                                       "Stock" => $this->productStock,
+                                       "Price" => $this->productPrice,
                                        "ImgUrl" => $this->productImgUrl,
                                        "Keywords" => $this->productKeywords,
                                        "Description" => $this->productDescription, 
@@ -182,9 +192,11 @@ class Products {
             if(!file_exists($productArray["Target"]))
             {  
                 if(move_uploaded_file($productArray["TmpName"], $productArray["Target"])) { 
-                    $query = sprintf("UPDATE products SET title='%s', name='%s', imgurl='%s', keywords='%s', description='%s', category='%s' WHERE id='%s'",
+                    $query = sprintf("UPDATE products SET title='%s', name='%s', stock='%s', price='%s', imgurl='%s', keywords='%s', description='%s', category='%s' WHERE id='%s'",
                                     $productArray['Title'],
                                     $productArray['Name'],
+                                    $productArray['Stock'],
+                                    $productArray['Price'],
                                     $productArray['ImgUrl'],
                                     $productArray['Keywords'],
                                     $productArray['Description'],
@@ -201,9 +213,11 @@ class Products {
                 }
             }
             else {    
-                $query = sprintf("UPDATE products SET title='%s', name='%s', imgurl='%s', keywords='%s', description='%s', category='%s' WHERE id='%s'",
+                $query = sprintf("UPDATE products SET title='%s', name='%s', stock='%s', price='%s', imgurl='%s', keywords='%s', description='%s', category='%s' WHERE id='%s'",
                                     $productArray['Title'],
                                     $productArray['Name'],
+                                    $productArray['Stock'],
+                                    $productArray['Price'],
                                     $productArray['ImgUrl'],
                                     $productArray['Keywords'],
                                     $productArray['Description'],
@@ -248,8 +262,8 @@ class Products {
             // Connects to your Database
             //Writes the information to the database
             $db = Db::getInstance();
-            $this->query = "INSERT INTO products (title,name,imgurl,keywords,description,category)".
-                            "VALUES ('".$productArray['Title']."', '".$productArray['Name']."', '".$productArray['ImgUrl']."', '".$productArray['Keywords']."', '".$productArray['Description']."', '".$productArray['Category']."')" or die(file_put_contents("log.txt", "in mysql query".mysql_error().PHP_EOL, FILE_APPEND));
+            $this->query = "INSERT INTO products (title,name,stock,price,imgurl,keywords,description,category)".
+                            "VALUES ('".$productArray['Title']."', '".$productArray['Name']."', '".$productArray['Stock']."', '".$productArray['Price']."', '".$productArray['ImgUrl']."', '".$productArray['Keywords']."', '".$productArray['Description']."', '".$productArray['Category']."')" or die(file_put_contents("log.txt", "in mysql query".mysql_error().PHP_EOL, FILE_APPEND));
             $this->req = $db->prepare($this->query);
             $this->req->execute();
 
@@ -285,6 +299,8 @@ class Products {
                 if(isset($row['id'])) { $this->productId = $row['id'];}
                 if(isset($row['title'])) { $this->productTitle = $row['title'];}
                 if(isset($row['name'])) { $this->productName = $row['name'];}
+                if(isset($row['stock'])) { $this->productStock = $row['stock'];}
+                if(isset($row['price'])) { $this->productPrice = $row['price'];}
                 if(isset($row['imgurl'])) { $this->productImgUrl = $row['imgurl'];}
                 if(isset($row['keywords'])) { $this->productKeywords = $row['keywords'];}
                 if(isset($row['description'])) { $this->productDescription = $row['description'];}
@@ -292,6 +308,8 @@ class Products {
                 $productRow = array("Id" => $this->productId,
                                     "Title" => $this->productTitle,
                                     "Name" => $this->productName, 
+                                    "Stock" => $this->productStock,
+                                    "Price" => $this->productPrice, 
                                     "ImgUrl" => $this->productImgUrl,
                                     "Keywords" => $this->productKeywords,
                                     "Description" => $this->productDescription, 

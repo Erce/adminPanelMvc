@@ -98,7 +98,7 @@
                                 </div>
                                 <div class="form-group">    
                                     <label for="pageText">Hakkında Yazısı: </label>
-                                    <textarea class="input-class form-control" type="text" resize="both" name="pageText" id="pageText"><?php echo $pageSettings["PageText"]; ?></textarea>
+                                    <textarea class="input-class form-control widgEditor" col="80" row="50" type="text" resize="both" name="pageText" id="pageText"><?php echo $pageSettings["PageText"]; ?></textarea>
                                 </div>
                                 <br/>
                                 <br/>

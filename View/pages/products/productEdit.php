@@ -70,13 +70,21 @@
                                 <label for="productName">Ürün Adı:</label>
                                 <input class="input-class form-control" type="text" name="productName" id="productName" value="<?php echo $product["Name"];?>"/>
                             </div>
+                            <div class="form-group"> 
+                                <label for="productStock">Ürün Adedi:</label>
+                                <input class="input-class form-control" type="text" name="productStock" id="productStock" value="<?php echo $product["Stock"];?>"/>
+                            </div>
+                            <div class="form-group"> 
+                                <label for="productPrice">Ürün Fiyatı:</label>
+                                <input class="input-class form-control" type="text" name="productPrice" id="productPrice" value="<?php echo $product["Price"];?>"/>
+                            </div>
                             <div class="form-group">  
                                 <label for="productDescription">Sayfa Açıklaması ( description ):</label>
                                 <input class="input-class form-control" type="text" name="productDescription" id="productDescription" value="<?php echo $product["Description"];?>"/>
                             </div>
                             <div class="form-group">    
                                 <label for="productKeywords">Anahtar Kelimeler ( keywords ):</label>
-                                <textarea class="input-class form-control" rows="3" type="text" name="productKeywords" id="productKeywords" value="" placeholder="Anahtar kelimeleri ; ile ayırın"><?php echo $product["Keywords"];?></textarea>
+                                <textarea class="input-class form-control" rows="3" type="text" name="productKeywords" id="productKeywords" value="" placeholder="Anahtar kelimeleri ; ile ayırın   Anahtar kelimedeki boşluk yerine - koyun"><?php echo $product["Keywords"];?></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="productCategory">Ürün Kategorisi:</label>

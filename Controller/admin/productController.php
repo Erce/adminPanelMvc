@@ -46,6 +46,8 @@ class ProductController {
             $id = $_POST['productId'];
             $title = $_POST['productTitle'];
             $name = $_POST['productName'];
+            $stock = $_POST['productStock'];
+            $price = $_POST['productPrice'];
             $keywords = isset($_POST['productKeywords']) ? $_POST['productKeywords'] : "";
             $keywords = $this->model->preg_trim($keywords);
             $description = $_POST['productDescription'];
@@ -54,6 +56,8 @@ class ProductController {
             $productArray = array( "Id" => $id,
                                    "Title" => $title,
                                    "Name" => $name,
+                                   "Stock" => $stock,
+                                   "Price" => $price,
                                    "TmpName" => $tmpName,
                                    "Target" => $target,
                                    "ImgUrl" => $imgurl,
@@ -78,6 +82,8 @@ class ProductController {
             //This gets all the other information from the form
             $title = isset($_POST['productTitle']) ? $_POST['productTitle'] : "";
             $name = isset($_POST['productName']) ? $_POST['productName'] : "";
+            $stock = isset($_POST['productStock']) ? $_POST['productStock'] : "";
+            $price = isset($_POST['productPrice']) ? $_POST['productPrice'] : "";
             $pic=($_FILES['photo']['name']);
             $imgurl = $_FILES['photo']['name'];
             $tmpName = $_FILES['photo']['tmp_name'];
@@ -102,6 +108,8 @@ class ProductController {
 
             $productArray = array( "Title" => $title,
                                    "Name" => $name,
+                                   "Stock" => $stock,
+                                   "Price" => $price,
                                    "TmpName" => $tmpName,
                                    "Target" => $target,
                                    "ImgUrl" => $imgurl,

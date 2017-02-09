@@ -55,6 +55,10 @@
                                         <input class="input-class form-control" type="text" name="pageContactEmail" id="pageContactEmail" value="<?php echo $pageSettings["ContactEmail"]; ?>"/>
                                 </div>
                                 <div class="form-group">
+                                        <label for="contactInfo">İletişim Bilgileri:</label>
+                                        <textarea class="input-class form-control widgEditor" type="text" name="contactInfo" id="contactInfo" value=""><?php echo $pageSettings["ContactInfo"]; ?></textarea>
+                                </div>
+                                <div class="form-group">
                                         <label for="pageNavbar">Menu:</label>
                                         <input class="input-class form-control" type="text" name="pageNavbar" id="pageNavbar" value="<?php echo $pageSettings["Navbar"]; ?>" readonly="readonly"/>
                                 </div>

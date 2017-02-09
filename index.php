@@ -1,9 +1,3 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <?php     
     require_once('connection.php');
     
@@ -21,7 +15,7 @@ and open the template in the editor.
         require_once('View/layout.php');
     }
     else {
-        echo "<script type='text/javascript'> document.location = 'admin.php'; </script>";
+        echo "<script type='text/javascript'> window.location = 'admin.php'; </script>";
         //header("Location: admin.php");
     }
 

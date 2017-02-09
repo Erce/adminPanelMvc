@@ -71,12 +71,17 @@
                     --><div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
                             <div class="row item-content">
                                 <div class="item-text">
-                                    <h5>Caption Text2</h5>
+                                    <h5><?php echo "Adet: ".$productList[$i]["Stock"]; ?></h5>
                                 </div>
                             </div>
                         </div><!--
-                        --><div class="col-lg-5 col-md-4"><!--
-                        --></div><!--
+                        --><div class="col-lg-5 col-md-4">
+                            <div class="row item-content">
+                                <div class="item-text">
+                                    <h5><?php echo "Fiyat: ".$productList[$i]["Price"]; ?></h5>
+                                </div>
+                            </div>
+                        </div><!--
                         --><div class="col-lg-1 col-md-2 col-sm-3 col-xs-2" id="product-delete-icon">
                             <img class="img-responsive product-delete-icon" id="product<?php echo $productList[$i]['Id'];?>" src="Public/images/delete.ico" height="45px" width="45px" onclick="deleteProductRow(this); return false">
                         </div>
