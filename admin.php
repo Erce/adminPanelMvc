@@ -16,7 +16,6 @@
     if (isset($_GET['part'])) {
         if($_GET['part'] == 'check') {
             $adminController->{$_GET['part']}($_POST);
-            echo "asdfadsf";
         }
     }
 ?>

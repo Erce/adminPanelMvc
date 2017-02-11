@@ -19,7 +19,7 @@ class AdminController {
     public function check() {
         try {
             //This is the directory where images will be saved
-            $id = $_SESSION['userId'];
+            $id = isset($_SESSION['userId']) ? $_SESSION['userId'] : "";
             $username = $_POST['username'];
             $pass = sha1($_POST["password"]);
 

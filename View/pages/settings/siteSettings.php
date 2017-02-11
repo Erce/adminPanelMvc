@@ -127,7 +127,7 @@
                                             <div class='col-lg-6 col-md-6 col-sm-6 col-xs-6'>
                                                 <label for="file-input-favicon">
                                                     <p>
-                                                        Alt Logo seç:
+                                                        Sayfa icon seç:
                                                     </p>
                                                     <img class="img-responsive logoff-image" id="image-preview-favicon" src="Public/images/Add_image_icon.svg" height="40%" width="40%">
                                                 </label>

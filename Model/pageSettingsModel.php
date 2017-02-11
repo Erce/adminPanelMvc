@@ -103,20 +103,19 @@ class PageModel {
             $db = Db::getInstance();
             
             move_uploaded_file($pageSettingsArray["TmpName"], $pageSettingsArray["Target"]);
-
-            $query = sprintf("UPDATE pages SET logourl='%s', title='%s', navbar='%s', navbar_color='%s', navbar_opacity='%s', slider='%s',"
+            $title = $pageSettingsArray['Title'];
+            $query = sprintf("UPDATE pages SET logourl='%s', title=:title, navbar='%s', navbar_color='%s', navbar_opacity='%s', slider='%s',"
                                     . " footer='%s',"
                                     . " footer_color='%s',"
                                     . " footer_opacity='%s',"
                                     . " description='%s',"
                                     . " keywords='%s',"
                                     . " page_text='%s',"
-                                    . " slider_text='%s',"
+                                    . " slider_text=:slider_text,"
                                     . " contact_email='%s',"
                                     . " contact_info='%s' "
                                     . " WHERE id='%s'",
                         $pageSettingsArray['ImgUrl'],
-                        mysql_real_escape_string($pageSettingsArray['Title']),
                         $pageSettingsArray['Navbar'],
                         $pageSettingsArray['NavbarColor'],
                         $pageSettingsArray['NavbarOpacity'],
@@ -127,11 +126,12 @@ class PageModel {
                         $pageSettingsArray['Description'],
                         $pageSettingsArray['Keywords'],
                         $pageSettingsArray['PageText'],
-                        $pageSettingsArray['SliderText'],
                         $pageSettingsArray['ContactEmail'],
                         $pageSettingsArray['ContactInfo'],
                         $pageSettingsArray['Id']);
             $req = $db->prepare($query);
+            $req->bindParam(':title',$title,PDO::PARAM_STR);
+            $req->bindParam(':slider_text',$pageSettingsArray['SliderText'],PDO::PARAM_STR);
             $req->execute();
         } catch (Exception $exc) {
             $this->logger->setMessage("pageSettingsModel->update() ".$exc);

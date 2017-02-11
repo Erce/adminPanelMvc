@@ -1,6 +1,7 @@
 <?php
 
     require_once 'Model/loggerModel.php';
+    require_once 'Model/databaseModel.php';
     class Db {
       private static $instance = NULL;
 
@@ -12,7 +13,10 @@
           try {
               if (!isset(self::$instance)) {
                   $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
-                  self::$instance = new PDO('mysql:host=localhost;dbname=users', 'root', '', $pdo_options);
+                  $databaseModel = new DatabaseModel();
+                  $databaseModel->setDatabaseInfo();
+                  $databaseInfo = $databaseModel->getDatabaseInfo();
+                  self::$instance = new PDO('mysql:host='.$databaseInfo["DatabaseIp"].';dbname='.$databaseInfo["DatabaseName"].'', $databaseInfo["Username"], $databaseInfo["Password"], $pdo_options);
               }
               return self::$instance;
           } catch (Exception $exc) {

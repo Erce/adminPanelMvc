@@ -88,7 +88,7 @@
                                 </div>
                                 <div class="form-group">    
                                     <label for="sliderText">Slider Yazısı: </label>
-                                    <textarea class="input-class form-control" type="text" resize="both" name="sliderText" id="sliderText"><?php echo $pageSettings["SliderText"]; ?></textarea>
+                                    <textarea class="input-class form-control widgEditor" type="text" resize="both" name="sliderText" id="sliderText"><?php echo $pageSettings["SliderText"]; ?></textarea>
                                 </div>
                                 <br/>
                                 <br/>
