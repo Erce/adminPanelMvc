@@ -306,6 +306,10 @@ $(function() {
         });
     }
     
+    function databaseButton() {
+        window.location = 'databaseImport.php';
+    }
+    
     /*function refresh() {
         alert("refreshing...");
         // Stop the browser from submitting the form.

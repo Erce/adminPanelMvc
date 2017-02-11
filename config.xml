@@ -2,6 +2,6 @@
 <database>
   <username>root</username>
   <password></password>
-  <databasename>users</databasename>
+  <databasename>deneme_users</databasename>
   <hostIp>localhost</hostIp>
-<database><username>asdfa</username><password>vxcz</password><databasename>sadf</databasename><hostIp>asdf</hostIp></database></database>
+</database>

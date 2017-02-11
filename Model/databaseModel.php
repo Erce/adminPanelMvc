@@ -13,14 +13,14 @@ class DatabaseModel {
     private $databasePassword;
     private $databaseIp;
     private $databaseName;
-
+    private $path = "../config.xml";
 
     public function __construct() {
         $this->logger = new Logger();
     }
     
     public function setDatabaseInfo() {
-        $xmlFile = simplexml_load_file("config.xml") or die("Error: Cannot find file name config.xml");
+        $xmlFile = simplexml_load_file($this->path) or die("Error: Cannot find file name config.xml");
         $this->databaseUsername = $xmlFile->username;
         $this->databasePassword = $xmlFile->password;
         $this->databaseName = $xmlFile->databasename;
@@ -36,12 +36,12 @@ class DatabaseModel {
     }
 
     public function update($databaseArray) {
-        $xmlFile = simplexml_load_file("config.xml") or die("Error: Cannot find file name config.xml");
+        $xmlFile = simplexml_load_file($this->path) or die("Error: Cannot find file name config.xml");
         $xmlFile->username = $databaseArray["Username"];
         $xmlFile->password = $databaseArray["Password"];
         $xmlFile->databasename = $databaseArray["DatabaseName"];
         $xmlFile->hostIp = $databaseArray["HostIp"];
-        $xmlFile->asXML("config.xml");
+        $xmlFile->asXML($this->path);
     }
     
     public function add() {

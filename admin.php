@@ -54,6 +54,11 @@
                     </div>
                     <div class="row">
                         <div class="form-container">
+                            <div class="form-group form">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="button-add">
+                                    <button class="btn btn-default database" name="database" id="database" onclick="databaseButton(this);">Veritabanı Yükleme</button>
+                                </div>
+                            </div>
                             <form class="form-horizontal" id="form" action="?part=check" method="post" accept-charset='UTF-8'>
                                 <div class="form-group form">
                                     <div class="col-md-12">
@@ -93,5 +98,6 @@
         <script src="../../dist/js/bootstrap.min.js"></script>
         <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
         <script type="text/javascript" src="../bootstrap.min.js"></script>
+        <script type="text/javascript" src="Public/js/script.js"></script>
     </body>
 </html>
