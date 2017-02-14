@@ -14,5 +14,6 @@
             require_once 'View/pages/references/referenceEdit.php';
         }
         else {
+            file_put_contents("log.txt", "references.php->0".PHP_EOL, FILE_APPEND);
             require_once 'View/pages/references/references.php';
         }

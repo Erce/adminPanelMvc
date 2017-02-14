@@ -27,6 +27,7 @@
     if (isset($_GET['part'])) {
         $productController->{$_GET['part']}($_POST);
         $product = $productModel->getProduct($_GET['product_id']);
+        $photoList = $photos->getPhotoList($_GET['product_id']);
     }
    ?> 
     <div class="bg-content">

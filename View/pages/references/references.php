@@ -30,25 +30,24 @@
             <div class="product-section">
                 <div class="row button-div">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"></div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">                                   
+                        <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12">                                   
                             <?php 
                                 try {
                                     // The "back" link
-                                    $prevlink = ($references->page > 1) ? '<a href="?controller=pages&action=references&page=1" title="First page">&laquo;</a> <a href="?controller=pages&action=references'.$link.'&page=' . ($references->page - 1) . '" title="Previous page">&lsaquo;</a>' : '<span class="disabled">&laquo;</span> <span class="disabled">&lsaquo;</span>';
+                                    $prevlink = ($references->page > 1) ? '<a class="page-arrows" href="?controller=pages&action=products&page=1" title="First page">&laquo;</a> <a class="page-arrows" href="?controller=pages&action=products'.$link.'&page=' . ($references->page - 1) . '" title="Previous page">&lsaquo;</a>' : '<span class="page-arrows disabled">&laquo;</span> <span class="page-arrows disabled">&lsaquo;</span>';
 
                                     // The "forward" link
-                                    $nextlink = ($references->page < $references->pages) ? '<a href="?controller=pages&action=references'.$link.'&page=' . ($references->page + 1) . '" title="Next page">&rsaquo;</a> <a href="?controller=pages&action=references&page=' . $references->pages . '" title="Last page">&raquo;</a>' : '<span class="disabled">&rsaquo;</span> <span class="disabled">&raquo;</span>';
+                                    $nextlink = ($references->page < $references->pages) ? '<a class="page-arrows" href="?controller=pages&action=products'.$link.'&page=' . ($references->page + 1) . '" title="Next page">&rsaquo;</a> <a class="page-arrows" href="?controller=pages&action=products&page=' . $references->pages . '" title="Last page">&raquo;</a>' : '<span class="page-arrows disabled">&rsaquo;</span> <span class="page-arrows disabled">&raquo;</span>';
 
                                     // Display the paging information
-                                    echo '<div id="paging"><p>', $prevlink, ' Page ', $references->page, ' of ', $references->pages, ' pages, displaying ', $references->start, '-', $references->end, ' of ', $references->total, ' results ', $nextlink, ' </p></div>';
+                                    echo '<div class="page-arrow-text vertical-align" id="paging"><div class="col-lg-1 col-md-2 col-sm-2 col-xs-3"><p class=" left-arrows">', $prevlink, '</p></div> <div class="col-lg-5 col-md-7 col-sm-8 col-xs-8"><p>', $references->pages, ' sayfadan ', $references->page, '. gösteriliyor, ', $references->start, '-', $references->end, ' toplam ', $references->total, ' sonuç </p></div><div class="col-lg-1 col-md-2 col-sm-2 col-xs-3"><p class="right-arrows">', $nextlink, ' </p></div></div>';
 
                                 } catch (Exception $exc) {
                                     echo $exc->getTraceAsString();
                                 }
                             ?>                           
                         </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                             <a href="?controller=pages&action=references&page=add" id="add-slider">
                                 <img class="img-responsive product-add-icon" src="Public/images/plus-icon.png" height="45px" width="45px">       
                             </a>

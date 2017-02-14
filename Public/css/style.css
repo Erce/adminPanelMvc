@@ -269,7 +269,7 @@ div>.form-container{
 }
 
 .img-container-inside-other {
-    height: 12vh;
+    height: 13vh;
     width: 100%;
 }
 
@@ -362,6 +362,22 @@ div>.form-container{
     //padding-top: 10%;
 }
 
+.page-arrows {
+    font-size: 19pt;
+}
+
+.page-arrow-text {
+    font-size: 12pt;
+    color: #122b40;
+}
+
+.left-arrows {
+    float: left;
+}
+
+.right-arrows {
+    float: right;
+}
 
 /*********** PRODUCTS PAGE ***********/
 
@@ -925,14 +941,21 @@ input[type=file].file-input {
     width: 100%;
     height: 40px;
     margin-bottom: 20px;
-    background-color: #FFFF2B;
+    background-color: rgb(60,60,60);
     border-radius: 5px;
     border:0;
     font-size: 12pt;
     font-family: aller;
-    color: rgb(60,60,60);
+    color: rgb(160,160,160);
     font-weight: 500;
     alignment-adjust: auto;
+}
+
+#database:hover, #submit:hover {
+    //border: 1px solid #0099FF;
+    border-color: #31b0d5;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px 2px #31b0d5;
+    outline: 0 none;
 }
 
 #submit {

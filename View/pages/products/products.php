@@ -28,25 +28,24 @@
             <div class="product-section">
                 <div class="row button-div">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"></div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">                                   
+                        <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12">                                   
                             <?php 
                                 try {
                                     // The "back" link
-                                    $prevlink = ($product->page > 1) ? '<a href="?controller=pages&action=products&subpage=products&page=1" title="First page">&laquo;</a> <a href="?controller=pages&action=products&subpage=products'.$link.'&page=' . ($product->page - 1) . '" title="Previous page">&lsaquo;</a>' : '<span class="disabled">&laquo;</span> <span class="disabled">&lsaquo;</span>';
+                                    $prevlink = ($product->page > 1) ? '<a class="page-arrows" href="?controller=pages&action=products&page=1" title="First page">&laquo;</a> <a class="page-arrows" href="?controller=pages&action=products'.$link.'&page=' . ($product->page - 1) . '" title="Previous page">&lsaquo;</a>' : '<span class="page-arrows disabled">&laquo;</span> <span class="page-arrows disabled">&lsaquo;</span>';
 
                                     // The "forward" link
-                                    $nextlink = ($product->page < $product->pages) ? '<a href="?controller=pages&action=products&subpage=products'.$link.'&page=' . ($product->page + 1) . '" title="Next page">&rsaquo;</a> <a href="?controller=pages&action=products&subpage=products&page=' . $product->pages . '" title="Last page">&raquo;</a>' : '<span class="disabled">&rsaquo;</span> <span class="disabled">&raquo;</span>';
+                                    $nextlink = ($product->page < $product->pages) ? '<a class="page-arrows" href="?controller=pages&action=products'.$link.'&page=' . ($product->page + 1) . '" title="Next page">&rsaquo;</a> <a class="page-arrows" href="?controller=pages&action=products&page=' . $product->pages . '" title="Last page">&raquo;</a>' : '<span class="page-arrows disabled">&rsaquo;</span> <span class="page-arrows disabled">&raquo;</span>';
 
                                     // Display the paging information
-                                    echo '<div id="paging"><p>', $prevlink, ' Page ', $product->page, ' of ', $product->pages, ' pages, displaying ', $product->start, '-', $product->end, ' of ', $product->total, ' results ', $nextlink, ' </p></div>';
+                                    echo '<div class="page-arrow-text vertical-align" id="paging"><div class="col-lg-1 col-md-2 col-sm-2 col-xs-3"><p class=" left-arrows">', $prevlink, '</p></div> <div class="col-lg-5 col-md-7 col-sm-8 col-xs-8"><p>', $product->pages, ' sayfadan ', $product->page, '. gösteriliyor, ', $product->start, '-', $product->end, ' toplam ', $product->total, ' sonuç </p></div><div class="col-lg-1 col-md-2 col-sm-2 col-xs-3"><p class="right-arrows">', $nextlink, ' </p></div></div>';
 
                                 } catch (Exception $exc) {
                                     echo $exc->getTraceAsString();
                                 }
                             ?>                           
                         </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
                             <a href="?controller=pages&action=products&subpage=products&page=add" id="add-slider">
                                 <img class="img-responsive product-add-icon" src="Public/images/plus-icon.png" height="45px" width="45px">       
                             </a>

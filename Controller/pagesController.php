@@ -27,6 +27,7 @@
         }
 
         public function references() {
+            file_put_contents("log.txt", "references.php->-1".PHP_EOL, FILE_APPEND);
             require_once ('Controller/referencePagesController.php');
         }
 

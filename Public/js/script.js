@@ -90,7 +90,7 @@
     });
       
 
-$(function() {
+/*$(function() {
     // Get the form.
     var form = $('#form');
     // Get the messages div.
@@ -106,14 +106,14 @@ $(function() {
         // Submit the form using AJAX.
         $.ajax({
             type: 'POST',
-            url: $(form).attr('action'),
+            url: 'admin.php?part=check',
             data: formData,
             success: function (response) {// if it is success in ajax side
                 if (response=='true') {//if it is success in backend
                     $(formMessages).text('');//clears the message
                     $(formMessages).removeClass('failure');//removes the failure class
                     $(formMessages).addClass('success');//adds the success class
-                    $(formMessages).text("E-mail was sent. Thank you for contacting us.");//adds the text
+                    $(formMessages).text("Giriş başarılı");//adds the text
                     $('#firstName').val(''); //clears fields
                     $('#lastName').val(''); //clears fields
                     $('#email').val(''); //clears fields
@@ -139,14 +139,14 @@ $(function() {
             error: function(){// if it is error in ajax side
                 $(formMessages).removeClass('success');//removes the success class
                 $(formMessages).addClass('failure');//adds the failure class
-                $(formMessages).text("E-mail sending has failed. Please check the fields and try again.");//adds the text
+                $(formMessages).text("Giriş başarısız");//adds the text
                 setTimeout(function() { $(formMessages).text('');
                                         $(formMessages).removeClass('failure');
                                         $(formMessages).addClass('message-div');},3000);
             }           
         });     
     });
-});
+});*/
 
 
 //SLIDER SUBMIT
