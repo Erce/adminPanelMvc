@@ -189,8 +189,8 @@ class Products {
                 mkdir($path);
             }
             //Writes the photo to the server
-            if(!file_exists($productArray["Target"]))
-            {  
+            //if($productArray["ImgUrl"] != $productArray['Name'])
+            //{
                 if(move_uploaded_file($productArray["TmpName"], $productArray["Target"])) { 
                     $query = sprintf("UPDATE products SET title='%s', name='%s', stock='%s', price='%s', imgurl='%s', keywords='%s', description='%s', category='%s' WHERE id='%s'",
                                     $productArray['Title'],
@@ -209,10 +209,24 @@ class Products {
                 }
                 else {
                 //Gives and error if its not
-                echo "Sorry, there was a problem uploading your file.";
+                    $query = sprintf("UPDATE products SET title='%s', name='%s', stock='%s', price='%s', imgurl='%s', keywords='%s', description='%s', category='%s' WHERE id='%s'",
+                                    $productArray['Title'],
+                                    $productArray['Name'],
+                                    $productArray['Stock'],
+                                    $productArray['Price'],
+                                    $productArray['ImgUrl'],
+                                    $productArray['Keywords'],
+                                    $productArray['Description'],
+                                    $productArray['Category'],
+                                    $productArray['Id']);
+
+                    //Writes the information to the database
+                    $this->req = $db->prepare($query);
+                    $this->req->execute();
+                    //echo $productArray["TmpName"]."   ".$productArray["Target"]."Product model. Sorry, there was a problem uploading your file.";
                 }
-            }
-            else {    
+            //}
+            /*else {    
                 $query = sprintf("UPDATE products SET title='%s', name='%s', stock='%s', price='%s', imgurl='%s', keywords='%s', description='%s', category='%s' WHERE id='%s'",
                                     $productArray['Title'],
                                     $productArray['Name'],
@@ -228,7 +242,7 @@ class Products {
                 $this->req = $db->prepare($query);
                 $this->req->execute();
                 //mysql_query($query) or die(mysql_error());     
-            }
+            }*/
         } catch (Exception $exc) {
             $this->logger->setMessage("productsModel->update()");
         }
@@ -279,7 +293,7 @@ class Products {
             }
             else {
                 //Gives and error if its not
-                echo "Sorry, there was a problem uploading your file.";
+                echo "Product add.Sorry, there was a problem uploading your file.";
             }
         } catch (Exception $exc) {
             $this->logger->setMessage("productsModel->add()");

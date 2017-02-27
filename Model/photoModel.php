@@ -94,6 +94,7 @@
             require_once '../connect.php';
             if($photoArray["OldPhotoName"] != $photoArray['Name'])
             {     
+                if(file_exists("../uploads".$photoArray['Name'])) unlink("../uploads".$photoArray['Name']);
                 if(move_uploaded_file($photoArray["TmpName"], $photoArray["Target"])) { 
                     $query = sprintf("UPDATE sliderphotos SET name='%s', title='%s', description='%s', date='%s' WHERE id='%s'",
                         mysql_real_escape_string($photoArray['Name']),
@@ -130,7 +131,7 @@
                 $query = sprintf("SELECT * FROM photos WHERE product_id='%s'", $productId);
                 $req = $db->prepare($query);
                 $req->execute();
-
+                $this->photoList = array();
                 while($row = $req->fetch()) {
                     if(isset($row['id'])) { $this->id = $row['id'];}
                     if(isset($row['name'])) { $this->name = $row['name'];}
@@ -156,7 +157,7 @@
                 mkdir($path);
             }
             
-            $this->delete($productId);
+            //$this->delete($productId);
             $this->add($photoList, $productId);
         }
 

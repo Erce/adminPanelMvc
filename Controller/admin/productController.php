@@ -26,7 +26,7 @@ class ProductController {
                 $imgurl = $_POST['oldPhotoName'];
             }
             $tmpName = $_FILES['photo']['tmp_name'];
-            
+            //$oldPhotoName = $_POST['oldPhotoName'];
             $photoList = array();
             for ($i = 0; $i < 10; $i++) {
                 if($i!=0) {
@@ -36,9 +36,9 @@ class ProductController {
                     if($imgurl1 == "") {
                         $imgurl1 = $_POST['oldPhotoName'.$i];
                     }
-                    $tmpName = $_FILES['photo'.$i]['tmp_name'];
+                    $tmpName1 = $_FILES['photo'.$i]['tmp_name'];
                     
-                    $photoRow = array( "Target" => $target1, "ImgUrl" => $imgurl1, "TmpName" => $tmpName, "ProductId" => $_POST['productId'], "ProductName" => $_POST['productName']);
+                    $photoRow = array( "Target" => $target1, "ImgUrl" => $imgurl1, "TmpName" => $tmpName1, "ProductId" => $_POST['productId'], "ProductName" => $_POST['productName']);
                     array_push($photoList, $photoRow);
                 }
             }
@@ -66,6 +66,8 @@ class ProductController {
                                    "Description" => $description,
                                    "Category" => $category);
 
+            
+            //print_r($productArray);
             $this->model->update($productArray);
         }
         catch (Exception $e) {
@@ -78,7 +80,7 @@ class ProductController {
             //This is the directory where images will be saved
             $target = "../uploads/";
             $target = $target . basename( $_FILES['photo']['name']);
-            echo $target;
+            //echo $target;
             //This gets all the other information from the form
             $title = isset($_POST['productTitle']) ? $_POST['productTitle'] : "";
             $name = isset($_POST['productName']) ? $_POST['productName'] : "";
@@ -94,9 +96,9 @@ class ProductController {
                     $target1 = "../uploads/";
                     $target1 = $target1 . basename( $_FILES['photo'.$i]['name']);
                     $imgurl1 = $_FILES['photo'.$i]['name'];
-                    $tmpName = $_FILES['photo'.$i]['tmp_name'];
+                    $tmpName1 = $_FILES['photo'.$i]['tmp_name'];
                     
-                    $photoRow = array( "Target" => $target1, "ImgUrl" => $imgurl1, "TmpName" => $tmpName, "ProductName" => $name);
+                    $photoRow = array( "Target" => $target1, "ImgUrl" => $imgurl1, "TmpName" => $tmpName1, "ProductName" => $name);
                     array_push($photoList, $photoRow);
                 }
             }            
